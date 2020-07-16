@@ -1,5 +1,5 @@
 ---
-title: Capitalized Title Here
+title: Status of `r params$spp` (*`r params$sci`*) along the US west coast in yyyy
 author:
   - name: Author One
     affiliation: Affiliation
@@ -13,8 +13,13 @@ author:
     - line 1
     - line 2
     email:  author2@work
+params:
+    spp: "Species name"
+    sci: "Latin name"
 abstract: >
   An abstract of less than 150 words.
+fontsize: 12pt
+geometry: margin=1in
 preamble: |
   % Any extra LaTeX you need in the preamble
 output: sa4ss::ss_pdf
