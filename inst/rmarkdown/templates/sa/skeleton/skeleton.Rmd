@@ -17,7 +17,7 @@ abstract: >
   An abstract of less than 150 words.
 preamble: |
   % Any extra LaTeX you need in the preamble
-output: rticles::rjournal_article
+output: sa4ss::ss_pdf
 ---
 
 ## Introduction
