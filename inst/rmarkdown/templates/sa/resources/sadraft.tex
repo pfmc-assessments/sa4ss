@@ -1,0 +1,26 @@
+\documentclass[a4paper,11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{RJournal}
+\usepackage{amsmath,amssymb,array}
+\usepackage{booktabs}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+%% do not edit, for illustration only
+\volume{XX}
+\volnumber{YY}
+\month{AAAA}
+
+\begin{article}
+  \input{$filename$}
+\end{article}
+
+\end{document}

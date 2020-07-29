@@ -1,0 +1,19 @@
+# Introduction
+
+## Basic Information
+`r spp` (\emph{`r spp.sci`}) is a ...
+
+## Life History
+Replace text.
+
+## Ecosystem Considerations
+Replace text.
+
+## Historical and Current Fishery Information
+Replace text.
+
+## Summary of Management History and Performance
+Replace text.
+
+## Foreign Fisheries
+Replace text.

@@ -4,25 +4,20 @@
 %
 % Originally written by Kurt Hornik and Friedrich Leisch with subsequent 
 % edits by the editorial board
-
+% Create an issue of using report class
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{RJournal}[2013/08/27 v0.13 RJournal package]
 
+% Page layout
 \RequirePackage{tikz}
-
-% Overall page layout, fonts etc -----------------------------------------------
-
-% Issues of of \emph{The R Journal} are created from the standard \LaTeX{}
-% document class \pkg{report}. 
-
 \RequirePackage{geometry}
 \geometry{a4paper,
    textwidth=14cm,
    top=2.54cm, bottom=2.54cm,
-   includefoot,centering,
+   includehead,includefoot,
+   centering,
    footskip=1.5cm}
 \raggedbottom
-
 \RequirePackage{fancyhdr}
 \fancyfoot{}
 \fancyfoot[L]{ \the\year{}/\RJ@number, \RJ@month}
@@ -30,15 +25,8 @@
 \pagestyle{fancy}
 \setlength{\headheight}{14pt}
 
-% We use the following fonts (all with T1 encoding):
-% 
-%   rm   & palatino
-%   tt   & inconsolata
-%   sf   & helvetica
-%   math & palatino
-
+% Fonts and spacing
 \RequirePackage{microtype}
-
 \RequirePackage[scaled=0.92]{helvet}
 \RequirePackage{palatino,mathpazo}
 \RequirePackage[scaled=1.02]{inconsolata}
@@ -52,10 +40,10 @@
 \RequirePackage{color}
 \definecolor{link}{rgb}{0.45,0.51,0.67}
 \hypersetup{
-  colorlinks,%
-  citecolor=link,%
-  filecolor=link,%
-  linkcolor=link,%
+  colorlinks,
+  citecolor=link,
+  filecolor=link,
+  linkcolor=link,
   urlcolor=link
 }
 

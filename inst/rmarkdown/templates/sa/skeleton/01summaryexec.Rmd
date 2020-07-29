@@ -1,0 +1,34 @@
+# Executive Summary{-}
+
+## Stock{-}
+This assessment reports the status of `r spp` (\emph{`r spp.sci`}) off the `r coast` coast ...
+
+## Landings{-}
+Replace text.
+
+## Data and Assessment{-}
+Replace text.
+
+## Stock Biomass{-}
+Replace text.
+
+## Recruitment{-}
+Replace text.
+
+## Exploitation Status{-}
+Replace text.
+
+## Reference Points{-}
+Replace text.
+
+## Management Performance{-}
+Replace text.
+
+## Unresolved Problems and major Uncertainties{-}
+Replace text.
+
+## Decision Table{-}
+Replace text.
+
+## Research and Data Needs{-}
+Replace text.
