@@ -1,27 +1,47 @@
-% !TeX root = RJwrapper.tex
+% Title page
+\thispagestyle{empty} % to remove page number
+\begin{center}
 \title{$title$}
-\author{by $for(author)$$author.name$$sep$, $endfor$}
 
-\maketitle
+\vspace{1.5cm}
+{\Large\textbf\newline{$title$}}
 
-$if(abstract)$
-\abstract{%
-$abstract$
-}
-$endif$
+\vspace{0.5cm}
+$for(author)$
+$author.name$\textsuperscript{$author.code$}$sep$\\
+$endfor$
+\end{center}
+\vspace{0.5cm}
+$for(affiliation)$
+\textsuperscript{$affiliation.code$}$affiliation.address$$sep$\\
+$endfor$
+\vspace{0.5cm}
+
+\begin{center}
+{$month$} {$year$}
+\end{center}
+
+\vspace*{\fill}
+todo: Add page numbers
+\noindent Please cite as: $for(author)$$author.family$, $author.first$.$author.middle$., $endfor$$year$. $title$.
+Pacific Fisheries Mangement Council, Portland, Oregon. xx p.
+
+% Table of contents
+\newpage
+\thispagestyle{empty} % to remove page number
+\tableofcontents
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\setlength{\parskip}{5mm plus1mm minus1mm}
+\pagebreak
+\setcounter{page}{1}
+\renewcommand{\thefigure}{\alph{figure}}
+\renewcommand{\thetable}{\alph{table}}
+\pagenumbering{arabic}
 
 $body$
 
 $if(bibliography)$
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 $endif$
-
-$for(author)$
-\address{%
-$author.name$\\
-$author.affiliation$\\
-$for(author.address)$$author.address$$sep$\\ $endfor$\\
-}
-$if(author.email)$$author.email$$endif$
-
-$endfor$

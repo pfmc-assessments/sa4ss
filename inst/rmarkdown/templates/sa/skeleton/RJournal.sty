@@ -16,21 +16,19 @@
 % document class \pkg{report}. 
 
 \RequirePackage{geometry}
-\geometry{a4paper, 
-   textwidth=14cm, top=1cm, bottom=1cm,
-   includehead,includefoot,centering,
+\geometry{a4paper,
+   textwidth=14cm,
+   top=2.54cm, bottom=2.54cm,
+   includefoot,centering,
    footskip=1.5cm}
 \raggedbottom
 
 \RequirePackage{fancyhdr}
-\fancyhead{}
-\fancyheadoffset{2cm} 
-\fancyhead[L]{\textsc{\RJ@sectionhead}}
-\fancyhead[R]{\thepage}
 \fancyfoot{}
-\fancyfoot[L]{The R Journal Vol. \RJ@volume/\RJ@number, \RJ@month}
-\fancyfoot[R]{ISSN 2073-4859}
+\fancyfoot[L]{ \the\year{}/\RJ@number, \RJ@month}
+\fancyfoot[R]{\thepage}
 \pagestyle{fancy}
+\setlength{\headheight}{14pt}
 
 % We use the following fonts (all with T1 encoding):
 % 
@@ -74,8 +72,10 @@
 \newcommand{\volume}[1]{\def\RJ@volume{#1}}
 \newcommand{\volnumber}[1]{\def\RJ@number{#1}}
 \renewcommand{\month}[1]{\def\RJ@month{#1}}
-\renewcommand{\year}[1]{\def\RJ@year{#1}}
-
+\def\today{\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\day, \number\year}
 
 % Individual articles correspond to
 % chapters, and are contained in |article| environments.  This makes it
@@ -195,7 +195,7 @@
 \renewcommand{\titlepage}{%
   \thispagestyle{empty}
   \hypersetup{
-    pdftitle={The R Journal Volume \RJ@volume/\RJ@number, \RJ@month \RJ@year},%
+    pdftitle={The R Journal Volume},%
     pdfauthor={R Foundation for Statistical Computing},%
   }
   \noindent
@@ -205,7 +205,6 @@
     Journal
   
   \end{center}
-  {\large \hfill Volume \RJ@volume/\RJ@number, \RJ@month{} \RJ@year \quad}
 
   \rule{\textwidth}{1pt}
   \begin{center}
@@ -333,3 +332,6 @@
 \end{minipage}%
 \end{table}
 }
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}

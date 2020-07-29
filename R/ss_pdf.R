@@ -1,9 +1,14 @@
-#' R Journal format.
+#' Stock Synthesis (SS) stock assessment format.
 #'
-#' Format for creating R Journal articles. Adapted from
-#' \url{https://journal.r-project.org/submissions.html}.
+#' Format for creating Stock Synthesis (SS) assessment pdfs.
+#' Adapted from \url{https://journal.r-project.org/submissions.html}.
 #' @param ...,citation_package Arguments to \code{rmarkdown::pdf_document}.
 #' @export
+#' @author Kelli Faye Johnson
+#' @examples
+#' # Check out the files that are created in the \code{doc} folder.
+#' rmarkdown::draft("doc.Rmd", template = "sa",
+#'   package = "sa4ss", edit = FALSE)
 ss_pdf <- function(..., citation_package = 'natbib') {
 
   rmarkdown::pandoc_available('2.2', TRUE)
@@ -16,7 +21,7 @@ ss_pdf <- function(..., citation_package = 'natbib') {
   )
 
   # Render will generate tex file, post-process hook generates appropriate
-  # sawrapper.tex and use pandoc to build pdf from that
+  # sadraft.tex and use pandoc to build pdf from that
   base$pandoc$to <- "latex"
   base$pandoc$ext <- ".tex"
 
@@ -36,10 +41,10 @@ ss_pdf <- function(..., citation_package = 'natbib') {
       f
     })
     t <- system.file("rmarkdown", "templates", "sa", "resources",
-      "sawrapper.tex", package = "sa4ss")
-    rticles:::template_pandoc(m, t, "sawrapper.tex", h, verbose)
+      "sadraft.tex", package = "sa4ss")
+    rticles:::template_pandoc(m, t, "sadraft.tex", h, verbose)
 
-    tinytex::latexmk("sawrapper.tex", base$pandoc$latex_engine, clean = clean)
+    tinytex::latexmk("sadraft.tex", base$pandoc$latex_engine, clean = clean)
   }
 
   # Mostly copied from knitr::render_sweave

@@ -1,54 +1,41 @@
 ---
-title: Status of `r params$spp` (*`r params$sci`*) along the US west coast in yyyy
-author:
-  - name: Author One
-    affiliation: Affiliation
-    address:
-    - line 1
-    - line 2
-    email:  author1@work
-  - name: Author Two
-    affiliation: Affiliation
-    address:
-    - line 1
-    - line 2
-    email:  author2@work
-params:
-    spp: "Species name"
-    sci: "Latin name"
-abstract: >
-  An abstract of less than 150 words.
-fontsize: 12pt
 geometry: margin=1in
+month: "`r format(Sys.Date(), '%B')`"
+year: "`r format(Sys.Date(), '%Y')`"
 preamble: |
-  % Any extra LaTeX you need in the preamble
 output: sa4ss::ss_pdf
 ---
 
-## Introduction
+```{r opts, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+source("00opts.R")
+```
 
-Introductory section which may include references in parentheses
-[@R], or cite a reference such as @R in the text.
+```{r 00functions}
+sa4ss:::write_title(species = spp, latin = spp.sci, coast = coast)
+sa4ss:::write_authors(authors)
+```
+```{r child = "00title.Rmd"}
+```
+```{r child = "00authors.Rmd"}
+```
 
-## Section title in sentence case
+```{r child = "01summaryexec.Rmd"}
+```
 
-This section may contain a figure such as Figure \ref{fig:Rlogo}.
+```{r child = "02introduction.Rmd"}
+```
+
+\color{black}
+# References
+\renewcommand{\thepage}{}
+
+## Rules
+  * Section titles are in sentence case
+  * References can be included using [@R] or as @R in the text
 
 ```{r, Rlogo, echo=FALSE, fig.cap='The logo of R.', out.width='2in', fig.align='center', fig.pos='htbp'}
 knitr::include_graphics('Rlogo.pdf')
 ```
-
-## Another section
-
-There will likely be several sections, perhaps including code snippets, such as:
-
-```{r}
-x <- 1:10
-x
-```
-
-## Summary
-
-This file is only a basic article template. For full details of _The R Journal_ style and information on how to prepare your article for submission, see the [Instructions for Authors](https://journal.r-project.org/share/author-guide.pdf).
 
 \bibliography{RJreferences}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ss_pdf.R
 \name{ss_pdf}
 \alias{ss_pdf}
-\title{R Journal format.}
+\title{Stock Synthesis (SS) stock assessment format.}
 \usage{
 ss_pdf(..., citation_package = "natbib")
 }
@@ -10,6 +10,14 @@ ss_pdf(..., citation_package = "natbib")
 \item{..., citation_package}{Arguments to \code{rmarkdown::pdf_document}.}
 }
 \description{
-Format for creating R Journal articles. Adapted from
-\url{https://journal.r-project.org/submissions.html}.
+Format for creating Stock Synthesis (SS) assessment pdfs.
+Adapted from \url{https://journal.r-project.org/submissions.html}.
+}
+\examples{
+# Check out the files that are created in the \code{doc} folder.
+rmarkdown::draft("doc.Rmd", template = "sa",
+  package = "sa4ss", edit = FALSE)
+}
+\author{
+Kelli Faye Johnson
 }
