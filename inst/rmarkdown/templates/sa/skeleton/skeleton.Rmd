@@ -35,4 +35,5 @@ sa4ss:::write_authors(authors)
 knitr::include_graphics('Rlogo.pdf')
 ```
 
-\bibliography{RJreferences}
+```{r child = "41references.Rmd"}
+```
