@@ -20,15 +20,12 @@ sa4ss:::write_authors(authors)
 ```{r child = "00authors.Rmd"}
 ```
 
-```{r child = "01summaryexec.Rmd"}
+```{r child = "01summary.Rmd"}
 ```
 
-```{r child = "02introduction.Rmd"}
-```
 
-\color{black}
-# References
-\renewcommand{\thepage}{}
+```{r child = c("10preintroduction.Rmd", "10introduction.Rmd")}
+```
 
 ## Rules
   * Section titles are in sentence case
