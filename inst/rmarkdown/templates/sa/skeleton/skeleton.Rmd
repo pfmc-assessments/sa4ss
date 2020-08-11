@@ -27,9 +27,8 @@ sa4ss:::write_authors(authors)
 ```{r child = c("10preintroduction.Rmd", "10introduction.Rmd")}
 ```
 
-## Rules
-  * Section titles are in sentence case
-  * References can be included using [@R] or as @R in the text
+```{r child = "11data.Rmd"}
+```
 
 ```{r child = "43figures.Rmd"}
 ```

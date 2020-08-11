@@ -1,0 +1,20 @@
+### \acrlong{s-tri}
+
+The \gls{s-tri} was first conducted by the \gls{afsc} in 1977 and spanned the time-frame from 1977-2004.
+The survey's design and sampling methods are most recently described in Weinberg et al. [-@weinberg_2001_2002].
+Its basic design was a series of equally-spaced east to west transects from which searches for tows in a specific depth range were initiated.
+The survey design has changed slightly over time.
+In general, all of the surveys were conducted in the mid-summer through early fall.
+The 1977 survey was conducted from early July through late September.
+The surveys from 1980 through 1989 ran from mid-July to late September.
+The 1992 survey spanned from mid-July through early October.
+The 1995 survey was conducted from early June to late August.
+The 1998 survey ran from early June through early August.
+Finally, the 2001 and 2004 surveys were conducted in May-July.
+
+Haul depths ranged from 91-457 m during the 1977 survey with no hauls shallower than 91 m.
+The surveys in 1980, 1983, and 1986 covered the West Coast south to $36.8^\circ$ N latitude and a depth range of 55-366 m.
+The surveys in 1989 and 1992 covered the same depth range but extended the southern range to $34.5^\circ$ N (near Point Conception).
+From 1995 through 2004, the surveys covered the depth range 55-500 m and surveyed south to $34.5^\circ$ N.
+In the final year of the \gls{s-tri} series, 2004, the \gls{nwfsc} \gls{fram} conducted the survey and followed very similar protocols as the \gls{afsc}.
+Due to haul performance issues and differences in sampling depths, the 1977 are omitted from analysis.
