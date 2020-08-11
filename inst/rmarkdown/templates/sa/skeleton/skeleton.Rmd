@@ -31,8 +31,7 @@ sa4ss:::write_authors(authors)
   * Section titles are in sentence case
   * References can be included using [@R] or as @R in the text
 
-```{r, Rlogo, echo=FALSE, fig.cap='The logo of R.', out.width='2in', fig.align='center', fig.pos='htbp'}
-knitr::include_graphics('Rlogo.pdf')
+```{r child = "43figures.Rmd"}
 ```
 
 ```{r child = "41references.Rmd"}
