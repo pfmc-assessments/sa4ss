@@ -44,7 +44,7 @@ ss_pdf <- function(..., citation_package = 'natbib') {
       "sadraft.tex", package = "sa4ss")
     rticles:::template_pandoc(m, t, "sadraft.tex", h, verbose)
 
-    tinytex::latexmk("sadraft.tex", base$pandoc$latex_engine, clean = clean)
+    tinytex::latexmk("sadraft.tex", "lualatex", clean = clean)
   }
 
   # Mostly copied from knitr::render_sweave
