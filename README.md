@@ -30,6 +30,6 @@ if (file.exists(dirclone)) {
 }
 if ("package:sa4ss" %in% search()) unload(package = "sa4ss")
 library(sa4ss)
-rmarkdown::draft("doc.Rmd", template = "sa", package = "sa4ss", edit = FALSE)
+sa4ss::draft()
 rmarkdown::render(file.path("doc", "doc.Rmd"))
 ```
