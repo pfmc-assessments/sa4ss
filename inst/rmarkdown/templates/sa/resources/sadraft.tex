@@ -22,9 +22,6 @@ $if(fontfamily)$
 $else$
 \usepackage{lmodern}
 $endif$
-$if(linestretch)$
-\usepackage{setspace}
-$endif$
 \usepackage{ifxetex,ifluatex}
 f$if(mathspec)$
   \ifxetex
@@ -317,9 +314,6 @@ Correct citation for this publication:
 \thispagestyle{empty} % to remove page number
 
 % Settings for the main document
-$if(linestretch)$
-\setstretch{$linestretch$}
-$endif$
 \pagenumbering{arabic}  % Regular page numbers
 \pagestyle{plain}  % No page number on first page of main document, use 'empty'
 \renewcommand*{\thefootnote}{\arabic{footnote}}  % Back to numeric footnotes
