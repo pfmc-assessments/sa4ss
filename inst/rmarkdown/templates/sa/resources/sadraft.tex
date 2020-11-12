@@ -23,7 +23,12 @@ $else$
 \usepackage{lmodern}
 $endif$
 \usepackage{ifxetex,ifluatex}
-f$if(mathspec)$
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+$if(mathspec)$
   \ifxetex
     \usepackage{mathspec}
   \else
@@ -140,7 +145,7 @@ $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
 $if(tables)$
-\usepackage{longtable,booktabs}
+\usepackage{longtable}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -244,23 +249,12 @@ $for(include-before)$
 $include-before$
 
 $endfor$
-% Sections in capitals
-\renewcommand\listfigurename{LIST OF FIGURES}
-\renewcommand\listtablename{LIST OF TABLES}
 
 % Footnote symbols in front matter
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
 
-% Prevent issues with the first two unnumbered pages
-\hypersetup{pageanchor=false}
-
-% Start page numbering/anchoring
-\hypersetup{pageanchor=true}
-
-% Third page: Inside cover
 \small
 \pagenumbering{roman}
-\thispagestyle{empty}
 \noindent
 \begin{center}
 \title{$title$}
