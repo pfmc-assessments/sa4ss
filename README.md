@@ -31,5 +31,6 @@ if (file.exists(dirclone)) {
 if ("package:sa4ss" %in% search()) unload(package = "sa4ss")
 library(sa4ss)
 sa4ss::draft()
-rmarkdown::render(file.path("doc", "doc.Rmd"))
+setwd("doc")
+bookdown::render_book("00a.Rmd", clean = FALSE)
 ```

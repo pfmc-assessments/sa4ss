@@ -4,9 +4,16 @@
 #' document written with \pkg{sa4ss}.
 #' 
 #' @details
-#' Code is a wrapper for \code{\link[rmarkdown]{draft}()} so users do not
-#' have to worry about specifying all of the auxiliary arguments.
+#' Along with specifying some initial inputs, such as
+#' authors and species, this code is a wrapper for \code{\link[rmarkdown]{draft}()}.
+#' Users should focus on the input arguments that come before \code{type}
+#' because these will be specific to your stock assessment and are used to
+#' set up the initial file structure.
 #'
+#' @template authors
+#' @template species
+#' @template latin
+#' @template coast
 #' @param type The name of the template you want to copy from those available
 #' within \pkg{sa4ss}. See the function call for available options, where the
 #' first listed will be used for the default.
@@ -35,6 +42,10 @@
 #' @author Kelli Faye Johnson
 #'
 draft <- function(
+  authors,
+  species = "Species name",
+  latin = "Scientific name",
+  coast = "US West",
   type = c("sa"),
   create_dir = FALSE,
   edit = FALSE,
@@ -48,5 +59,15 @@ draft <- function(
   edit = edit,
   ...)
 
-  return(invisible(filename))
+  newname <- gsub("doc.Rmd", "00a.Rmd", filename)
+  file.rename(filename, newname)
+  thedir <- dirname(newname)
+  write_title(species = species, latin = latin, coast = coast,
+    fileout = file.path(thedir, formals(write_title)$fileout))
+  write_authors(authors,
+    fileout = file.path(thedir, formals(write_authors)$fileout))
+  save(species, latin, coast, authors,
+    file = file.path(thedir, "00opts.Rdata"))
+
+  return(invisible(newname))
 }

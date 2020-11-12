@@ -1,6 +1,6 @@
 Package: sa4ss
 Title: Write Stock Assessments for Stock Synthesis
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: c(
     person(given = c("Kelli", "F."),
       family = "Johnson",

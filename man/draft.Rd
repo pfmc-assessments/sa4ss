@@ -4,9 +4,36 @@
 \alias{draft}
 \title{Create a \pkg{sa4ss} Draft Containing Directories and Files}
 \usage{
-draft(type = c("ss"), create_dir = FALSE, edit = FALSE, ...)
+draft(
+  authors,
+  species = "Species name",
+  latin = "Scientific name",
+  coast = "US West",
+  type = c("sa"),
+  create_dir = FALSE,
+  edit = FALSE,
+  ...
+)
 }
 \arguments{
+\item{authors}{A vector of author names. For example,
+\code{"John R. Doe"} without first name first. The middle
+initial or name is optional.}
+
+\item{species}{A character string specifying the species name.
+Please capitilize as you would like to see it used in the middle
+of a sentence because this will not be altered. For example,
+\code{"Pacific hake"} is used in the stock assessment of hake;
+not \code{"pacific hake"}.}
+
+\item{latin}{A character string specifying the Latin name without
+italic formatting. Please capitalize as you want it to be used in
+the document though because case will not be altered.}
+
+\item{coast}{A character string specifying which part of the coast
+the stock assessment includes. For example, \code{"US West"}.
+Do not include \code{"coast"} because it will be added internally.}
+
 \item{type}{The name of the template you want to copy from those available
 within \pkg{sa4ss}. See the function call for available options, where the
 first listed will be used for the default.}
@@ -35,8 +62,11 @@ Create a directory with files needed for a stock assessment
 document written with \pkg{sa4ss}.
 }
 \details{
-Code is a wrapper for \code{\link[rmarkdown]{draft}()} so users do not
-have to worry about specifying all of the auxiliary arguments.
+Along with specifying some initial inputs, such as
+authors and species, this code is a wrapper for \code{\link[rmarkdown]{draft}()}.
+Users should focus on the input arguments that come before \code{type}
+because these will be specific to your stock assessment and are used to
+set up the initial file structure.
 }
 \examples{
 \dontrun{

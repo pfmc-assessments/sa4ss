@@ -1,7 +1,7 @@
 # Introduction
 
 ## Basic Information
-`r spp` (\emph{`r spp.sci`}) is a ...
+`r species` (\emph{`r latin`}) is a ...
 
 ## Life History
 Replace text.

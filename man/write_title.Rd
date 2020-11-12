@@ -13,12 +13,19 @@ write_title(
 )
 }
 \arguments{
-\item{species}{A character string specifying the species name.}
+\item{species}{A character string specifying the species name.
+Please capitilize as you would like to see it used in the middle
+of a sentence because this will not be altered. For example,
+\code{"Pacific hake"} is used in the stock assessment of hake;
+not \code{"pacific hake"}.}
 
-\item{latin}{A character string specifying the latin name.}
+\item{latin}{A character string specifying the Latin name without
+italic formatting. Please capitalize as you want it to be used in
+the document though because case will not be altered.}
 
 \item{coast}{A character string specifying which part of the coast
-the stock assessment includes.}
+the stock assessment includes. For example, \code{"US West"}.
+Do not include \code{"coast"} because it will be added internally.}
 
 \item{year}{A numeric or character string specifying the year.
 The default uses \code{Sys.Date()} to format the year into a four
@@ -30,6 +37,14 @@ Typically, full or relative paths are allowed.}
 \description{
 Write a file to the disk with the title
 using the yaml form for inclusion in the stock assessment.
+}
+\details{
+The Latin name as specified in \code{"latin"} argument
+will be encased in underscores to facilitate it being italicized.
+The use of \code{\emph{}} is not allowed because the tagging structure
+for the creation of the 508 compliant pdf will not render the LaTex
+code here. Nevertheless, the use of markdown inside the yaml seems
+to work just fine.
 }
 \author{
 Kelli Faye Johnson

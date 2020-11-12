@@ -1,12 +1,5 @@
-% Package `RJournal' to use with LaTeX2e
-% Copyright (C) 2010 by the R Foundation
-% Copyright (C) 2013 by the R Journal
-%
-% Originally written by Kurt Hornik and Friedrich Leisch with subsequent 
-% edits by the editorial board
-% Create an issue of using report class
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesPackage{RJournal}[2013/08/27 v0.13 RJournal package]
+\ProvidesPackage{sa4ss}[2020/11/10 v0.99 sa4ss package]
 
 % Page layout
 \RequirePackage{tikz}
@@ -14,7 +7,7 @@
 \geometry{a4paper,
    textwidth=14cm,
    top=2.54cm, bottom=2.54cm,
-   includehead,includefoot,
+   includehead, includefoot,
    centering,
    footskip=1.5cm}
 \raggedbottom
@@ -25,6 +18,7 @@
 \fancyfoot[R]{\thepage}
 \pagestyle{fancy}
 \setlength{\headheight}{14pt}
+\RequirePackage{hanging}
 
 % fonts
 \RequirePackage{microtype}
@@ -39,8 +33,12 @@
 \setstretch{1.05}
 
 % links - dark blue
+% hyperxmp replaces \usepackage[a-2a]{pdfx} to add xmp metadata in pdf
+% hyperxmp works with hyperref and must be loaded before it
+\usepackage{hyperxmp}
 \RequirePackage[hyphens]{url}
 \RequirePackage[pagebackref]{hyperref}
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 \renewcommand{\backref}[1]{[p#1]}
 \RequirePackage{color}
 \definecolor{link}{rgb}{0.45,0.51,0.67}
@@ -51,107 +49,10 @@
   linkcolor=link,
   urlcolor=link
 }
-
-% Issue and article metadata ---------------------------------------------------
-
-% Basic front matter information about the issue: volume, number, and
-% date.
-
-\newcommand{\volume}[1]{\def\RJ@volume{#1}}
-\newcommand{\volnumber}[1]{\def\RJ@number{#1}}
-\renewcommand{\month}[1]{\def\RJ@month{#1}}
-\def\today{\ifcase\month\or
-  January\or February\or March\or April\or May\or June\or
-  July\or August\or September\or October\or November\or December\fi
-  \space\number\day, \number\year}
-
-% Individual articles correspond to
-% chapters, and are contained in |article| environments.  This makes it
-% easy to have figures counted within articles and hence hyperlinked
-% correctly.
-% An article has an author, a title, and optionally a subtitle.  We use
-% the obvious commands for specifying these. Articles will be put in certain
-% journal sections, named by \sectionhead.
-
-\newcommand  {\sectionhead}  [1]{\def\RJ@sectionhead{#1}}
-\renewcommand{\author}       [1]{\def\RJ@author{#1}}
-\renewcommand{\title}        [1]{\def\RJ@title{#1}}
-\newcommand  {\subtitle}     [1]{\def\RJ@subtitle{#1}}
-
-% Control appearance of titles: see http://tex.stackexchange.com/questions/69749
-% for why we don't use \setcounter{secnumdepth}{-1} 
-
-\usepackage[medium]{titlesec}
-\usepackage{titletoc}
-%                     [shape]{format}{label}{horizontal separation}{before code}
-\titleformat{\section}{\normalfont\large\bfseries}{\thesection\ }{0em}{}
-\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection\ }{0em}{}
-\titlecontents{chapter}   [0em]{}{}{}{\titlerule*[1em]{.}\contentspage}
-
-% Article layout ---------------------------------------------------------------
-
-% Environment |article| clears the article header information at its beginning. 
-% We use |\FloatBarrier| from the placeins package to keep floats within
-% the article.
-\RequirePackage{placeins}
-\newenvironment{article}{\author{}\title{}\subtitle{}\FloatBarrier}{\FloatBarrier}
-
-% Refereed articles should have an abstract, so we redefine |\abstract| to
-% give the desired style
-
-\renewcommand{\abstract}[1]{%
-\setstretch{1}%
-\noindent%
-\small%
-\textbf{Abstract} #1 
-}
-
-% The real work is done by a redefined version of |\maketitle|.  Note
-% that even though we do not want chapters (articles) numbered, we
-% need to increment the chapter counter, so that figures get correct
-% labelling.
-
-\renewcommand{\maketitle}{%
-\noindent
-  \chapter{\RJ@title}\refstepcounter{chapter}
-  \ifx\empty\RJ@subtitle
-  \else
-    \noindent\textbf{\RJ@subtitle}
-    \par\nobreak\addvspace{\baselineskip}
-  \fi
-  \ifx\empty\RJ@author
-  \else
-    \noindent\textit{\RJ@author}
-    \par\nobreak\addvspace{\baselineskip}
-  \fi
-  \@afterindentfalse\@nobreaktrue\@afterheading
-}
-
-% Now for some ugly redefinitions.  We do not want articles to start a
-% new page. (Actually, we do, but this is handled via explicit
-% \newpage
-%
-% The name@of@eq is a hack to get hyperlinks to equations to work
-% within each article, even though there may be multiple eq.(1)
-%    \begin{macrocode}
-\renewcommand\chapter{\secdef\RJ@chapter\@schapter}
-\providecommand{\nohyphens}{%
-  \hyphenpenalty=10000\exhyphenpenalty=10000\relax}
-\newcommand{\RJ@chapter}{%
-  \edef\name@of@eq{equation.\@arabic{\c@chapter}}%
-  \renewcommand{\@seccntformat}[1]{}%
-  \@startsection{chapter}{0}{0mm}{%
-    -2\baselineskip \@plus -\baselineskip \@minus -.2ex}{\p@}{%
-    \phantomsection\normalfont\huge\bfseries\raggedright}}
-
-% Book reviews should appear as sections in the text and in the pdf bookmarks,
-% however we wish them to appear as chapters in the TOC. Thus we define an
-% alternative to |\maketitle| for reviews.
-\newcommand{\review}[1]{
-  \pdfbookmark[1]{#1}{#1}
-  \section*{#1}
-  \addtocontents{toc}{\protect\contentsline{chapter}{#1}{\thepage}{#1.1}}
-}
+% todo: fix this from tagged-article.md
+% $if(colorlinks)$
+% \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+% $endif$
 
 % We want bibliographies as starred sections within articles.
 % 
@@ -181,24 +82,6 @@
 
 \renewcommand{\titlepage}{%
   \thispagestyle{empty}
-  \hypersetup{
-    pdftitle={The R Journal Volume},%
-    pdfauthor={R Foundation for Statistical Computing},%
-  }
-  \noindent
-  \begin{center}
-    \fontsize{50pt}{50pt}\selectfont
-    The \raisebox{-8pt}{\includegraphics[height=77pt]{Rlogo}}\hspace{10pt}
-    Journal
-  
-  \end{center}
-
-  \rule{\textwidth}{1pt}
-  \begin{center}
-    {\Large A peer-reviewed, open-access publication of the \\
-    R Foundation for Statistical Computing}
-  \end{center}
-
   % And finally, put in the TOC box. Note the way |tocdepth| is adjusted
   % before and after producing the TOC: thus, we can ensure that only
   % articles show up in the printed TOC, but that in the PDF version,
@@ -326,6 +209,15 @@
 % Section 508 compliance
 \usepackage{accsupp}
 \usepackage{pdfcomment}
+\usepackage{tagpdf}
+\tagpdfsetup{
+ activate-all,
+ uncompress,
+ tabsorder=structure,
+ interwordspace=true
+ }
+\usepackage{luatex85} % Otherwise, it will complain about \pdfminorversion missing when using luatex > 0.85.
+\usepackage{pgfpages}
 
 % Acronyms
 \usepackage{glossaries}

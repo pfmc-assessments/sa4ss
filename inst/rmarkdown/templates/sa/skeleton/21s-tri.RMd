@@ -13,8 +13,8 @@ The 1998 survey ran from early June through early August.
 Finally, the 2001 and 2004 surveys were conducted in May-July.
 
 Haul depths ranged from 91-457 m during the 1977 survey with no hauls shallower than 91 m.
-The surveys in 1980, 1983, and 1986 covered the West Coast south to $36.8^\circ$ N latitude and a depth range of 55-366 m.
-The surveys in 1989 and 1992 covered the same depth range but extended the southern range to $34.5^\circ$ N (near Point Conception).
-From 1995 through 2004, the surveys covered the depth range 55-500 m and surveyed south to $34.5^\circ$ N.
+The surveys in 1980, 1983, and 1986 covered the West Coast south to 36.8\textdegree N latitude and a depth range of 55-366 m.
+The surveys in 1989 and 1992 covered the same depth range but extended the southern range to 34.5\textdegree N (near Point Conception).
+From 1995 through 2004, the surveys covered the depth range 55-500 m and surveyed south to 34.5\textdegree N.
 In the final year of the \gls{s-tri} series, 2004, the \gls{nwfsc} \gls{fram} conducted the survey and followed very similar protocols as the \gls{afsc}.
 Due to haul performance issues and differences in sampling depths, the data from 1977 were omitted from this analysis.

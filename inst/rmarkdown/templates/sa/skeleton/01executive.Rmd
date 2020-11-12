@@ -1,7 +1,7 @@
 # Executive Summary{-}
 
 ## Stock{-}
-This assessment reports the status of `r spp` (\emph{`r spp.sci`}) off the `r coast` coast ...
+This assessment reports the status of `r species` (\emph{`r latin`}) off the `r coast` coast ...
 
 ## Landings{-}
 Replace text.
@@ -24,7 +24,7 @@ Replace text.
 ## Management Performance{-}
 Replace text.
 
-## Unresolved Problems and major Uncertainties{-}
+## Unresolved Problems and Major Uncertainties{-}
 Replace text.
 
 ## Decision Table{-}

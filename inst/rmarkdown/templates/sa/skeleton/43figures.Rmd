@@ -1,5 +1,3 @@
 # Figures
 
-```{r data_plot, echo = FALSE, fig.cap = "Summary of data sources used in the base model."}
-knitr::include_graphics("data_plot.png")
-```
+![Summary of data sources used in the base model.\label{fig:data-plot}](data-plot.png){width=100% height=100% alt="Summary of data sources used in the base model"}

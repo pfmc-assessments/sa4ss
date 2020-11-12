@@ -1,5 +1,0 @@
-\pagebreak
-\pagenumbering{roman}
-\setcounter{page}{1}
-```{r child = "01executive.Rmd"}
-```

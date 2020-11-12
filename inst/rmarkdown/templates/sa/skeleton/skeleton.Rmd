@@ -3,35 +3,25 @@ geometry: margin=1in
 month: "`r format(Sys.Date(), '%B')`"
 year: "`r format(Sys.Date(), '%Y')`"
 preamble: |
-output: sa4ss::ss_pdf
+output: sa4ss::techreport_pdf
+bibliography: sa4ss.bib
+lang: en
+papersize: a4
 ---
 
 ```{r opts, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-source("00opts.R")
-```
+knitr::knit_hooks$set(plot = function(x,options) {
+      base = knitr::opts_knit$get('base.url')
+      if (is.null(base)) base = ''
+      alt = ifelse (is.null(options$alt),"",options$alt)
+      cap = ifelse (is.null(options$caption),"",options$caption)
+      if (alt != ""){
+        sprintf('![%s](%s%s "%s")', cap, base, x, alt)
+      } else {
+        sprintf('![%s](%s%s)', cap, base, x)  
+        }
+  })
 
-```{r 00functions}
-sa4ss:::write_title(species = spp, latin = spp.sci, coast = coast)
-sa4ss:::write_authors(authors)
-```
-```{r child = "00title.Rmd"}
-```
-```{r child = "00authors.Rmd"}
-```
-
-```{r child = "01summary.Rmd"}
-```
-
-
-```{r child = c("10preintroduction.Rmd", "10introduction.Rmd")}
-```
-
-```{r child = "11data.Rmd"}
-```
-
-```{r child = "43figures.Rmd"}
-```
-
-```{r child = "41references.Rmd"}
+load("00opts.Rdata")
 ```
