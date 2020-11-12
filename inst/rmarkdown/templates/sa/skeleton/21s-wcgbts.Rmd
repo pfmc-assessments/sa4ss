@@ -1,8 +1,8 @@
 ### \acrlong{s-wcgbt}
 
 The \Gls{s-wcgbt} is based on a random-grid design;
-covering the coastal waters from a depth of 55 m to 1,280 m [@bradburn_2003_2011].
-This design generally uses four industry-chartered vessels per year assigned to a roughly equal number of randomly selected grid cells and divided into two 'passes' of the coast that are executed from north to south.
-Two vessels fish during each pass, which are conducted from late May to early October each year.
+covering the coastal waters from a depth of 55-1,280 m [@bradburn_2003_2011].
+This design generally uses four industry-chartered vessels per year assigned to a roughly equal number of randomly selected grid cells and divided into two 'passes' of the coast.
+Two vessels fish from north to south during each pass between late May to early October.
 This design therefore incorporates both vessel-to-vessel differences in catchability,
-as well as variance associated with selecting a relatively small number (~700) of possible cells from a very large set of possible cells spread from the Mexican to the Canadian borders.
+as well as variance associated with selecting a relatively small number (approximately 700) of possible cells from a very large set of possible cells spread from the Mexican to the Canadian borders.
