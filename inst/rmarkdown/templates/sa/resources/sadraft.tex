@@ -12,8 +12,6 @@ $for(classoption)$
   $classoption$$sep$,
 $endfor$
 ]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage{sa4ss}
 \usepackage{amsmath,amssymb,array}
 \usepackage{booktabs}
@@ -28,12 +26,7 @@ $if(linestretch)$
 \usepackage{setspace}
 $endif$
 \usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-$if(mathspec)$
+f$if(mathspec)$
   \ifxetex
     \usepackage{mathspec}
   \else
