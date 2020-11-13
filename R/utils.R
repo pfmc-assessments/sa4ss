@@ -39,26 +39,6 @@ fix_envs <- function(x,
   x <- gsub("^\\\\\\]\\.$", "\\\\end{equation}.", x)
   x <- gsub("^\\\\\\],$", "\\\\end{equation},", x)
 
-  ## Find beginning and end of the abstract text is it is not a Science Response document
-  if (include_abstract) {
-    abs_beg <- grep("begin_abstract_csasdown", x)
-    abs_end <- grep("end_abstract_csasdown", x)
-    if (join_abstract) {
-      if (length(abs_beg) == 0L || length(abs_end) == 0L) {
-        warning("`% begin_abstract_csasdown` or `% end_abstract_csasdown`` not found ",
-          "in `templates/csas.tex`",
-          call. = FALSE
-        )
-      } else {
-        abs_vec <- x[seq(abs_beg + 1, abs_end - 1)]
-        abs_vec <- abs_vec[abs_vec != ""]
-        abstract <- paste(abs_vec, collapse = " \\vspace{1.5mm} \\break ")
-        first_part <- x[seq_len(abs_beg - 1)]
-        second_part <- x[seq(abs_end + 1, length(x))]
-        x <- c(first_part, abstract, second_part)
-      }
-    }
-  }
   beg_reg <- "^\\s*\\\\begin\\{.*\\}"
   end_reg <- "^\\s*\\\\end\\{.*\\}"
   i3 <- if (length(i1 <- grep(beg_reg, x))) (i1 - 1)[grepl("^\\s*$", x[i1 - 1])]
@@ -117,37 +97,7 @@ fix_envs <- function(x,
   x <- gsub(" \\\\ref\\{", "~\\\\ref\\{", x)
 
   # ----------------------------------------------------------------------
-  # Add tooltips so that figures have alternative text for read-out-loud
-  figlabel_lines <- x[grep("\\\\label\\{fig:", x)]
-  fig_labels <- gsub(
-    "\\\\caption\\{(.*?)\\}\\\\label\\{fig:(.*?)\\}",
-    "\\2", figlabel_lines
-  )
-  all_include_graphics <- grep("(\\\\includegraphics\\[(.*?)\\]\\{(.*?)\\})", x)
 
-  # is this a true figure with a caption in Pandoc style?
-  all_include_graphics <-
-    all_include_graphics[grep("\\\\centering", x[all_include_graphics])]
-
-  if (identical(length(fig_labels), length(all_include_graphics))) {
-    for (i in seq_along(all_include_graphics)) {
-      x[all_include_graphics[i]] <-
-        gsub(
-          "(\\\\includegraphics\\[(.*?)\\]\\{(.*?)\\})",
-          paste0("\\\\pdftooltip{\\1}{", "Figure \\\\ref{fig:", fig_labels[i], "}}"),
-          x[all_include_graphics[i]]
-        )
-    }
-  } else {
-    warning("The number of detected figure captions did not match the number of ",
-      "detected figures. Reverting to unnumbered alternative text figures.",
-      call. = FALSE
-    )
-    x <- gsub(
-      "(\\\\includegraphics\\[(.*?)\\]\\{(.*?)\\})",
-      "\\\\pdftooltip{\\1}{Figure}", x
-    )
-  }
   # ----------------------------------------------------------------------
   regexs <- c(
     "CHAPTER",
@@ -160,39 +110,6 @@ fix_envs <- function(x,
 
   x[references_insertion_line - 1] <- sub("chapter", "section", x[references_insertion_line - 1])
   x[references_insertion_line] <- sub("chapter", "section", x[references_insertion_line])
-
-  # Move the bibliography to before the appendices:
-  # if (length(references_insertion_line) > 0) {
-  #   references_begin <- grep("^\\\\hypertarget\\{refs\\}\\{\\}$", x)
-  #   if (length(references_begin) > 0) {
-  #     references_end <- length(x) - 1
-  #     x <- c(
-  #       x[seq(1, references_insertion_line - 1)],
-  #       #"\\phantomsection",
-  #       x[references_insertion_line],
-  #       "% This manually sets the header for this unnumbered chapter.",
-  #       # "\\markboth{References}{References}",
-  #       "\\noindent",
-  #       "\\vspace{-2em}",
-  #       "\\setlength{\\parindent}{-0.2in}",
-  #       "\\setlength{\\leftskip}{0.2in}",
-  #       "\\setlength{\\parskip}{8pt}",
-  #       "",
-  #       x[seq(references_begin, references_end)],
-  #       "\\setlength{\\parindent}{0in} \\setlength{\\leftskip}{0in} \\setlength{\\parskip}{4pt}",
-  #       x[seq(references_insertion_line + 1, references_begin - 1)],
-  #       x[length(x)]
-  #     )
-  #     # Modify References from starred chapter to regular chapter so that it is numbered
-  #     starred_references_line <- grep("\\\\section\\*\\{REFERENCES\\}\\\\label\\{references\\}\\}", x)
-  #     x[starred_references_line] <- gsub("\\*", "", x[starred_references_line])
-  #     # Remove the add contents line which was used to add the unnumbered section before
-  #     add_toc_contents_line <- grep("\\\\addcontentsline\\{toc\\}\\{section\\}\\{REFERENCES\\}", x)
-  #     x[add_toc_contents_line] <- ""
-  #   } else {
-  #     warning("Did not find the beginning of the LaTeX bibliography.", call. = FALSE)
-  #   }
-  # }
 
   # Tech Report Appendices:
   x <- gsub(
