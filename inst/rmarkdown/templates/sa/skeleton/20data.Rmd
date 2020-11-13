@@ -1,2 +1,2 @@
 # Data
-A description of each data source is provided below (Figure \@ref(fig:data-plot)).
+A description of each data source is provided below (Figure \ref{fig:data-plot}).
