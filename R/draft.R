@@ -66,7 +66,9 @@ draft <- function(
     fileout = file.path(thedir, formals(write_title)$fileout))
   write_authors(authors,
     fileout = file.path(thedir, formals(write_authors)$fileout))
-  save(species, latin, coast, authors,
+  spp <- species
+  spp.sci <- latin
+  save(spp, spp.sci, coast, authors,
     file = file.path(thedir, "00opts.Rdata"))
 
   return(invisible(newname))

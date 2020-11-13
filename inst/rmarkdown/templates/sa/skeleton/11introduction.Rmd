@@ -1,7 +1,6 @@
 # Introduction
-
 ## Basic Information
-`r species` (\emph{`r latin`}) is a ...
+`r executive[["stock"]]`
 
 ## Life History
 Replace text.

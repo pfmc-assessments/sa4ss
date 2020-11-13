@@ -1,7 +1,12 @@
+```{r executive, echo = FALSE}
+executive <- list()
+executive[["stock"]] <- paste0("This assessment reports the status of ",
+  spp, " (_", spp.sci, "_) off the ", coast, 
+  " coast using data through xxxx.")
+```
 # Executive Summary{-}
-
 ## Stock{-}
-This assessment reports the status of `r species` (\emph{`r latin`}) off the `r coast` coast ...
+`r executive[["stock"]]`
 
 ## Landings{-}
 Replace text.
