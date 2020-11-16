@@ -17,20 +17,14 @@ techreport_pdf <- function(latex_engine = "pdflatex",
   old_opt <- getOption("bookdown.post.latex")
   options(bookdown.post.latex = function(x) {
     fix_envs(
-      x = x,
-      french = FALSE,
-      join_abstract = FALSE
+      x = x
     )
   })
   on.exit(options(bookdown.post.late = old_opt))
   base
 }
 
-fix_envs <- function(x,
-                     include_abstract = TRUE,
-                     join_abstract = TRUE,
-                     french = FALSE,
-                     prepub = FALSE) {
+fix_envs <- function(x) {
 
 
   # fix equations:
@@ -64,17 +58,10 @@ fix_envs <- function(x,
 
   for (i in seq(appendix_line + 1, length(x))) {
     x[i] <- gsub("\\\\section\\{", "\\\\appsection\\{", x[i])
-    if (!french) {
-      x[i] <- gsub(
-        "\\\\chapter\\{",
-        "\\\\starredchapter\\{APPENDIX~\\\\thechapter. ", x[i]
-      )
-    } else {
-      x[i] <- gsub(
-        "\\\\chapter\\{",
-        "\\\\starredchapter\\{ANNEXE~\\\\thechapter. ", x[i]
-      )
-    }
+    x[i] <- gsub(
+      "\\\\chapter\\{",
+      "\\\\starredchapter\\{APPENDIX~\\\\thechapter. ", x[i]
+    )
   }
   x <- inject_refstepcounters(x)
 
@@ -102,7 +89,6 @@ fix_envs <- function(x,
   regexs <- c(
     "CHAPTER",
     "^\\\\CHAPTER\\*\\{R\\p{L}F\\p{L}RENCES", # French or English
-    "^\\\\SECTION{SOURCES DE RENSEIGNEMENTS}",
     "^\\\\SECTION{SOURCES OF INFORMATION}"
   )
   .matches <- lapply(regexs, function(.x) grep(.x, toupper(x), perl = TRUE) + 1)
