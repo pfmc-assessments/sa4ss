@@ -1,13 +1,15 @@
 #' @export
-techreport_pdf <- function(latex_engine = "pdflatex",
+techreport_pdf <- function(latex_engine = c("lualatex", "pdflatex"),
                            copy_sty = TRUE,
                            line_nums = FALSE, line_nums_mod = 1,
-                           pandoc_args = c("--top-level-division=chapter", "--wrap=none", "--default-image-extension=png"), ...) {
+                           pandoc_args = c("--top-level-division=chapter", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"), ...) {
+  latex_engine <- match.arg(latex_engine, several.ok = FALSE)
   file <- system.file("rmarkdown","templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
 
   base <- bookdown::pdf_book(
     template = file,
     keep_tex = TRUE,
+    keep_md = TRUE,
     pandoc_args = pandoc_args,
     latex_engine = latex_engine,
     ...
