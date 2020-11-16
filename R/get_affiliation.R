@@ -5,6 +5,8 @@
 #' @template authors
 #' @author Kelli Faye Johnson
 #' @export
+#' @returns A vector the same length as \code{authors} is returned,
+#' providing the matching address for each entry as a text string.
 #' @examples
 #' get_affiliation("Kelli F. Johnson")
 #' get_affiliation(c("Kelli F. Johnson", "Chantel R. Wetzel"))
@@ -21,6 +23,12 @@ get_affiliation <- function(authors) {
   nmfs <- "National Marine Fisheries Service"
   nwfsc <- "Northwest Fisheries Science Center"
   swfsc <- "Southwest Fisheries Science Center"
+  if (any(is.na(abbreviations))) {
+    warning("The following names were not found in 'data-raw\\authors.csv'\n",
+      "and will have an address of 'NA' until the csv file is fixed,\n",
+      "but also check the spelling and punctuation of entries in authors:\n",
+      knitr::combine_words(authors[is.na(abbreviations)]))
+  }
   affiliations <- data.frame(
   # Alphabetical order of abbreviations and then affiliations must match order
     abbreviation = c(
