@@ -114,7 +114,11 @@ read_model <- function(
   fore = r4ss::SS_readforecast(file = file.path(mod_loc, "forecast.ss"), verbose = FALSE)
   spr_target  = fore$SPRtarget
   bio_target  = fore$Btarget   
-  msst = ifelse(bio_target == 0.40, 0.25, 0.125)   
+  msst = ifelse(bio_target == 0.40, 0.25, 0.125)
+
+  # Determine the minumum summary age
+  starter = r4ss::SS_readstarter(file = file.path(mod_loc, "starter.ss"), verbose = FALSE) 
+  min_sum_age = paste0(starter$min_age_summary_bio, "+")  
 
   if (create_plots){
     if(is.null(fleetnames)){
@@ -162,6 +166,7 @@ read_model <- function(
        spr_target,
        bio_target,
        msst,
+       min_sum_age
        file = file.path(getwd(), "00mod.Rdata"))
 
   return()
