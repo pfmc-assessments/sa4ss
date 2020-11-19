@@ -1,0 +1,14 @@
+## Model Structure and Assumptions
+
+
+### Model Changes from the Last Assessment (not required for an update assessment)
+
+
+### Modeling Platform and Structure
+General model specifications (e.g., executable version, model structure, definition of fleets and areas)
+
+
+### Model Parameters
+Describe estimated vs. fixed parameters, priors
+
+### Key Assumptions and Structural Choices
