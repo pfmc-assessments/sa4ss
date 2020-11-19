@@ -24,4 +24,11 @@ knitr::knit_hooks$set(plot = function(x,options) {
   })
 
 load("00opts.Rdata")
+
+if(file.exists("00mod.Rdata")){
+  load("00mod.Rdata")
+} else {
+  print("Model output not being read. Please run the read_model() function.")
+}
+
 ```
