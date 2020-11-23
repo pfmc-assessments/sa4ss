@@ -166,7 +166,7 @@ read_model <- function(
        spr_target,
        bio_target,
        msst,
-       min_sum_age
+       min_sum_age,
        file = file.path(getwd(), "00mod.Rdata"))
 
   return()
