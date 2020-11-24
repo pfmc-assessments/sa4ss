@@ -2,7 +2,7 @@
 techreport_pdf <- function(latex_engine = c("lualatex", "pdflatex"),
                            copy_sty = TRUE,
                            line_nums = FALSE, line_nums_mod = 1,
-                           pandoc_args = c("--top-level-division=chapter", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"), ...) {
+                           pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"), ...) {
   latex_engine <- match.arg(latex_engine, several.ok = FALSE)
   file <- system.file("rmarkdown","templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
 
@@ -17,109 +17,8 @@ techreport_pdf <- function(latex_engine = c("lualatex", "pdflatex"),
 
   base$knitr$opts_chunk$comment <- NA
   old_opt <- getOption("bookdown.post.latex")
-  options(bookdown.post.latex = function(x) {
-    fix_envs(
-      x = x
-    )
-  })
   on.exit(options(bookdown.post.late = old_opt))
   base
-}
-
-fix_envs <- function(x) {
-
-
-  # fix equations:
-  x <- gsub("^\\\\\\[$", "\\\\begin{equation}", x)
-  x <- gsub("^\\\\\\]$", "\\\\end{equation}", x)
-  x <- gsub("^\\\\\\]\\.$", "\\\\end{equation}.", x)
-  x <- gsub("^\\\\\\],$", "\\\\end{equation},", x)
-
-  beg_reg <- "^\\s*\\\\begin\\{.*\\}"
-  end_reg <- "^\\s*\\\\end\\{.*\\}"
-  i3 <- if (length(i1 <- grep(beg_reg, x))) (i1 - 1)[grepl("^\\s*$", x[i1 - 1])]
-
-  i3 <- c(
-    i3,
-    if (length(i2 <- grep(end_reg, x))) (i2 + 1)[grepl("^\\s*$", x[i2 + 1])]
-  )
-  if (length(i3)) x <- x[-i3]
-
-  g <- grep("\\\\Appendices$", x)
-  if (identical(length(g), 0L)) {
-    appendix_line <- length(x) - 1 # no appendix
-  } else {
-    appendix_line <- min(g)
-  }
-
-  for (i in seq(1, appendix_line)) {
-    x[i] <- gsub("\\\\subsection\\{", "\\\\subsubsection\\{", x[i])
-    x[i] <- gsub("\\\\section\\{", "\\\\subsection\\{", x[i])
-    x[i] <- gsub("\\\\chapter\\{", "\\\\section\\{", x[i])
-  }
-
-  for (i in seq(appendix_line + 1, length(x))) {
-    x[i] <- gsub("\\\\section\\{", "\\\\appsection\\{", x[i])
-    x[i] <- gsub(
-      "\\\\chapter\\{",
-      "\\\\starredchapter\\{APPENDIX~\\\\thechapter. ", x[i]
-    )
-  }
-  x <- inject_refstepcounters(x)
-
-  # Need to remove hypertarget for references to appendices to work:
-  # rs_line <- grep("\\\\refstepcounter", x)
-  # FIXME: make more robust
-  rs_line <- grep("\\\\hypertarget\\{app:", x)
-  x[rs_line + 0] <- gsub("hypertarget", "label", x[rs_line + 0])
-  x[rs_line + 0] <- gsub("\\{%", "", x[rs_line + 0])
-  x[rs_line + 1] <- gsub("\\}$", "", x[rs_line + 1])
-  x[rs_line + 1] <- gsub("\\}.*\\}$", "}", x[rs_line + 1])
-
-  x <- gsub("^.*\\\\tightlist$", "", x)
-
-  # \eqref needs to be \ref so the equation references don't have () around them
-  # https://tex.stackexchange.com/a/107425
-  x <- gsub("\\\\eqref\\{", "\\\\ref\\{", x)
-
-  # Non-breaking spaces:
-  x <- gsub(" \\\\ref\\{", "~\\\\ref\\{", x)
-
-  # ----------------------------------------------------------------------
-
-  # ----------------------------------------------------------------------
-  regexs <- c(
-    "CHAPTER",
-    "^\\\\CHAPTER\\*\\{R\\p{L}F\\p{L}RENCES", # French or English
-    "^\\\\SECTION{SOURCES OF INFORMATION}"
-  )
-  .matches <- lapply(regexs, function(.x) grep(.x, toupper(x), perl = TRUE) + 1)
-  references_insertion_line <- unlist(.matches)
-
-  x[references_insertion_line - 1] <- sub("chapter", "section", x[references_insertion_line - 1])
-  x[references_insertion_line] <- sub("chapter", "section", x[references_insertion_line])
-
-  # Tech Report Appendices:
-  x <- gsub(
-    "\\% begin csasdown appendix",
-    paste0(
-      "\\begin{appendices}\n",
-      "\\\\counterwithin{figure}{section}\n",
-      "\\\\counterwithin{table}{section}\n",
-      "\\\\counterwithin{equation}{section}"
-    ),
-    x
-  )
-  x <- gsub("\\% end csasdown appendix", "\\end{appendices}", x)
-
-  label_app <- grep("^\\\\label\\{app:", x)
-  for (i in seq_along(label_app)) {
-    if (grepl("^\\\\section\\{", x[label_app[i] + 1])) {
-      x[seq(label_app[i], label_app[i] + 1)] <- x[seq(label_app[i] + 1, label_app[i])]
-    }
-  }
-
-  x
 }
 
 inject_refstepcounters <- function(x) {
