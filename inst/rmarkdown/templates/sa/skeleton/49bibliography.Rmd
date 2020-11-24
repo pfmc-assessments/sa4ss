@@ -1,11 +1,9 @@
-<!-- If you want to references to appear somewhere before the end, add: -->
-<!-- <div id="refs"></div> -->
-<!-- where you want it to appear -->
-
 \clearpage
 
 # References
-
+<!-- If you want to references to appear somewhere before the end, add: -->
+<div id="refs"></div>
+<!-- where you want it to appear -->
 <!-- The following sets the appropriate indentation for the references
   but it cannot be used with bookdown and the make file because it leads
   to a bad pdf.
