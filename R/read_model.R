@@ -10,7 +10,7 @@
 #' document written with \pkg{sa4ss}.
 #' 
 #' @param directory location of the SS model to use in the document
-#' @param plotfolder
+#' @param plotfolder location of the r4ss figure directory
 #' @param printstats Input to r4ss::SS_output to prevent output to the screen
 #' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if 
 #' fecundity is defined in terms of numbers within SS.  The default is millions of eggs but 
@@ -27,7 +27,7 @@
 #' @param maxrows Number of rows for plots. Default set to 4.
 #' @param maxcols Number of columns for plots. Default set to 4.
 #' @param bub_scale Bubble scale size to use for plotting.
-#' @param  create_tables TRUE/FALSE to run r4ss::SSexecutivesummary tables
+#' @param create_tables TRUE/FALSE to run r4ss::SSexecutivesummary tables
 #' @param ci_value To calculate confidence intervals, default is set at 0.95
 #' @param es_only TRUE/FALSE switch to produce only the executive summary tables
 #' will be produced, default is FALSE which will return all executive summary
