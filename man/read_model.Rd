@@ -13,7 +13,7 @@ read_model(
   png = TRUE,
   html = TRUE,
   datplot = TRUE,
-  fleet_names = NULL,
+  fleetnames = NULL,
   forecastplot = TRUE,
   maxrows = 4,
   maxcols = 4,
@@ -50,7 +50,7 @@ fecundity units (fecund_unit) will be set as metric tons.}
 
 \item{datplot}{create the data plots using r4ss::SS_plots}
 
-\item{fleet_names}{vector of user defined fleet names. If input left NULL the model fleet
+\item{fleetnames}{vector of user defined fleet names. If input left NULL the model fleet
 names will be used.}
 
 \item{forecastplot}{Add forecast years to figure plost}

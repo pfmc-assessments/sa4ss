@@ -21,7 +21,7 @@
 #' @param png TRUE create png plot files 
 #' @param html create html files 
 #' @param datplot create the data plots using r4ss::SS_plots
-#' @param fleet_names vector of user defined fleet names. If input left NULL the model fleet 
+#' @param fleetnames vector of user defined fleet names. If input left NULL the model fleet 
 #' names will be used.
 #' @param forecastplot Add forecast years to figure plost
 #' @param maxrows Number of rows for plots. Default set to 4.
@@ -73,7 +73,7 @@ read_model <- function(
   png = TRUE,
   html = TRUE,
   datplot = TRUE,
-  fleet_names = NULL,
+  fleetnames = NULL,
   forecastplot = TRUE,
   maxrows = 4,
   maxcols = 4,
@@ -122,7 +122,7 @@ read_model <- function(
 
   if (create_plots){
     if(is.null(fleetnames)){
-        fleetnames = model$FleetNames[i]
+        fleetnames = model$FleetNames
     } 
     r4ss::SS_plots(replist = model,
                    png = png,
