@@ -1,3 +1,4 @@
+\clearpage
 # Figures
 
 ![Summary of data sources used in the base model.\label{fig:data-plot}](data-plot.png){width=100% height=100% alt="Summary of data sources used in the base model"}

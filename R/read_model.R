@@ -10,7 +10,7 @@
 #' document written with \pkg{sa4ss}.
 #' 
 #' @param directory location of the SS model to use in the document
-#' @param plotfolder
+#' @param plotfolder location of the r4ss figure directory
 #' @param printstats Input to r4ss::SS_output to prevent output to the screen
 #' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if 
 #' fecundity is defined in terms of numbers within SS.  The default is millions of eggs but 
@@ -21,13 +21,13 @@
 #' @param png TRUE create png plot files 
 #' @param html create html files 
 #' @param datplot create the data plots using r4ss::SS_plots
-#' @param fleet_names vector of user defined fleet names. If input left NULL the model fleet 
+#' @param fleetnames vector of user defined fleet names. If input left NULL the model fleet 
 #' names will be used.
 #' @param forecastplot Add forecast years to figure plost
 #' @param maxrows Number of rows for plots. Default set to 4.
 #' @param maxcols Number of columns for plots. Default set to 4.
 #' @param bub_scale Bubble scale size to use for plotting.
-#' @param  create_tables TRUE/FALSE to run r4ss::SSexecutivesummary tables
+#' @param create_tables TRUE/FALSE to run r4ss::SSexecutivesummary tables
 #' @param ci_value To calculate confidence intervals, default is set at 0.95
 #' @param es_only TRUE/FALSE switch to produce only the executive summary tables
 #' will be produced, default is FALSE which will return all executive summary
@@ -73,7 +73,7 @@ read_model <- function(
   png = TRUE,
   html = TRUE,
   datplot = TRUE,
-  fleet_names = NULL,
+  fleetnames = NULL,
   forecastplot = TRUE,
   maxrows = 4,
   maxcols = 4,
@@ -122,7 +122,7 @@ read_model <- function(
 
   if (create_plots){
     if(is.null(fleetnames)){
-        fleetnames = model$FleetNames[i]
+        fleetnames = model$FleetNames
     } 
     r4ss::SS_plots(replist = model,
                    png = png,
@@ -166,7 +166,7 @@ read_model <- function(
        spr_target,
        bio_target,
        msst,
-       min_sum_age
+       min_sum_age,
        file = file.path(getwd(), "00mod.Rdata"))
 
   return()
