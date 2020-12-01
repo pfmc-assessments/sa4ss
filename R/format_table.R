@@ -46,12 +46,14 @@ table_format <- function(x,
              landscape = FALSE,
              repeat_header = FALSE,
              header_grouping = NULL,
-             format.args = list(big.mark = ','),
+             format.args = NULL,
              ...) {
 
   if(is.null(label)){
     message('Need to define label to reference table.')
   }
+
+  if (is.null(format.args)) {format.args = format(x)}
 
   # Use user specified col names
   if (!is.null(col_names)) {
@@ -62,6 +64,7 @@ table_format <- function(x,
         ## Only use kableExtra if there are newlines
         col_names <- kableExtra::linebreak(col_names, align = col_names_align)
       }
+
       k <- kableExtra::kbl(x = x,
                  format = format,
                  digits = digits,
@@ -116,7 +119,7 @@ table_format <- function(x,
 
   # Allow users to specify the hold level
   if (hold_position){
-    suppressWarnings(k <- kableExtra::kable_styling(k, latex_options = "hold_position"))
+    suppressWarnings(k <- kableExtra::kable_styling(k, latex_options = "HOLD_position"))
   }
 
 
