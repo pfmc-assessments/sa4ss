@@ -1,0 +1,119 @@
+#' Custom table for csasdown
+#'
+#' This is a custom wrapper for [knitr::kable()] with some arguments set so that
+#' the tables work with CSAS formatting in both LaTeX and Word documents.
+#'
+#' @param x An R object, typically a matrix or data frame.
+#' @param format As defined by [knitr::kbl()]. Default for sa4ss is 'latex'.
+#' @param caption As defined by [knitr::kbl()].
+#' @param label As defined by [knitr::kbl()].
+#' @param booktabs As defined by [knitr::kbl()]. Logical.
+#' @param col_names Names for the columns to show on table.
+#' @param linesep As defined by [knitr::kbl()].
+#' @param longtable As defined by [knitr::kbl()].
+#' @param font_size Font size in pts. If NULL, document font size is used.
+#' @param align As defined by [knitr::kbl()].
+#' @param col_names_align As defined in [kableExtra::linebreak()].
+#' @param hold_position As defined in [kableExtra::kable_styling()]. Logical.
+#' @param escape As defined by [kableExtra::kable_styling()].
+#' @param bold_header Make headers bold. Logical
+#' @param landscape Make this table in landscape orientation?
+#' @param repeat_header If landscape, repeat the header on subsequent pages?
+#' @param header_grouping As defined by [kableExtra::kable_styling()]
+
+#' @param repeat_header_text Use to write a Continued.. messgae continuing pages
+#'   with the long table
+#'
+#' @importFrom knitr kbl
+#' @importFrom kableExtra row_spec kable_styling landscape linebreak
+#' @examples
+#' table_format(head(iris))
+#' @export
+table_format <- function(x,
+             caption = "Add Caption",
+             label = NULL,
+             format = 'latex',
+             booktabs = TRUE,
+             col_names = NULL,
+             linesep = "",
+             longtable = TRUE,
+             font_size = NULL,
+             align = 'c',
+             col_names_align = 'c',
+             hold_position = TRUE,
+             escape = FALSE,
+             bold_header = FALSE,
+             landscape = FALSE,
+             repeat_header = FALSE,
+             header_grouping = NULL,
+             ...) {
+
+  if(is.null(label)){
+    message('Need to define label to reference table.')
+  }
+
+  # Use user specified col names
+  if (!is.null(col_names)) {
+      # Check for newlines in column headers and convert to proper latex linebreaks
+      # See 'Insert linebreak in table' section in the following
+      # http://haozhu233.github.io/kableExtra/best_practice_for_newline_in_latex_table.pdf
+      if (length(grep("\n", col_names))) {
+        ## Only use kableExtra if there are newlines
+        col_names <- kableExtra::linebreak(col_names, align = col_names_align)
+      }
+      k <- kableExtra::kbl(x = x,
+                 format = format,
+                 booktabs = booktabs,
+                 caption = caption,
+                 label = label,
+                 align = align,
+                 linesep = linesep,
+                 longtable = longtable,
+                 col.names = col_names,
+                 escape = escape,
+                 ...)
+      suppressWarnings(k <- kableExtra::kable_styling(k, font_size = font_size, latex_options = c('repeat_header')))
+  } else {
+      k <- kableExtra::kbl(x = x,
+                 format = format,
+                 booktabs = booktabs,
+                 caption = caption,
+                 label = label,
+                 align = align,
+                 linesep = linesep,
+                 longtable = longtable,
+                 escape = escape,
+                 ...)
+      suppressWarnings(k <- kableExtra::kable_styling(k, font_size = font_size, latex_options = c('repeat_header')))
+  } 
+
+ # Add bold to a table
+ if (bold_header) {
+    suppressWarnings(k <- kableExtra::row_spec(k, 0, bold = TRUE))
+  }
+
+  # Landscape table
+  if (landscape) {
+    k <- kableExtra::landscape(k)
+  }
+
+  # Add a header above the row names
+  if (repeat_header) {
+    suppressWarnings(
+    k <- kableExtra::add_header_above(kable_input = k,
+                                      header = header_grouping))
+    suppressWarnings(
+    k <- kableExtra::kable_styling(kable_input = k,
+                                   latex_options = c("repeat_header")))
+  }
+  
+  suppressWarnings(k <- kableExtra::kable_styling(k, font_size = font_size))
+
+  # Allow users to specify the hold level
+  if (hold_position){
+    suppressWarnings(k <- kableExtra::kable_styling(k, latex_options = "hold_position"))
+  }
+
+
+  k 
+} # End function
