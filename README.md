@@ -32,5 +32,5 @@ if ("package:sa4ss" %in% search()) unload(package = "sa4ss")
 library(sa4ss)
 sa4ss::draft()
 setwd("doc")
-bookdown::render_book("00a.Rmd", clean = FALSE)
+bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd())
 ```
