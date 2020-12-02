@@ -1,0 +1,20 @@
+### \acrlong{s-ccfrp}
+
+Since 2007, the \Gls{s-ccfrp} has monitored several areas in California to evaluate the performance of \Gls{mpa}s
+and understand nearshore fish populations
+[@Wendt2009; @Starr2015].
+In 2017, the survey expanded beyond the four \Gls{mpa}s in central California
+(A&ntilde;o Nuevo, Point Lobos, Point Buchon, and Piedras Blancas)
+to include the entire California coast.
+Fish are collected by volunteer anglers aboard \Gls{cpfv}s guided by one of the following academic institutions based on proximity to fishing location:
+Humboldt State University;
+Bodega Marine Laboratories;
+Moss Landing Marine Laboratories;
+Cal Poly San Luis Obispo;
+University of California, Santa Barbara; and
+Scripps Institution of Oceanography.
+
+Surveys consist of fishing with hook-and-line gear for 30-45 minutes within randomly chosen 500 by 500 m grid cells within and outside \Gls{mpa}s.
+Prior to 2017, all fish were measured for length and release or descended to depth;
+since then, some were sampled for otoliths and fin clips.
+
