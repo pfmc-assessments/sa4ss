@@ -22,6 +22,11 @@
 #' @param repeat_header_text Use to write a Continued.. messgae continuing pages
 #'   with the long table
 #' @param format.args As defined by [knitr::kbl()].
+#' @param custom_width Logical. Allow for custom column widths
+#' @param col_to_adjust Vector of columns to adjust width. Only used if custom_width = TRUE.
+#' @param width Vector or single value of column widths (i.e. c('2cm', '2cm')) for the columns defined
+#' in the col_to_adjust.
+#' @param create_png Logical. If set to true tables will be created as png objects in the doc.
 #'
 #' @importFrom knitr kbl
 #' @importFrom kableExtra row_spec kable_styling landscape linebreak
@@ -37,7 +42,7 @@ table_format <- function(x,
              col_names = NULL,
              linesep = "",
              longtable = TRUE,
-             font_size = NULL,
+             font_size = 10,
              align = 'c',
              col_names_align = 'c',
              hold_position = TRUE,
@@ -47,6 +52,10 @@ table_format <- function(x,
              repeat_header = FALSE,
              header_grouping = NULL,
              format.args = NULL,
+             custom_width = FALSE,
+             col_to_adjust = NULL, 
+             width = NULL,
+             create_png = FALSE,
              ...) {
 
   if(is.null(label)){
@@ -95,9 +104,21 @@ table_format <- function(x,
       suppressWarnings(k <- kableExtra::kable_styling(k, font_size = font_size, latex_options = c('repeat_header')))
   } 
 
- # Add bold to a table
- if (bold_header) {
+  # Add bold to a table
+  if (bold_header) {
     suppressWarnings(k <- kableExtra::row_spec(k, 0, bold = TRUE))
+  }
+
+  # Add control of column width
+  if (custom_width){
+    suppressWarnings(k <- kableExtra::column_spec(k, column = col_to_adjust, width = width) )
+  } else {
+    # Create some logic of how to dynamically determine width
+    if(ncol(x) >= 5){ 
+      adj_wid = paste0(round(11 / ncol(x), 2), 'cm')
+    } else { adj_wid = '2cm'}
+
+    suppressWarnings(k <- kableExtra::column_spec(k, column = 2:ncol(x), width = adj_wid))
   }
 
   # Landscape table
@@ -122,6 +143,13 @@ table_format <- function(x,
     suppressWarnings(k <- kableExtra::kable_styling(k, latex_options = "HOLD_position"))
   }
 
+  if(create_png){
+    if(is.null(label)) { 
+      message("Need to specifiy label to name the .png") 
+    } else {
+    suppressWarnings(k <- kableExtra::save_kable(k, file = paste0("/inst/", label, ".png")))
+    } 
+  }
 
   k 
 } # End function
