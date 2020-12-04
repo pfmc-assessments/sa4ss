@@ -1,3 +1,6 @@
 \pagebreak
 \pagenumbering{roman}
 \setcounter{page}{1}
+
+\renewcommand{\thetable}{\roman{table}}
+\renewcommand{\thefigure}{\roman{figure}}
