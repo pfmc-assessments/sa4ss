@@ -2,16 +2,16 @@
 #'
 #'
 #' @param x An R object, typically a matrix or data frame.
-#' @param format As defined by [knitr::kbl()]. Default for sa4ss is 'latex'.
-#' @param caption As defined by [knitr::kbl()].
-#' @param label As defined by [knitr::kbl()].
-#' @param booktabs As defined by [knitr::kbl()]. Logical.
-#' @param digits As defined by [knitr::kbl()].
+#' @param format As defined by [kableExtra::kbl()]. Default for sa4ss is 'latex'.
+#' @param caption As defined by [kableExtra::kbl()].
+#' @param label As defined by [kableExtra::kbl()].
+#' @param booktabs As defined by [kableExtra::kbl()]. Logical.
+#' @param digits As defined by [kableExtra::kbl()].
 #' @param col_names Names for the columns to show on table.
-#' @param linesep As defined by [knitr::kbl()].
-#' @param longtable As defined by [knitr::kbl()].
+#' @param linesep As defined by [kableExtra::kbl()].
+#' @param longtable As defined by [kableExtra::kbl()].
 #' @param font_size Font size in pts. If NULL, document font size is used.
-#' @param align As defined by [knitr::kbl()].
+#' @param align As defined by [kableExtra::kbl()].
 #' @param col_names_align As defined in [kableExtra::linebreak()].
 #' @param hold_position As defined in [kableExtra::kable_styling()]. Logical.
 #' @param escape As defined by [kableExtra::kable_styling()].
@@ -21,15 +21,14 @@
 #' @param header_grouping As defined by [kableExtra::kable_styling()]
 #' @param repeat_header_text Use to write a Continued.. messgae continuing pages
 #'   with the long table
-#' @param format.args As defined by [knitr::kbl()].
+#' @param format.args As defined by [kableExtra::kbl()].
 #' @param custom_width Logical. Allow for custom column widths
 #' @param col_to_adjust Vector of columns to adjust width. Only used if custom_width = TRUE.
 #' @param width Vector or single value of column widths (i.e. c('2cm', '2cm')) for the columns defined
 #' in the col_to_adjust.
 #' @param create_png Logical. If set to true tables will be created as png objects in the doc.
 #'
-#' @importFrom knitr kbl
-#' @importFrom kableExtra row_spec kable_styling landscape linebreak
+#' @importFrom kableExtra kbl row_spec kable_styling landscape linebreak
 #' @examples
 #' table_format(head(iris))
 #' @export
