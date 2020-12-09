@@ -23,6 +23,7 @@
 #' @param datplot create the data plots using r4ss::SS_plots
 #' @param fleetnames vector of user defined fleet names. If input left NULL the model fleet 
 #' names will be used.
+#' @fleetnames User specified vector of fleet names to use in figures and tables.
 #' @param forecastplot Add forecast years to figure plost
 #' @param maxrows Number of rows for plots. Default set to 4.
 #' @param maxcols Number of columns for plots. Default set to 4.
@@ -44,6 +45,8 @@
 #' @param adopted_ofl Vector of adopted ofl values to be printed in the mangagement performance
 #' table. This should be a vector of 10 values. 
 #' @param adopted_abc Vector of adopted abc values to be printed in the mangagement performance
+#' table. This should be a vector of 10 values. 
+#' @param adopted_acl Vector of adopted acl values to be printed in the mangagement performance
 #' table. This should be a vector of 10 values. 
 #' @param adopted_acl Vector of adopted acl values to be printed in the mangagement performance
 #' table. This should be a vector of 10 values. 
@@ -85,6 +88,7 @@ read_model <- function(
   divide_by_2 = FALSE, 
   adopted_ofl = NULL,
   adopted_abc = NULL,
+  adopted_acl = NULL,
   forecast_ofl = NULL,
   forecast_abc = NULL,
   ...) 
@@ -138,19 +142,26 @@ read_model <- function(
                    bub.scale.dat = bub_scale)       
   }
 
+  get_plotinfo(mod_loc = mod_loc, plot_folder = plotfolder)
+
   if (create_tables){
     r4ss::SSexecutivesummary(replist = model,
                             ci_value = ci_value,
                             es_only = es_only,
                             tables = tables,
+                            fleetnames = fleetnames,
                             divide_by_2 = divide_by_2, 
                             endyr = endyr,
                             adopted_ofl = adopted_ofl,
                             adopted_abc = adopted_abc,
+                            adopted_acl = adopted_acl,
                             forecast_ofl = forecast_ofl,
                             forecast_abc = forecast_abc,
+                            format = FALSE,
                             verbose = FALSE)
   }
+
+  es_table_tex(mod_loc = mod_loc, table_folder = 'tables')
 
   save(mod_loc, 
        plot_dir,
