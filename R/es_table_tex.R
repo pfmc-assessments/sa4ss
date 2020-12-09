@@ -28,9 +28,8 @@ es_table_tex <- function(mod_loc,
 		                  col_names = col_names,
 		                  align = c('r',rep('c', n)))
 
-		# This does not work
-		# Need to find way to save the kbl output into a useable tex file
-		save(t, file = file.path(mod_loc, table_folder, paste0(tex_name, ".tex")))
+		kableExtra::save_kable(t, 
+							   file = file.path(mod_loc, table_folder, paste0(tex_name, ".tex")))
 	}
 
 }
