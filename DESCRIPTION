@@ -28,6 +28,7 @@ Depends:
 Imports:
   bookdown,
   knitr,
+  kableExtra,
   rmarkdown,
   rticles,
   tinytex,

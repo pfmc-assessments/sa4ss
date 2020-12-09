@@ -26,6 +26,7 @@ read_model(
   divide_by_2 = FALSE,
   adopted_ofl = NULL,
   adopted_abc = NULL,
+  adopted_acl = NULL,
   forecast_ofl = NULL,
   forecast_abc = NULL,
   ...
@@ -84,6 +85,9 @@ table. This should be a vector of 10 values.}
 \item{adopted_abc}{Vector of adopted abc values to be printed in the mangagement performance
 table. This should be a vector of 10 values.}
 
+\item{adopted_acl}{Vector of adopted acl values to be printed in the mangagement performance
+table. This should be a vector of 10 values.}
+
 \item{forecast_ofl}{Optional input vector for management adopted OFL values for table g. These values
 will be overwrite the OFL values in the projection table, rather than the model estimated
 OFL values. Example input: c(1500, 1300)}
@@ -96,9 +100,6 @@ ABC values. Example input: c(1500, 1300)}
 
 \item{endyr}{Optional input to choose a different ending year for tables
 (could be useful for catch-only updates)}
-
-\item{adopted_acl}{Vector of adopted acl values to be printed in the mangagement performance
-table. This should be a vector of 10 values.}
 }
 \description{
 Read an SS model output using r4ss to create a RData object with defined quantities
