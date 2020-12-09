@@ -9,16 +9,21 @@
 #'
 #' @author Melissa Monk & Chantel Wetzel
 #'
-get_plotinfo <- function(mod_loc, plot_folder = plotfolder){
+get_plotinfo <- function(mod_loc, plot_folder = 'plots'){
 
   plotdir <- file.path(mod_loc, plot_folder)
+
+  # Remove existing "plotInfoTable_for_doc.csv" if exists
+  if(file.exists(file.path(plotdir, "plotInfoTable_for_doc.csv"))) {
+    file.remove(file.path(plotdir, "plotInfoTable_for_doc.csv"))
+  }
 
   all_files <- list.files(plotdir)
   # look for all files beginning with the name 'plotInfoTable'
   filenames <- all_files[grep("plotInfoTable", all_files)]
   filenames <- filenames[grep(".csv",filenames)]
-  if(length(filenames)==0) stop("No CSV files with name 'plotInfoTable...'")
-    
+  if(length(filenames)==0) stop("No CSV files with name 'plotInfoTable...'") 
+
   plotInfoTable <- NULL
   # loop over matching CSV files and combine them
   for(ifile in 1:length(filenames)){
@@ -51,6 +56,6 @@ get_plotinfo <- function(mod_loc, plot_folder = plotfolder){
   plotInfoTable$altcaption = NA
   plotInfoTable$loc = plotdir
 
-  write.csv(plotInfoTable, file = file.path(mod_loc, plotfolder, "plotInfoTable_for_doc.csv"),
+  write.csv(plotInfoTable, file = file.path(mod_loc, plot_folder, "plotInfoTable_for_doc.csv"),
             row.names = FALSE)
 }
