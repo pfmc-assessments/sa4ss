@@ -11,11 +11,16 @@ es_table_tex <- function(mod_loc,
 	df = read.csv(file.path(mod_loc, table_folder, "table_labels.csv"))
 
 	for(i in 1:length(df$filename)){
-		tab = read.csv(file.path(mod_loc, table_folder, df$filename[i]))
+		tab = read.csv(file.path(mod_loc, table_folder, df$filename[i])
+					   check.names = FALSE)
 		tex_name = sub(pattern = ".csv", '', df$filename[i])
 
-		col_names = gsub("\\.", " ", colnames(tab))
-		col_names = gsub("\\_", " ", col_names)
+		#col_names = gsub("\\.", " ", colnames(tab))
+		#col_names = gsub("\\_", " ", col_names)
+		# If there are repeat column names a number is added in the csv
+		# The following line removes the trailing numbers hopefully
+		#col_names = gsub("[0-9]$", "", col_names)
+		
 		n = ncol(tab) - 1
 
 		if(col_names[1] == "Year"){ dig = 2}
