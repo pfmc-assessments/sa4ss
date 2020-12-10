@@ -56,6 +56,6 @@ get_plotinfo <- function(mod_loc, plot_folder = 'plots'){
   plotInfoTable$altcaption = NA
   plotInfoTable$loc = plotdir
 
-  write.csv(plotInfoTable, file = file.path(mod_loc, plot_folder, "plotInfoTable_for_doc.csv"),
+  write.csv(plotInfoTable, file = file.path(mod_loc, plot_folder, "plotinfotable_for_doc.csv"),
             row.names = FALSE)
 }
