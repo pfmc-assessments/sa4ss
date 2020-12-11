@@ -33,6 +33,9 @@ read_model(
 )
 }
 \arguments{
+\item{mod_loc}{A file path to the directory that houses the
+Stock Synthesis model that will be used as the base model in this document.}
+
 \item{plotfolder}{location of the r4ss figure directory}
 
 \item{printstats}{Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen}
@@ -97,10 +100,8 @@ OFL values. Example input: c(1500, 1300)}
 will be overwrite the ABC values in the projection table, rather than the model estimated
 ABC values. Example input: c(1500, 1300)}
 
-\item{directory}{location of the SS model to use in the document}
-
-\item{endyr}{Optional input to choose a different ending year for tables
-(could be useful for catch-only updates)}
+\item{...}{Additional input arguments passed to \code{\link[r4ss]{SS_output}} for reading
+output files from Stock Synthesis into a list.}
 }
 \description{
 Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
@@ -114,12 +115,12 @@ document written with \pkg{sa4ss}.
 }
 \examples{
 \dontrun{
-sa4ss::read_model(mod_loc = "C:/SS_models/AssessmentModel",
-fecund_mult = 'billion eggs')
+simplemod_loc <- tail(dir(pattern = "simple",
+  system.file("extdata", package = "r4ss"),
+  full.names = TRUE), 1)
+sa4ss::read_model(mod_loc = simplemod_loc,
+  fecund_mult = "billion eggs")
 }
-}
-\seealso{
-See \code{\link[rmarkdown]{read_model}}.
 }
 \author{
 Chantel Wetzel

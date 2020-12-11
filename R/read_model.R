@@ -9,7 +9,7 @@
 #' to be used when creating an assessment document using sa4ss
 #' document written with \pkg{sa4ss}.
 #'
-#' @param directory location of the SS model to use in the document
+#' @template mod_loc
 #' @param plotfolder location of the r4ss figure directory
 #' @param printstats Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen
 #' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if
@@ -40,8 +40,6 @@
 #' @param divide_by_2 This will allow the user to calculate single sex values
 #' based on the new sex specification (-1) in SS for single sex models. Default value is FALSE.
 #' TRUE will divide by 2.
-#' @param endyr Optional input to choose a different ending year for tables
-#' (could be useful for catch-only updates)
 #' @param adopted_ofl Vector of adopted ofl values to be printed in the mangagement performance
 #' table. This should be a vector of 10 values.
 #' @param adopted_abc Vector of adopted abc values to be printed in the mangagement performance
@@ -56,15 +54,18 @@
 #' @param forecast_abc Optional input vector for management adopted ABC values for table g. These values
 #' will be overwrite the ABC values in the projection table, rather than the model estimated
 #' ABC values. Example input: c(1500, 1300)
+#' @param ... Additional input arguments passed to \code{\link[r4ss]{SS_output}} for reading
+#' output files from Stock Synthesis into a list.
 #'
 #' @examples
 #' \dontrun{
-#' sa4ss::read_model(mod_loc = "C:/SS_models/AssessmentModel",
-#' fecund_mult = 'billion eggs')
+#' simplemod_loc <- tail(dir(pattern = "simple",
+#'   system.file("extdata", package = "r4ss"),
+#'   full.names = TRUE), 1)
+#' sa4ss::read_model(mod_loc = simplemod_loc,
+#'   fecund_mult = "billion eggs")
 #' }
 #' @export
-#' @seealso
-#' See \code{\link[rmarkdown]{read_model}}.
 #' @author Chantel Wetzel
 #'
 read_model <- function(

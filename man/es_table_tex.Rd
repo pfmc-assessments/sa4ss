@@ -7,8 +7,8 @@
 es_table_tex(mod_loc, table_folder = "tables")
 }
 \arguments{
-\item{mod_loc}{The file path to the directory where the model and the
-\code{table_folder} are.}
+\item{mod_loc}{A file path to the directory that houses the
+Stock Synthesis model that will be used as the base model in this document.}
 
 \item{table_folder}{The relative path for the table directory, where it
 must be relative to \code{mod_loc} because it will be appended to this
