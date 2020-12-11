@@ -1,8 +1,21 @@
+#' Technical report output formatting
+#'
+#' Format for creating a technical report with the \code{.pdf} extension.
+#' This format will be used to generate markdown from R Markdown and a
+#' resulting pdf will be saved to the disk.
+#'
+#' @param latex_engine The desired latex engine, where luaLaTex is the
+#' default because it leads to a 508 compliant document. This argument
+#' is passed to \code{\link[bookdown]{pdf_book}}. Only a single value
+#' can be passed, but all options are listed below.
+#' @param pandoc_args Arguments for pandoc. This argument
+#' is passed to \code{\link[bookdown]{pdf_book}}.
+#' @param ... Additional arguments passed to \code{\link[bookdown]{pdf_book}}.
 #' @export
-techreport_pdf <- function(latex_engine = c("lualatex", "pdflatex"),
-                           copy_sty = TRUE,
-                           line_nums = FALSE, line_nums_mod = 1,
-                           pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"), ...) {
+techreport_pdf <- function(
+  latex_engine = c("lualatex", "pdflatex"),
+  pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"),
+  ...) {
   latex_engine <- match.arg(latex_engine, several.ok = FALSE)
   file <- system.file("rmarkdown","templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
 
