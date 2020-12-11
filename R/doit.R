@@ -13,9 +13,9 @@ doit <- function (dirgit = "c:/stockAssessment/ss/sa4ss",
   oldwd <- getwd()
   on.exit(setwd(oldwd), add = TRUE)
   setwd(dirgit)
-  build()
-  if ("package:sa4ss" %in% search()) unload(package = "sa4ss")
-  install.packages(tail(n = 1,
+  devtools::build()
+  if ("package:sa4ss" %in% search()) pkgload::unload(package = "sa4ss")
+  utils::install.packages(utils::tail(n = 1,
     dir(dirname(dirgit), pattern = "sa4ss_[0-9\\.]+\\.tar.gz",
       full.names = TRUE)),
     type = "source")

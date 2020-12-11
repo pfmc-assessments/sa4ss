@@ -1,8 +1,12 @@
 #' Create tex file from executive summary tables
 #'
-#' @param mod_loc 
-#' @param table_folder 
-#' 
+#' @param mod_loc The file path to the directory where the model and the
+#' \code{table_folder} are.
+#' @param table_folder The relative path for the table directory, where it
+#' must be relative to \code{mod_loc} because it will be appended to this
+#' argument using \code{file.path}. An alternative is to supply the full
+#' file path in \code{mod_loc} and use \code{table_folder = ""}.
+#'
 #' @author Chantel Wetzel
 #' 
 #' 
@@ -42,7 +46,7 @@ es_table_tex <- function(mod_loc,
 			                  align = c('r', rep('c', n)))
 		}
 
-		kableExtra::save_kable(t, 
+		kableExtra::save_kable(t,
 							   file = file.path(mod_loc, table_folder, paste0(tex_name, ".tex")))
 	}
 

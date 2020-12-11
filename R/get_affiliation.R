@@ -5,7 +5,7 @@
 #' @template authors
 #' @author Kelli Faye Johnson
 #' @export
-#' @returns A vector the same length as \code{authors} is returned,
+#' @returns A vector the same length as the input author argument is returned,
 #' providing the matching address for each entry as a text string.
 #' @examples
 #' get_affiliation("Kelli F. Johnson")

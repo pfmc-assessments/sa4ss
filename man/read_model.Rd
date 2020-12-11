@@ -35,7 +35,7 @@ read_model(
 \arguments{
 \item{plotfolder}{location of the r4ss figure directory}
 
-\item{printstats}{Input to r4ss::SS_output to prevent output to the screen}
+\item{printstats}{Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen}
 
 \item{fecund_mult}{User input to define the multiplier for fecundity in terms of eggs if
 fecundity is defined in terms of numbers within SS.  The default is millions of eggs but
@@ -49,9 +49,10 @@ fecundity units (fecund_unit) will be set as metric tons.}
 
 \item{html}{create html files}
 
-\item{datplot}{create the data plots using r4ss::SS_plots}
+\item{datplot}{create the data plots using \code{\link[r4ss]{SS_plots}}}
 
-\item{fleetnames}{vector of user defined fleet names. If input left NULL the model fleet
+\item{fleetnames}{A vector of user-defined fleet names.
+If input left as the default value of \code{NULL}, then the model-object fleet
 names will be used.}
 
 \item{forecastplot}{Add forecast years to figure plost}
@@ -62,7 +63,7 @@ names will be used.}
 
 \item{bub_scale}{Bubble scale size to use for plotting.}
 
-\item{create_tables}{TRUE/FALSE to run r4ss::SSexecutivesummary tables}
+\item{create_tables}{TRUE/FALSE to run \code{\link[r4ss]{SSexecutivesummary}} tables}
 
 \item{ci_value}{To calculate confidence intervals, default is set at 0.95}
 
@@ -72,7 +73,7 @@ tables, historical catches, and numbers-at-ages}
 
 \item{tables}{Which tables to produce (default is everything). Note: some
 tables depend on calculations related to previous tables, so will fail
-if requested on their own (e.g. Table 'f' can't be created
+if requested on their own (e.g., Table 'f' can't be created
 without also creating Table 'a')}
 
 \item{divide_by_2}{This will allow the user to calculate single sex values
@@ -102,12 +103,12 @@ ABC values. Example input: c(1500, 1300)}
 (could be useful for catch-only updates)}
 }
 \description{
-Read an SS model output using r4ss to create a RData object with defined quantities
+Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
 to be used when creating an assessment document using sa4ss
 document written with \pkg{sa4ss}.
 }
 \details{
-Read an SS model output using r4ss to create a RData object with defined quantities
+Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
 to be used when creating an assessment document using sa4ss
 document written with \pkg{sa4ss}.
 }

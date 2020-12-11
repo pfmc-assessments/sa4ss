@@ -8,7 +8,7 @@ folder each time SS_plots is run (including when you update any of the plots)
 The most recent version of plotInfoTable with the complete list of plots will
 be used.}
 \usage{
-get_plotinfo(mod_loc, plot_folder = plotfolder)
+get_plotinfo(mod_loc, plot_folder = "plots")
 }
 \arguments{
 \item{mod_loc}{directory of the model}

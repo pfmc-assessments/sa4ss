@@ -7,9 +7,13 @@
 es_table_tex(mod_loc, table_folder = "tables")
 }
 \arguments{
-\item{mod_loc}{}
+\item{mod_loc}{The file path to the directory where the model and the
+\code{table_folder} are.}
 
-\item{table_folder}{}
+\item{table_folder}{The relative path for the table directory, where it
+must be relative to \code{mod_loc} because it will be appended to this
+argument using \code{file.path}. An alternative is to supply the full
+file path in \code{mod_loc} and use \code{table_folder = ""}.}
 }
 \description{
 Create tex file from executive summary tables

@@ -27,8 +27,11 @@ Depends:
     R (>= 2.10)
 Imports:
   bookdown,
+  dplyr,
   knitr,
   kableExtra,
+  pkgload,
+  r4ss,
   rmarkdown,
   rticles,
   tinytex,
@@ -36,5 +39,8 @@ Imports:
   xfun,
   yaml
 Suggests:
+  devtools,
   testthat,
   usethis
+Remotes:
+  github::r4ss/r4ss@development
