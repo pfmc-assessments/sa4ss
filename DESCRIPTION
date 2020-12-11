@@ -34,7 +34,8 @@ Imports:
   tinytex,
   utils,
   xfun,
-  yaml
+  yaml,
+  dplyr
 Suggests:
   testthat,
   usethis
