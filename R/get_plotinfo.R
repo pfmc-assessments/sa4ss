@@ -28,7 +28,7 @@ get_plotinfo <- function(mod_loc, plot_folder = 'plots'){
   # loop over matching CSV files and combine them
   for(ifile in 1:length(filenames)){
     csv <- file.path(plotdir, filenames[ifile])
-    temp <- read.csv(csv, colClasses = "character")
+    temp <- utils::read.csv(csv, colClasses = "character")
     plotInfoTable <- rbind(plotInfoTable, temp)
   }
 
@@ -56,6 +56,6 @@ get_plotinfo <- function(mod_loc, plot_folder = 'plots'){
   plotInfoTable$altcaption = NA
   plotInfoTable$loc = plotdir
 
-  write.csv(plotInfoTable, file = file.path(mod_loc, plot_folder, "plotinfotable_for_doc.csv"),
+  utils::write.csv(plotInfoTable, file = file.path(mod_loc, plot_folder, "plotinfotable_for_doc.csv"),
             row.names = FALSE)
 }

@@ -5,7 +5,7 @@
 #'
 #' @details The Latin name as specified in \code{"latin"} argument
 #' will be encased in underscores to facilitate it being italicized.
-#' The use of \code{\emph{}} is not allowed because the tagging structure
+#' Using emph is not allowed because the tagging structure
 #' for the creation of the 508 compliant pdf will not render the LaTex
 #' code here. Nevertheless, the use of markdown inside the yaml seems
 #' to work just fine.

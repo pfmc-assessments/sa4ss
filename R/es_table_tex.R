@@ -1,20 +1,24 @@
 #' Create tex file from executive summary tables
 #'
-#' @param mod_loc 
-#' @param table_folder 
-#' 
+#' @param mod_loc The file path to the directory where the model and the
+#' \code{table_folder} are.
+#' @param table_folder The relative path for the table directory, where it
+#' must be relative to \code{mod_loc} because it will be appended to this
+#' argument using \code{file.path}. An alternative is to supply the full
+#' file path in \code{mod_loc} and use \code{table_folder = ""}.
+#'
 #' @author Chantel Wetzel
-#' @importFrom dplyr mutate_if
+#' @importFrom dplyr %>%
+#'
 
-#' 
-es_table_tex <- function(mod_loc, 
-					  table_folder = 'tables'){
+es_table_tex <- function(mod_loc,
+  table_folder = 'tables'){
 
-	df = read.csv(file.path(mod_loc, table_folder, "table_labels.csv"))
+	df = utils::read.csv(file.path(mod_loc, table_folder, "table_labels.csv"))
 
 	for(i in 1:length(df$filename)){
 
-		tab = read.csv(file.path(mod_loc, table_folder, df$filename[i]),
+		tab = utils::read.csv(file.path(mod_loc, table_folder, df$filename[i]),
 					   check.names = FALSE)
 		tex_name = sub(pattern = ".csv", '', df$filename[i])
 
@@ -26,7 +30,7 @@ es_table_tex <- function(mod_loc,
 		
 		n = ncol(tab) - 1
 
-		if(col_names[1] == "Year"){ 
+		if(col_names[1] == "Year"){
 			dig = 2
 			t <- table_format(x = as.data.frame(tab),
 			                  caption = df$caption[i],
@@ -46,7 +50,7 @@ es_table_tex <- function(mod_loc,
 			                  align = c('r', rep('c', n)))
 		}
 
-		kableExtra::save_kable(t, 
+		kableExtra::save_kable(t,
 							   file = file.path(mod_loc, table_folder, paste0(tex_name, ".tex")))
 	}
 

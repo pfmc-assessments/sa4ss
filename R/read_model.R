@@ -1,17 +1,17 @@
 #' Create a \pkg{sa4ss} an RData object
 #'
-#' Read an SS model output using r4ss to create a RData object with defined quantities
+#' Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
 #' to be used when creating an assessment document using sa4ss
 #' document written with \pkg{sa4ss}.
 #'
 #' @details
-#' Read an SS model output using r4ss to create a RData object with defined quantities
+#' Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
 #' to be used when creating an assessment document using sa4ss
 #' document written with \pkg{sa4ss}.
 #'
 #' @param directory location of the SS model to use in the document
 #' @param plotfolder location of the r4ss figure directory
-#' @param printstats Input to r4ss::SS_output to prevent output to the screen
+#' @param printstats Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen
 #' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if
 #' fecundity is defined in terms of numbers within SS.  The default is millions of eggs but
 #' there may be instances where the multiplier may be lower or higher, billions or thousands,
@@ -20,22 +20,22 @@
 #' @param create_plots TRUE//FALSE to specify whether to create model plots using r4ss
 #' @param png TRUE create png plot files
 #' @param html create html files
-#' @param datplot create the data plots using r4ss::SS_plots
-#' @param fleetnames vector of user defined fleet names. If input left NULL the model fleet
+#' @param datplot create the data plots using \code{\link[r4ss]{SS_plots}}
+#' @param fleetnames A vector of user-defined fleet names.
+#' If input left as the default value of \code{NULL}, then the model-object fleet
 #' names will be used.
-#' @fleetnames User specified vector of fleet names to use in figures and tables.
 #' @param forecastplot Add forecast years to figure plost
 #' @param maxrows Number of rows for plots. Default set to 4.
 #' @param maxcols Number of columns for plots. Default set to 4.
 #' @param bub_scale Bubble scale size to use for plotting.
-#' @param create_tables TRUE/FALSE to run r4ss::SSexecutivesummary tables
+#' @param create_tables TRUE/FALSE to run \code{\link[r4ss]{SSexecutivesummary}} tables
 #' @param ci_value To calculate confidence intervals, default is set at 0.95
 #' @param es_only TRUE/FALSE switch to produce only the executive summary tables
 #' will be produced, default is FALSE which will return all executive summary
 #' tables, historical catches, and numbers-at-ages
 #' @param tables Which tables to produce (default is everything). Note: some
 #' tables depend on calculations related to previous tables, so will fail
-#' if requested on their own (e.g. Table 'f' can't be created
+#' if requested on their own (e.g., Table 'f' can't be created
 #' without also creating Table 'a')
 #' @param divide_by_2 This will allow the user to calculate single sex values
 #' based on the new sex specification (-1) in SS for single sex models. Default value is FALSE.

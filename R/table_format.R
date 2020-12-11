@@ -19,14 +19,13 @@
 #' @param landscape Make this table in landscape orientation?
 #' @param repeat_header If landscape, repeat the header on subsequent pages?
 #' @param header_grouping As defined by [kableExtra::kable_styling()]
-#' @param repeat_header_text Use to write a Continued.. messgae continuing pages
-#'   with the long table
 #' @param format.args As defined by [kableExtra::kbl()].
 #' @param custom_width Logical. Allow for custom column widths
 #' @param col_to_adjust Vector of columns to adjust width. Only used if custom_width = TRUE.
 #' @param width Vector or single value of column widths (i.e. c('2cm', '2cm')) for the columns defined
 #' in the col_to_adjust.
 #' @param create_png Logical. If set to true tables will be created as png objects in the doc.
+#' @param ... Extra arguments supplied to \code{\link[kableExtra]{kbl}}.
 #'
 #' @importFrom kableExtra kbl row_spec kable_styling landscape linebreak
 #' @examples
