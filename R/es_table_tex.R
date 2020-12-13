@@ -5,12 +5,16 @@
 #' must be relative to \code{mod_loc} because it will be appended to this
 #' argument using \code{file.path}. An alternative is to supply the full
 #' file path in \code{mod_loc} and use \code{table_folder = ""}.
+#' @param save_table optional input that requires a full path which will 
+#' allow users to save the tex file to a specific location (e.g. inside doc folder)
+#' other than the \code{file.path(mod_loc, table_folder)}. Default NULL
 #'
 #' @author Chantel Wetzel
 #' 
 #' 
 es_table_tex <- function(mod_loc, 
-					  table_folder = 'tables'){
+					  table_folder = 'tables',
+					  save_loc = NULL){
 
 	# Function to round data-frame with characters and numeric values
 	round_df <- function(df, digits) {
@@ -20,6 +24,10 @@ es_table_tex <- function(mod_loc,
 	}
 
 	df = utils::read.csv(file.path(mod_loc, table_folder, "table_labels.csv"))
+
+	if (is.null(save_loc)) {
+		save_loc = file.path(mod_loc, table_folder) }
+	
 
 	for(i in 1:length(df$filename)){
 
@@ -46,7 +54,7 @@ es_table_tex <- function(mod_loc,
 		}
 
 		kableExtra::save_kable(t,
-							   file = file.path(mod_loc, table_folder, paste0(tex_name, ".tex")))
+							   file = file.path(save_loc, paste0(tex_name, ".tex")))
 	}
 
 }

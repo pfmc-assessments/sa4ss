@@ -10,6 +10,9 @@
 #' document written with \pkg{sa4ss}.
 #'
 #' @template mod_loc
+#' @param save_loc optional input that requires a full path which will 
+#' allow users to save the tex file created from csv files to a specific location (e.g. inside doc folder)
+#' other than the \code{file.path(mod_loc, table_folder)}. Default NULL
 #' @param plotfolder location of the r4ss figure directory
 #' @param printstats Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen
 #' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if
@@ -70,6 +73,7 @@
 #'
 read_model <- function(
   mod_loc,
+  save_loc = NULL,
   plotfolder = 'plots',
   printstats = FALSE,
   fecund_mult = 'million eggs',
@@ -162,7 +166,7 @@ read_model <- function(
                             verbose = FALSE)
   }
 
-  es_table_tex(mod_loc = mod_loc, table_folder = 'tables')
+  es_table_tex(mod_loc = mod_loc, table_folder = 'tables', save_loc = save_loc)
 
   save(mod_loc,
        plot_dir,
