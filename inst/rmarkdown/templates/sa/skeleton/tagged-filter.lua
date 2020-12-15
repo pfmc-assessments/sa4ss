@@ -129,3 +129,16 @@ if FORMAT:match "latex" then
     return tagBlock("H" .. el.level, el)
   end
 end
+
+function RawBlock (rb)
+  if rb.format:match 'html' then
+    return pandoc.RawBlock("html", rb)
+  else
+    local oldlatex = rb.text
+    local sed = [[/^\\begin{longtable}/{s/@{}/&\n/;:a;ta;/\n@{}/!s/\n\(.\)/|\1\n/;ta;s/\n/|/};/begin.longtable/i \\\\\tagstructbegin{tag=Table}\\\tagmcbegin{tag=Table}]]
+    local newlatex = pandoc.pipe('sed',{sed},oldlatex)
+    local yyy = [[/^\\end{longtable}/{s/@{}/&\n/;:a;ta;/\n@{}/!s/\n\(.\)/|\1\n/;ta;s/\n/|/};/end.longtable/a \\\\\leavevmode\\\tagmcend\\\tagstructend\\\\\par]]
+    local out = pandoc.pipe('sed',{yyy},newlatex)
+    return pandoc.RawBlock("latex", out)
+  end
+end
