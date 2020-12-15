@@ -4,7 +4,7 @@
 \alias{es_table_tex}
 \title{Create tex file from executive summary tables}
 \usage{
-es_table_tex(mod_loc, table_folder = "tables")
+es_table_tex(mod_loc, table_folder = "tables", save_loc = NULL)
 }
 \arguments{
 \item{mod_loc}{A file path to the directory that houses the
@@ -14,6 +14,10 @@ Stock Synthesis model that will be used as the base model in this document.}
 must be relative to \code{mod_loc} because it will be appended to this
 argument using \code{file.path}. An alternative is to supply the full
 file path in \code{mod_loc} and use \code{table_folder = ""}.}
+
+\item{save_table}{optional input that requires a full path which will
+allow users to save the tex file to a specific location (e.g. inside doc folder)
+other than the \code{file.path(mod_loc, table_folder)}. Default NULL}
 }
 \description{
 Create tex file from executive summary tables

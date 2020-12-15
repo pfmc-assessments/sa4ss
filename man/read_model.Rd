@@ -6,6 +6,7 @@
 \usage{
 read_model(
   mod_loc,
+  save_loc = NULL,
   plotfolder = "plots",
   printstats = FALSE,
   fecund_mult = "million eggs",
@@ -35,6 +36,10 @@ read_model(
 \arguments{
 \item{mod_loc}{A file path to the directory that houses the
 Stock Synthesis model that will be used as the base model in this document.}
+
+\item{save_loc}{optional input that requires a full path which will
+allow users to save the tex file created from csv files to a specific location (e.g. inside doc folder)
+other than the \code{file.path(mod_loc, table_folder)}. Default NULL}
 
 \item{plotfolder}{location of the r4ss figure directory}
 
