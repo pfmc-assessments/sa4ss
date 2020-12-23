@@ -166,7 +166,7 @@ read_model <- function(
                             verbose = FALSE)
   }
 
-  es_table_tex(mod_loc = mod_loc, table_folder = 'tables', save_loc = save_loc)
+  es_table_tex(dir = mod_loc, table_folder = 'tables', save_loc = save_loc)
 
   save(mod_loc,
        plot_dir,
