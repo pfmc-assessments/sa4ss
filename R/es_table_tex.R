@@ -12,9 +12,15 @@
 #' must be relative to \code{dir} because it will be appended to this
 #' argument using \code{file.path}. An alternative is to supply the full
 #' file path in dir and use \code{table_folder = ""}.
-#' @param save_table optional input that requires a full path which will 
+#' @param save_loc optional input that requires a full path which will 
 #' allow users to save the tex file to a specific location (e.g. inside doc folder)
 #' other than the \code{file.path(dir, table_folder)}. Default NULL
+#' @param csv_name CSV file name to create tex table scripts for. This file should have
+#' the following columns: caption, altcaption, label, filenem, loc (optional) where caption will
+#' be the table caption, altcapation is the accessibility text for the table (can be
+#' NA if the caption should be used), label is the text to reference the table, filename
+#' is the file name of the csv file to be read, and loc (optional) is the location to file the 
+#' csv file indicated by the filename. 
 #'
 #' @author Chantel Wetzel
 #' 
