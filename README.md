@@ -28,9 +28,11 @@ if (file.exists(dirclone)) {
 } else {
   remotes::install_github("nwfsc-assess/sa4ss")
 }
-if ("package:sa4ss" %in% search()) unload(package = "sa4ss")
+if ("package:sa4ss" %in% search()) {
+  pkgload::unload(package = "sa4ss")
+}
 library(sa4ss)
-sa4ss::draft()
+sa4ss::draft(authors = "Kelli F. Johnson", create_dir = TRUE)
 setwd("doc")
 bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd())
 ```
