@@ -56,6 +56,12 @@ jobs:
       - name: Install package
         run: R CMD INSTALL .
 
-      - name: Deploy package
+      - name: Build pdf
         run: |
           Rscript -e 'sa4ss::draft(author = "Kelli F. Johnson"); bookdown::render_book("00a.Rmd", clean = FALSE)'
+      - name: Archive pdf
+        if: success()
+        uses: actions/upload-artifact@master
+        with:
+          name: _main.pdf
+          path: _book
