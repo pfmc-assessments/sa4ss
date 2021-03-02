@@ -85,7 +85,7 @@ bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd())
 
 Users can compare this user-generated pdf to the one generated automatically within the package when tests are run to ensure that the package is not broken.
 To find the stored pdf,
-first navigate to [github actions](https://github.com/nwfsc-assess/sa4ss/actions);
-find the 'bookdown' workflow from the list on the left and select it;
-find the most recent job that was run (i.e., top of the list) and click on the name, which will be the name of the most recent commit;
-scroll to the bottom of the page under the Artifacts label, where you can download the zip file called `_main.pdf` that includes the md, tex, and pdf files.
+* first navigate to [github actions](https://github.com/nwfsc-assess/sa4ss/actions);
+* find the 'bookdown' workflow from the list on the left and select it;
+* find the most recent job that was run (i.e., top of the list) and click on the name, which will be the name of the most recent commit;
+* scroll to the bottom of the page under the Artifacts label, where you can download the zip file called `_main.pdf` that includes the md, tex, and pdf files.
