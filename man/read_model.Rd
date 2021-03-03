@@ -12,7 +12,7 @@ read_model(
   fecund_mult = "million eggs",
   create_plots = TRUE,
   png = TRUE,
-  html = TRUE,
+  html = FALSE,
   datplot = TRUE,
   fleetnames = NULL,
   forecastplot = TRUE,

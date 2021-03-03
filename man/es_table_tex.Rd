@@ -6,7 +6,7 @@
 \usage{
 es_table_tex(
   dir,
-  table_folder = "",
+  table_folder = NULL,
   save_loc = NULL,
   csv_name = "table_labels.csv"
 )
@@ -50,7 +50,6 @@ es_table_tex(dir = "C:/models/table_to_add_to_doc",
 			 save_loc = "C:/model/tex_tables",
 			 csv_name = "non_es_document_tables.csv")
 }			
-
 }
 \author{
 Chantel Wetzel
