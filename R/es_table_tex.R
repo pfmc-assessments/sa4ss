@@ -34,9 +34,9 @@
 #'				 save_loc = "C:/model/tex_tables",
 #'				 csv_name = "non_es_document_tables.csv")
 #' }			
-#' 
+#' @export
 es_table_tex <- function(dir, 
-					     table_folder = "",
+					     table_folder = NULL,
 					     save_loc = NULL,
 					     csv_name = "table_labels.csv"){
 
@@ -47,9 +47,10 @@ es_table_tex <- function(dir,
 		(df)
 	}
 
-	if (missing(table_folder)){
+	if (is.null(table_folder)){
 		if(dir.exists(file.path(dir, "tables"))){
 			df = utils::read.csv(file.path(dir, "tables", csv_name))
+			table_folder = "tables"
 		}else{
 			df = utils::read.csv(file.path(dir, csv_name))			
 		}
@@ -65,12 +66,20 @@ es_table_tex <- function(dir,
 		if("loc" %in% colnames(df)){
 			tab = utils::read.csv(file.path(df$loc[i], df$filename[i]), check.names = FALSE)
 		} else {
-			tab = utils::read.csv(file.path(dir, table_folder, df$filename[i]), check.names = FALSE)
+			if(is.null(table_folder)){
+				tab = utils::read.csv(file.path(dir, df$filename[i]), check.names = FALSE)
+			} else {
+				tab = utils::read.csv(file.path(dir, table_folder, df$filename[i]), check.names = FALSE)				
+			}
 		}
 
 		tex_name = sub(pattern = ".csv", '', df$filename[i])
 		col_names = gsub("\\_", " ", colnames(tab))
 		n = ncol(tab) - 1
+
+		if(is.character(tab[,1])){
+			tab[,1] = gsub("\\_", " ", tab[,1])
+		}
 
 		if(col_names[1] == "Year"){ 
 			t <- table_format(x = as.data.frame(tab),

@@ -76,10 +76,11 @@ read_model <- function(
   save_loc = NULL,
   plotfolder = 'plots',
   printstats = FALSE,
+  longtable = FALSE,
   fecund_mult = 'million eggs',
   create_plots = TRUE,
   png = TRUE,
-  html = TRUE,
+  html = FALSE,
   datplot = TRUE,
   fleetnames = NULL,
   forecastplot = TRUE,
@@ -166,7 +167,9 @@ read_model <- function(
                             verbose = FALSE)
   }
 
-  es_table_tex(dir = mod_loc, table_folder = 'tables', save_loc = save_loc)
+  dir.create(file.path(mod_loc, "tex_tables"), showWarnings = FALSE)
+  es_table_tex(dir = mod_loc, longtable = longtable, 
+               table_folder = 'tables', save_loc = save_loc)
 
   save(mod_loc,
        plot_dir,
