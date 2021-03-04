@@ -17,7 +17,8 @@ add_figure(
 )
 }
 \arguments{
-\item{filein}{location of the figure to be added (example: "C:\My figure directory\plot.png")}
+\item{filein}{The path of the figure to be added
+(e.g., "C:\\My figure directory\\plot.png").}
 
 \item{caption}{figure caption to add below the figure in the document}
 

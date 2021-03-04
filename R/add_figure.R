@@ -3,7 +3,8 @@
 #' the caption, alternative caption for accessibility, and
 #' reference label.
 #'
-#' @param filein location of the figure to be added (example: "C:\My figure directory\plot.png")
+#' @param filein The path of the figure to be added
+#' (e.g., "C:\\My figure directory\\plot.png").
 #' @param caption figure caption to add below the figure in the document
 #' @param alt_caption Default NULL. Alternative figure caption for accessibility.
 #' If not specified the caption will be used.
