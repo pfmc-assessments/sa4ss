@@ -63,6 +63,7 @@ tryCatch(
   error = function(x) "sa4ss was not loaded, you can install it now."
 )
 if (file.exists(dirclone)) {
+  unlink(dir("..", pattern = "sa4ss_.+\\.tar.gz"))
   devtools::build(dirclone)
   filepkgbuild <- dir(
     path = dirname(normalizePath(dirclone)),
@@ -75,7 +76,15 @@ if (file.exists(dirclone)) {
 ```
 
 ### Create a pdf
-The resulting pdf (i.e., `_main.pdf`) will be located within the directory doc.
+As a first test, you will want to run the example in `sa4ss::session_test` to ensure that sa4ss works on your machine.
+``` r
+example(sa4ss::session_test)
+```
+
+Next, you can try building your own pdf.
+The following code will set up your machine to start your own stock assessment document from which you can build upon.
+You only have to run `draft` once, but the call to `bookdown` will be your go-to function to compile the document after you update any of the files.
+The resulting pdf (i.e., `_main.pdf`) will be located within the directory doc because I have set `create_dir` to be `TRUE`. If you set it to be `FALSE` then it will save the files to your current working directory.
 ``` r
 library(sa4ss)
 sa4ss::draft(authors = "Kelli F. Johnson", create_dir = TRUE)
