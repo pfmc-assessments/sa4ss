@@ -1,6 +1,6 @@
 Package: sa4ss
 Title: Write Stock Assessments for Stock Synthesis
-Version: 0.0.0.9008
+Version: 0.0.0.9009
 Authors@R: c(
     person(given = c("Kelli", "F."),
       family = "Johnson",
@@ -23,8 +23,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Depends: 
-    R (>= 2.10)
+Depends:
+  R (>= 4.0)
 Imports:
   bookdown,
   knitr,
