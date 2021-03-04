@@ -19,17 +19,13 @@ Before you create an issue, please try the [example](#example) below to determin
 Below is a minimal example to familiarize yourself with using sa4ss, which depends on having [tinytex](https://yihui.org/tinytex/) installed.
 
 ## tinytex
-
-### Install tinytex
-Instructions follow for how to install tinytex if you do not already have it on your computer.
+If you do not already have tinytex on your computer, run the following in an R session:
 ``` r
 install.packages('tinytex')
 tinytex::install_tinytex()
 ```
-
-### Updating tinytex
 If you already have tinytex, you can use `packageVersion("tinytex")` to determine which version you have and `packageDate("tinytex")` to determine when it was compiled.
-Use your best judgement to determine if you should update it or not. I error on the side of updating too often.
+Use your best judgment to determine if you should update it or not. I error on the side of updating too often.
 ``` r
 tinytex::reinstall_tinytex()
 ```
@@ -45,10 +41,7 @@ Please see navigate to the instructions for
 if you have not already done so.
 Also, before downloading and installing sa4ss you will want to make sure that you do not already have it in your workspace, do not worry though, the first line of code below does that for you.
 ``` r
-tryCatch(
-  expr = pkgload::unload("sa4ss"),
-  error = function(x) "sa4ss was not loaded, you can install it now."
-)
+tryCatch(expr = pkgload::unload("sa4ss"), error = function(x) "")
 remotes::install_github("nwfsc-assess/sa4ss")
 ```
 
@@ -58,10 +51,7 @@ then navigate to the cloned folder within R and run the following code.
 Or, you can set `dirclone` to be something other than your working directory and the following will also work.
 ``` r
 dirclone <- file.path(getwd())
-tryCatch(
-  expr = pkgload::unload("sa4ss"),
-  error = function(x) "sa4ss was not loaded, you can install it now."
-)
+tryCatch(expr = pkgload::unload("sa4ss"), error = function(x) "")
 if (file.exists(dirclone)) {
   unlink(dir("..", pattern = "sa4ss_.+\\.tar.gz"))
   devtools::build(dirclone)
