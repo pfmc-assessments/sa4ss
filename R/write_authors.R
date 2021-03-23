@@ -6,17 +6,18 @@
 #' @template authors
 #' @template fileout
 #' @author Kelli Faye Johnson
+#' @export
 #' @examples
 #' # An example with a standard first name middle initial full stop and last name
 #' # then a first initial full stop middle initial full stop and last name and
 #' # last a first name and last name with no middle initial.
-#' eg <- capture.output(
+#' eg <- utils::capture.output(
 #'   write_authors(
 #'     c("Kelli F. Johnson", "E. J. Dick", "Qi Lee"),
 #'     fileout = ""
 #'   )
 #' )
-#' \dontshow{
+#' \dontrun{
 #' print(eg)
 #' }
 write_authors <- function(authors, fileout = "00authors.Rmd") {
