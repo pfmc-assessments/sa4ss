@@ -6,7 +6,19 @@
 #' @template authors
 #' @template fileout
 #' @author Kelli Faye Johnson
-#' 
+#' @examples
+#' # An example with a standard first name middle initial full stop and last name
+#' # then a first initial full stop middle initial full stop and last name and
+#' # last a first name and last name with no middle initial.
+#' eg <- capture.output(
+#'   write_authors(
+#'     c("Kelli F. Johnson", "E. J. Dick", "Qi Lee"),
+#'     fileout = ""
+#'   )
+#' )
+#' \dontshow{
+#' print(eg)
+#' }
 write_authors <- function(authors, fileout = "00authors.Rmd") {
   affil <- get_affiliation(authors)
   affil_u <- affil[!duplicated(affil)]
@@ -14,7 +26,7 @@ write_authors <- function(authors, fileout = "00authors.Rmd") {
   persons <- utils::as.person(authors)
   first <- vapply(lapply(strsplit(format(persons, include = "given"), "\\s+"),
     "[[", 1), substr, "character", start = 1, stop = 1)
-  middle <- vapply(gsub("[A-Z][a-z]+\\s*", "", format(persons, include = "given")),
+  middle <- vapply(gsub("^[A-Z][a-z]*\\.*\\s*", "", format(persons, include = "given")),
     FUN = substr, FUN.VALUE = "character", start = 1, stop = 1, USE.NAMES = FALSE)
   initials <- gsub("\\.\\.", "\\.", sprintf("%1$s.%2$s.", first, middle))
   last <- format(persons, include = "family")
@@ -22,6 +34,8 @@ write_authors <- function(authors, fileout = "00authors.Rmd") {
   if (length(last) > 1) {
     citation <- paste(citation, paste(initials[-1], last[-1],
       sep = " ", collapse = ", "), sep = ", ")
+  } else {
+    citation <- gsub("\\.*$", "", citation)
   }
   address <- sprintf("^%1$s^%2$s",
     seq_along(affil[!duplicated(affil)]), affil[!duplicated(affil)])

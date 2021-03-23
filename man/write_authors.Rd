@@ -24,6 +24,20 @@ Typically, full or relative paths are allowed.}
 Write a file to the disk with all authors and their affiliations
 using the yaml form for inclusion in the stock assessment.
 }
+\examples{
+# An example with a standard first name middle initial full stop and last name
+# then a first initial full stop middle initial full stop and last name and
+# last a first name and last name with no middle initial.
+eg <- capture.output(
+  write_authors(
+    c("Kelli F. Johnson", "E. J. Dick", "Qi Lee"),
+    fileout = ""
+  )
+)
+\dontshow{
+print(eg)
+}
+}
 \author{
 Kelli Faye Johnson
 }
