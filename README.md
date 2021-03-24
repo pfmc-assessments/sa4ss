@@ -30,6 +30,30 @@ Use your best judgment to determine if you should update it or not. I error on t
 tinytex::reinstall_tinytex()
 ```
 
+## Pandoc
+If you do not already have Pandoc on your computer, then you will need to install it
+using the following directions:
+
+(1) via Rstudio:
+  * open Rstudio and run `rmarkdown::pandoc_available()`;
+  * if the result is `TRUE`, then hug someone and move on to the next topic;
+  * if the result if `FALSE`, then you likely need to add Pandoc to your path.
+  Running `rmarkdown::pandoc_exec()` will show the path that needs to be added,
+  which can be done via 'edit environment variables for your account'
+  without needing IT.
+  * See below if no path to pandoc is available.
+
+(2) via R terminal:
+  * check if you have rtools40 via 
+  `pkgbuild::rtools_path()` or 
+  `Sys.getenv("RTOOLS40_HOME", "C:\\rtools40")`
+  * if the previous are successful in that they provide a path variable,
+  then give someone a hug;
+  * if the previous are not successful, then you will need to install
+  [Pandoc](https://pandoc.org/installing.html).
+
+(3) Restart R so new path variables are found!
+
 ## sa4ss
 
 ### Install sa4ss
