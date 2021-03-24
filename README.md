@@ -44,15 +44,29 @@ using the following directions:
   * See below if no path to pandoc is available.
 
 (2) via R terminal:
-  * check if you have rtools40 via 
-  `pkgbuild::rtools_path()` or 
-  `Sys.getenv("RTOOLS40_HOME", "C:\\rtools40")`
   * if the previous are successful in that they provide a path variable,
   then give someone a hug;
   * if the previous are not successful, then you will need to install
   [Pandoc](https://pandoc.org/installing.html).
 
 (3) Restart R so new path variables are found!
+
+## rtools40
+Please make sure that you have rtools40 installed on your machine prior to using
+`sa4ss`. Many think that rtools40 is just for building packages, but really it
+provides a lot of functionality with respect to compiling anything such as TMB.
+You can check if you have it already with the following code:
+``` r
+pkgbuild::rtools_path()
+Sys.getenv("RTOOLS40_HOME")
+```
+[Instructions for downloading rtools40](https://cran.r-project.org/bin/windows/Rtools/)
+will help you download it, but ensuring that your path is modified properly will
+be up to you. Please make sure that at least the folder within rtools40
+named `usr\bin` is added to your path. This folder contains an executable named `sed`
+that is integral to proving accessible documents right now. I hope to eventually
+remove the dependence, but no such luck at the moment.
+Remember to always restart R after performing such an integral install.
 
 ## sa4ss
 
