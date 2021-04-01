@@ -29,6 +29,11 @@ Use your best judgment to determine if you should update it or not. I error on t
 ``` r
 tinytex::reinstall_tinytex()
 ```
+If this is your first time compiling a sa4ss document
+``` r
+tinytex::tlmgr_install(pkgs="datetime2-english")
+tinytex::tlmgr_install(pkgs="glossaries-english")
+```
 
 ## Pandoc
 If you do not already have Pandoc on your computer, then you will need to install it
