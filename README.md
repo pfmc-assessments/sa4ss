@@ -29,7 +29,7 @@ Before you can build a document it is wise to work through the following steps:
 * [tinytex](#tinytex)
 * [pandoc](#pandoc)
 * [rtools40](#rtools40) for windows users
-* [sa4ss](#sa4ss)
+* [sa4ss](#sa4ss-package)
 * [create a pdf](#create-a-pdf)
 
 ## tinytex
@@ -100,7 +100,7 @@ that is integral to proving accessible documents right now. I hope to eventually
 remove the dependence, but no such luck at the moment.
 Remember to always restart R after performing such an integral install.
 
-## sa4ss
+## sa4ss package
 
 ### Install sa4ss
 
