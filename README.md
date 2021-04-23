@@ -2,6 +2,7 @@
 > A library to easily generate a stock assessment document in pdf form that incorporates [Stock Synthesis](https://vlab.ncep.noaa.gov/web/stock-synthesis) output.
 
 # Rationale
+
 sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the [Pacific Fisheries Management Council](www.pcouncil.org).
 The package provides 
 (1) a consistent structure,
@@ -9,6 +10,7 @@ The package provides
 (3) increased speed compared to creating a word document from scratch.
 
 # User community
+
 The package is intended for use by analysts within the Northwest and Southwest Fisheries Science Centers.
 Regardless of your affiliation, please feel free to post any issues or questions that you have to the [issues page](https://github.com/nwfsc-assess/sa4ss/issues).
 Tags are available to mark your issue with an appropriate category.
@@ -16,9 +18,11 @@ These categories are instrumental for providing guidance to the package maintain
 Before you create an issue, please try the [example](#example) below to determine if the package works for you in general. If it doesn't work, then please try to reinstall the package before posting an issue. Code to reinstall is also available [below](#example).
 
 # Example
-Below is a minimal example to familiarize yourself with using sa4ss, which depends on having [tinytex](https://yihui.org/tinytex/) installed.
+
+Below is a minimal example to familiarize yourself with using sa4ss, which depends on having [tinytex][tinytex] installed.
 
 ## tinytex
+
 If you do not already have tinytex on your computer, run the following in an R session:
 ``` r
 install.packages('tinytex')
@@ -132,7 +136,8 @@ To find the stored pdf,
 * find the most recent job that was run (i.e., top of the list) and click on the name, which will be the name of the most recent commit;
 * scroll to the bottom of the page under the Artifacts label, where you can download the zip file called `_main.pdf` that includes the md, tex, and pdf files.
 
-## Disclaimer
+# Disclaimer
+
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce.
 All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use.
 Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law.
