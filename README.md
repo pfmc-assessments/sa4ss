@@ -28,11 +28,23 @@ If you do not already have tinytex on your computer, run the following in an R s
 install.packages('tinytex')
 tinytex::install_tinytex()
 ```
+If you experience issues with the previous code
+it is more than likely due to firewall or other security settings.
+These settings can prevent R from downloading of the [zipped distribution][tinytex_zip]
+from the [tinytex website][tinytex].
+To combat this, I tried to download the [zip file][tinytex_zip] myself and
+found that an anti-virus application was stopping my personal computer from
+accessing the zip file.
+I then used the prompts to proceed to the website and
+checked the box to always allow access to [tinytex][tinytex].
+The previous code then worked after restarting R.
+
 If you already have tinytex, you can use `packageVersion("tinytex")` to determine which version you have and `packageDate("tinytex")` to determine when it was compiled.
 Use your best judgment to determine if you should update it or not. I error on the side of updating too often.
 ``` r
 tinytex::reinstall_tinytex()
 ```
+
 If this is your first time compiling a sa4ss document
 ``` r
 tinytex::tlmgr_install(pkgs="datetime2-english")
@@ -143,3 +155,6 @@ All NOAA GitHub project code is provided on an ‘as is’ basis and the user as
 Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law.
 Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce.
 The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
+
+[tinytex]: <https://yihui.org/tinytex> "tinytex website"
+[tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-1.zip> "Download tinytex zip file"
