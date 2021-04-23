@@ -155,6 +155,7 @@ library(sa4ss)
 sa4ss::draft(authors = "Kelli F. Johnson", create_dir = TRUE)
 setwd("doc")
 bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd())
+setwd("..")
 ```
 
 Users can compare this user-generated pdf to the one generated automatically within the package when tests are run to ensure that the package is not broken.
