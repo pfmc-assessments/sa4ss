@@ -4,6 +4,7 @@
 * [Rationale](#rationale)
 * [User community](#user-community)
 * [Example](#example)
+* [Tips](#tips)
 * [Disclaimer](#disclaimer)
 
 # Rationale
@@ -165,6 +166,36 @@ To find the stored pdf,
 
 Back to [table of contents](#sa4ss)
 
+# Tips
+
+* [CTAN glossaries package](#glossaries)
+
+## CTAN glossaries package
+
+The [glossaries package][glossaries] on [CTAN][ctan] can help organize acronyms.
+It works by using a master list of acronyms supplied in sa4ss
+and `\gls{}`, which will be the main function that you use in your text.
+Glossaries will determine if the term should be
+abbreviated or if the long form should be used, where it
+automatically will use the long form if it is the first instance.
+This functionality is helpful when you have code split amongst multiple files,
+you expect text to be moved around in the future,
+you want to standardize the way things are written,
+your document has multiple authors.
+
+For more information please see page 16 of the
+[glossaries for beginners guide](https://ctan.math.illinois.edu/macros/latex/contrib/glossaries/glossariesbegin.pdf)
+where each function for generating text is explained. In short,
+
+  * `gls{<label>}`: displays the long form in its first use and short form thereafter;
+  * `glspl{<label>}`: displays the plural version;
+  * `Gls{<label>}`: displays an uppercase version for the beginning of a sentence;
+  * `Glspl{<label>}`: displays the plural form of the uppercase version;
+  * `glsentryshort{<label>}`: displays the short version and can be used in a header; and
+  * `glsentrylong{<label>}`: displays the long version and can be used in a header.
+
+Back to [table of contents](#sa4ss)
+
 # Disclaimer
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce.
@@ -173,6 +204,8 @@ Any claims against the Department of Commerce or Department of Commerce bureaus 
 Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce.
 The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
+[ctan]: <https://ctan.org/> "The Comprehensive TEX Archive Network"
+[glossaries]: <https://ctan.org/pkg/glossaries?lang=en> "Glossaries package on CTAN"
 [ss]: <https://github.com/nmfs-stock-synthesis/stock-synthesis> "Stock Synthesis code base"
 [tinytex]: <https://yihui.org/tinytex> "tinytex website"
 [tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-1.zip> "Download tinytex zip file"
