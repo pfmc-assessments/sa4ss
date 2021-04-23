@@ -174,7 +174,8 @@ Back to [table of contents](#sa4ss)
 ## CTAN glossaries package
 
 The [glossaries package][glossaries] on [CTAN][ctan] can help organize acronyms.
-It works by using a master list of acronyms supplied in sa4ss
+It works by using a
+[master list of acronyms supplied in sa4ss](https://github.com/nwfsc-assess/sa4ss/blob/master/inst/rmarkdown/templates/sa/skeleton/sa4ss_glossaries.tex)
 and `\gls{}`, which will be the main function that you use in your text.
 Glossaries will determine if the term should be
 abbreviated or if the long form should be used, where it
