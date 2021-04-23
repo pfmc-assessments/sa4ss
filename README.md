@@ -14,6 +14,8 @@ The package provides
 (2) generic text that should be the same across all stocks, and
 (3) increased speed compared to creating a word document from scratch.
 
+Back to [table of contents](#sa4ss)
+
 # User community
 
 The package is intended for use by analysts within the Northwest and Southwest Fisheries Science Centers.
@@ -21,6 +23,8 @@ Regardless of your affiliation, please feel free to post any issues or questions
 Tags are available to mark your issue with an appropriate category.
 These categories are instrumental for providing guidance to the package maintainers regarding how to respond your issue and to other users that follow this repository where they facilitate searching within issues.
 Before you create an issue, please try the [example](#example) below to determine if the package works for you in general. If it doesn't work, then please try to reinstall the package before posting an issue. Code to reinstall is also available [below](#example).
+
+Back to [table of contents](#sa4ss)
 
 # Example
 
@@ -158,6 +162,8 @@ To find the stored pdf,
 * find the 'bookdown' workflow from the list on the left and select it;
 * find the most recent job that was run (i.e., top of the list) and click on the name, which will be the name of the most recent commit;
 * scroll to the bottom of the page under the Artifacts label, where you can download the zip file called `_main.pdf` that includes the md, tex, and pdf files.
+
+Back to [table of contents](#sa4ss)
 
 # Disclaimer
 
