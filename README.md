@@ -1,5 +1,10 @@
 # sa4ss
-> A library to easily generate a stock assessment document in pdf form that incorporates [Stock Synthesis](https://vlab.ncep.noaa.gov/web/stock-synthesis) output.
+> A library to generate a stock assessment document in pdf form that incorporates [Stock Synthesis][ss] output.
+
+* [Rationale](#rationale)
+* [User community](#user-community)
+* [Example](#example)
+* [Disclaimer](#disclaimer)
 
 # Rationale
 
@@ -19,7 +24,13 @@ Before you create an issue, please try the [example](#example) below to determin
 
 # Example
 
-Below is a minimal example to familiarize yourself with using sa4ss, which depends on having [tinytex][tinytex] installed.
+Below is a minimal example to familiarize yourself with using sa4ss.
+Before you can build a document it is wise to work through the following steps:
+* [tinytex](#tinytex)
+* [pandoc](#pandoc)
+* [rtools40](#rtools40) for windows users
+* [sa4ss](#sa4ss)
+* [create a pdf](#create-a-pdf)
 
 ## tinytex
 
@@ -156,5 +167,6 @@ Any claims against the Department of Commerce or Department of Commerce bureaus 
 Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce.
 The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
+[ss]: <https://github.com/nmfs-stock-synthesis/stock-synthesis> "Stock Synthesis code base"
 [tinytex]: <https://yihui.org/tinytex> "tinytex website"
 [tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-1.zip> "Download tinytex zip file"
