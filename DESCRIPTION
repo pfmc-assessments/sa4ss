@@ -44,4 +44,4 @@ Suggests:
   testthat,
   usethis
 Remotes:
-  github::r4ss/r4ss@development
+  github::r4ss/r4ss
