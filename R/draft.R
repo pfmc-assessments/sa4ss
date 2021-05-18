@@ -17,7 +17,7 @@
 #' @param type The name of the template you want to copy from those available
 #' within \pkg{sa4ss}. See the function call for available options, where the
 #' first listed will be used for the default.
-#' @param create_dir code{FALSE} uses the current working directory for the template.
+#' @param create_dir \code{FALSE} uses the current working directory for the template.
 #' \code{TRUE} will create a new directory and \code{"default"}, which is the
 #' default of \code{\link[rmarkdown]{draft}()}, leaves it up to the package to
 #' determine.

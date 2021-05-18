@@ -49,7 +49,7 @@ Do not include \code{"coast"} because it will be added internally.}
 within \pkg{sa4ss}. See the function call for available options, where the
 first listed will be used for the default.}
 
-\item{create_dir}{code{FALSE} uses the current working directory for the template.
+\item{create_dir}{\code{FALSE} uses the current working directory for the template.
 \code{TRUE} will create a new directory and \code{"default"}, which is the
 default of \code{\link[rmarkdown]{draft}()}, leaves it up to the package to
 determine.}
