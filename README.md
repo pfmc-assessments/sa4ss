@@ -68,6 +68,7 @@ tinytex::tlmgr_install(pkgs="glossaries-english")
 ```
 
 ## Pandoc
+
 If you do not already have Pandoc on your computer, then you will need to install it
 using the following directions:
 
@@ -89,7 +90,9 @@ using the following directions:
 (3) Restart R so new path variables are found!
 
 ## rtools40
-Please make sure that you have rtools40 installed on your machine prior to using
+
+If you are using Windows,
+please make sure that you have rtools40 installed on your machine prior to using
 `sa4ss`. Many think that rtools40 is just for building packages, but really it
 provides a lot of functionality with respect to compiling anything such as TMB.
 You can check if you have it already with the following code:
