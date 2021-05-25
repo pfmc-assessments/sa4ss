@@ -37,6 +37,8 @@ Before you can build a document it is wise to work through the following steps:
 * [sa4ss](#sa4ss-package)
 * [create a pdf](#create-a-pdf)
 
+Back to [table of contents](#sa4ss)
+
 ## tinytex
 
 If you do not already have tinytex on your computer, run the following in an R session:
@@ -61,6 +63,8 @@ Use your best judgment to determine if you should update it or not. I error on t
 tinytex::reinstall_tinytex()
 ```
 
+Back to [table of contents](#sa4ss)
+
 ## Pandoc
 
 If you do not already have Pandoc on your computer, then you will need to install it
@@ -83,6 +87,8 @@ using the following directions:
 
 (3) Restart R so new path variables are found!
 
+Back to [table of contents](#sa4ss)
+
 ## rtools40
 
 If you are using Windows,
@@ -101,6 +107,8 @@ named `usr\bin` is added to your path. This folder contains an executable named 
 that is integral to proving accessible documents right now. I hope to eventually
 remove the dependence, but no such luck at the moment.
 Remember to always restart R after performing such an integral install.
+
+Back to [table of contents](#sa4ss)
 
 ## sa4ss package
 
@@ -136,6 +144,8 @@ if (file.exists(dirclone)) {
   unlink(filepkgbuild)
 }
 ```
+
+Back to [table of contents](#sa4ss)
 
 ### Create a pdf
 As a first test, you will want to run the example in `sa4ss::session_test` to ensure that sa4ss works on your machine.
@@ -208,3 +218,5 @@ The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, 
 [ss]: <https://github.com/nmfs-stock-synthesis/stock-synthesis> "Stock Synthesis code base"
 [tinytex]: <https://yihui.org/tinytex> "tinytex website"
 [tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-1.zip> "Download tinytex zip file"
+
+Back to [table of contents](#sa4ss)
