@@ -12,8 +12,9 @@
 sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the [Pacific Fisheries Management Council](www.pcouncil.org).
 The package provides 
 (1) a consistent structure,
-(2) generic text that should be the same across all stocks, and
-(3) increased speed compared to creating a word document from scratch.
+(2) generic text that should be the same across all stocks,
+(3) imbeded functionality to create an accessible pdf that satisfies [NOAA's guidance for 508 compliance](https://libguides.library.noaa.gov/Section508), and
+(4) increased speed compared to creating a word document from scratch.
 
 Back to [table of contents](#sa4ss)
 
@@ -36,6 +37,8 @@ Before you can build a document it is wise to work through the following steps:
 * [rtools40](#rtools40) for windows users
 * [sa4ss](#sa4ss-package)
 * [create a pdf](#create-a-pdf)
+
+Back to [table of contents](#sa4ss)
 
 ## tinytex
 
@@ -61,13 +64,10 @@ Use your best judgment to determine if you should update it or not. I error on t
 tinytex::reinstall_tinytex()
 ```
 
-If this is your first time compiling a sa4ss document
-``` r
-tinytex::tlmgr_install(pkgs="datetime2-english")
-tinytex::tlmgr_install(pkgs="glossaries-english")
-```
+Back to [table of contents](#sa4ss)
 
 ## Pandoc
+
 If you do not already have Pandoc on your computer, then you will need to install it
 using the following directions:
 
@@ -88,8 +88,12 @@ using the following directions:
 
 (3) Restart R so new path variables are found!
 
+Back to [table of contents](#sa4ss)
+
 ## rtools40
-Please make sure that you have rtools40 installed on your machine prior to using
+
+If you are using Windows,
+please make sure that you have rtools40 installed on your machine prior to using
 `sa4ss`. Many think that rtools40 is just for building packages, but really it
 provides a lot of functionality with respect to compiling anything such as TMB.
 You can check if you have it already with the following code:
@@ -104,6 +108,8 @@ named `usr\bin` is added to your path. This folder contains an executable named 
 that is integral to proving accessible documents right now. I hope to eventually
 remove the dependence, but no such luck at the moment.
 Remember to always restart R after performing such an integral install.
+
+Back to [table of contents](#sa4ss)
 
 ## sa4ss package
 
@@ -139,6 +145,8 @@ if (file.exists(dirclone)) {
   unlink(filepkgbuild)
 }
 ```
+
+Back to [table of contents](#sa4ss)
 
 ### Create a pdf
 As a first test, you will want to run the example in `sa4ss::session_test` to ensure that sa4ss works on your machine.
@@ -211,3 +219,5 @@ The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, 
 [ss]: <https://github.com/nmfs-stock-synthesis/stock-synthesis> "Stock Synthesis code base"
 [tinytex]: <https://yihui.org/tinytex> "tinytex website"
 [tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-1.zip> "Download tinytex zip file"
+
+Back to [table of contents](#sa4ss)

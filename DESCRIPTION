@@ -28,6 +28,7 @@ RoxygenNote: 7.1.1
 Depends:
   R (>= 4.0)
 Imports:
+  bibtex,
   bookdown,
   knitr,
   kableExtra,
