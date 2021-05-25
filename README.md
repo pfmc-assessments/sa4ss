@@ -12,8 +12,9 @@
 sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the [Pacific Fisheries Management Council](www.pcouncil.org).
 The package provides 
 (1) a consistent structure,
-(2) generic text that should be the same across all stocks, and
-(3) increased speed compared to creating a word document from scratch.
+(2) generic text that should be the same across all stocks,
+(3) imbeded functionality to create an accessible pdf that satisfies [NOAA's guidance for 508 compliance](https://libguides.library.noaa.gov/Section508), and
+(4) increased speed compared to creating a word document from scratch.
 
 Back to [table of contents](#sa4ss)
 
