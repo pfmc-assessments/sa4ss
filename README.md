@@ -149,9 +149,9 @@ if (file.exists(dirclone)) {
 Back to [table of contents](#sa4ss)
 
 ### Create a pdf
-As a first test, you will want to run the example in `sa4ss::session_test` to ensure that sa4ss works on your machine.
+As a first test, you will want to run `sa4ss::session_test` to ensure that sa4ss works on your machine.
 ``` r
-example(sa4ss::session_test)
+sa4ss::session_test()
 ```
 
 Next, you can try building your own pdf.
