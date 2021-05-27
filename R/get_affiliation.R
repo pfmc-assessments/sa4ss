@@ -43,7 +43,7 @@ get_affiliation <- function(authors) {
       "WCR",
       "WDFW"),
     affiliation = c(
-      "California Department of Fish and Wildlife, 350 Harbor Boulevard, Belmont, California 94002",
+      "California Department of Fish and Wildlife, 1123 Industrial Rd., Suite 300, San Carlos, California 94070",
       paste0(nwfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "2032 Southeast OSU Drive, Newport, Oregon 97365"),
       paste0(nwfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "2725 Montlake Boulevard East, Seattle, Washington 98112"),
       paste0("Pacific States Marine Fisheries Commission, ", nwfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "2725 Montlake Boulevard East, Seattle, Washington 98112"),
