@@ -1,4 +1,5 @@
-# sa4ss
+# sa4ss <a href='https://github.com/nwfsc-assess/sa4ss'><img src='inst/logo/sa4ss.png' align="right" height="139" alt="sa4ss logo with braille 'accessible science for all'"/></a>
+
 > A library to generate a stock assessment document in pdf form that incorporates [Stock Synthesis][ss] output.
 
 * [Rationale](#rationale)
