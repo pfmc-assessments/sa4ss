@@ -36,6 +36,7 @@ Imports:
   r4ss,
   rmarkdown,
   rticles,
+  stringr,
   tinytex,
   utils,
   xfun,
