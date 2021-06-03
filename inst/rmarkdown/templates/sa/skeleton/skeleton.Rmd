@@ -3,7 +3,11 @@ geometry: margin=1in
 month: "`r format(Sys.Date(), '%B')`"
 year: "`r format(Sys.Date(), '%Y')`"
 preamble: |
-output: sa4ss::techreport_pdf
+output:
+  sa4ss::techreport_pdf:
+    default
+  bookdown::pdf_document2:
+    keep_tex: true
 bibliography: sa4ss.bib
 lang: en
 papersize: a4
