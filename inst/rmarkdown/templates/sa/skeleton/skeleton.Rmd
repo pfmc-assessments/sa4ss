@@ -23,7 +23,7 @@ knitr::knit_hooks$set(plot = function(x,options) {
       if (alt != ""){
         sprintf('![%s](%s%s "%s")', cap, base, x, alt)
       } else {
-        sprintf('![%s](%s%s)', cap, base, x)  
+        sprintf('![%s](%s%s)', cap, base, x)
         }
   })
 
