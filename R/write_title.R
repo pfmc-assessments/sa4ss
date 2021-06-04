@@ -17,8 +17,9 @@
 #' The default uses \code{Sys.Date()} to format the year into a four
 #' digit character value.
 #' @template fileout
-#' 
+#'
 #' @author Kelli Faye Johnson
+#' @family write
 
 write_title <- function(species, latin, coast,
   year = format(Sys.Date(),"%Y"),
