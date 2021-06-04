@@ -6,6 +6,7 @@
 #' @template authors
 #' @template fileout
 #' @author Kelli Faye Johnson
+#' @family write
 #' @export
 #' @examples
 #' # An example with a standard first name middle initial full stop and last name

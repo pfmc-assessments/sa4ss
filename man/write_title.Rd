@@ -51,6 +51,12 @@ for the creation of the 508 compliant pdf will not render the LaTex
 code here. Nevertheless, the use of markdown inside the yaml seems
 to work just fine.
 }
+\seealso{
+Other write: 
+\code{\link{write_authors}()},
+\code{\link{write_bibliography}()}
+}
 \author{
 Kelli Faye Johnson
 }
+\concept{write}

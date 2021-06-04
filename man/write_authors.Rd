@@ -38,6 +38,12 @@ eg <- utils::capture.output(
 print(eg)
 }
 }
+\seealso{
+Other write: 
+\code{\link{write_bibliography}()},
+\code{\link{write_title}()}
+}
 \author{
 Kelli Faye Johnson
 }
+\concept{write}

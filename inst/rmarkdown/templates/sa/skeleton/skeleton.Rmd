@@ -8,7 +8,6 @@ output:
     default
   bookdown::pdf_document2:
     keep_tex: true
-bibliography: sa4ss.bib
 lang: en
 papersize: a4
 ---
