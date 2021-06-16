@@ -11,19 +11,19 @@ read_child(filein)
 Typically, full or relative paths are allowed.}
 }
 \value{
-\code{cat} is used to print output to the screen if you run this function
+\link[base:cat]{base::cat} is used to print output to the screen if you run this function
 on its own or to a resulting rendered file if called within an .Rmd file,
 where the latter is more likely.
 }
 \description{
 Read a child document, render it based on the file extension,
-which can be .Rmd, .md, or .tex, and place the resulting text
+which can be .R, .Rmd, .md, or .tex, and place the resulting text
 into the main document. Acts as a wrapper for
-\code{\link[knitr]{knit_child}()}.
+\link[knitr:knit_child]{knitr::knit_child}.
 }
 \details{
-The input file will be \code{\link[knitr]{knit}()} quietly using internal
-code to set \code{quiet = TRUE} to supresses the progress bar and messages
+The input file will be \link[knitr:knit]{knitr::knit} quietly using internal
+code to set \code{quiet = TRUE} to suppress the progress bar and messages
 output from \pkg{knitr}. All R objects will be available in the global
 environment after the file is rendered. That is, you will be able to inspect
 all R objects that are created within \code{filein} after you attempt

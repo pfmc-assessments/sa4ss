@@ -51,8 +51,12 @@ add_figure <- function(
   height = 100
 ) {
 
+  # check for full stop
+  caption <- add_fullstop(caption)
+  alt_caption <- add_fullstop(alt_caption)
+
   if (is.null(alt_caption)) { alt_caption = caption }
 
-  cat('\n![',caption,'.\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'."}\n',sep='')
+  cat('\n![',caption,'\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'"}\n',sep='')
 
 }
