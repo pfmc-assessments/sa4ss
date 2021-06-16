@@ -167,6 +167,7 @@ read_model <- function(
   }
 
   dir.create(file.path(mod_loc, "tex_tables"), showWarnings = FALSE)
+  dir.create(save_loc, showWarnings = FALSE)
   es_table_tex(dir = mod_loc, table_folder = 'tables', save_loc = save_loc)
 
   save(mod_loc,
