@@ -14,7 +14,7 @@
 #' @export
 techreport_pdf <- function(
   latex_engine = c("lualatex", "pdflatex"),
-  pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"),
+  pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png"),
   ...) {
   latex_engine <- match.arg(latex_engine, several.ok = FALSE)
   file <- system.file("rmarkdown","templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
