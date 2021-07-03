@@ -58,10 +58,16 @@ jobs:
 
       - name: Build pdf
         run: |
-          Rscript -e 'sa4ss::draft(author = "Kelli F. Johnson"); bookdown::render_book("00a.Rmd", clean = FALSE)'
+          Rscript -e 'sa4ss::draft(author = "Kelli F. Johnson"); bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd())'
+      - name: Save log
+        if: always()
+        uses: actions/upload-artifact@master
+        with:
+          name: _main.log
+          path: /home/runner/work/sa4ss/sa4ss/
       - name: Archive pdf
         if: success()
         uses: actions/upload-artifact@master
         with:
           name: _main.pdf
-          path: _book
+          path: /home/runner/work/sa4ss/sa4ss/
