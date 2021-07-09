@@ -42,9 +42,11 @@ in terms of percentage of size. The default is 100.}
 in terms of percentage of size. The default is 100.}
 }
 \value{
-\code{cat} is used to print output to the screen if you run this function
+\link{cat} is used to print output to the screen if you run this function
 on its own or to a resulting rendered file if called within an .Rmd file,
 where the latter is more likely.
+Results are specific to the document being rendered, i.e.,
+where \link[knitr:output_type]{knitr::is_html_output} is used to determine if your result is html or latex.
 }
 \description{
 Concatenate input regarding a specified figure with

@@ -30,9 +30,12 @@
 #' @export
 #' @return
 #'
-#' \code{cat} is used to print output to the screen if you run this function
+#' [cat] is used to print output to the screen if you run this function
 #' on its own or to a resulting rendered file if called within an .Rmd file,
 #' where the latter is more likely.
+#' Results are specific to the document being rendered, i.e.,
+#' where [knitr::is_html_output] is used to determine if your result is html or latex.
+#'
 #' @examples
 #' \dontrun{
 #'
@@ -65,6 +68,13 @@ add_figure <- function(
     alt_caption <- ""
   }
 
-  cat('\n![',caption,'\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'"}\n',sep='')
-
+  if (knitr::is_html_output()) {
+    cat(
+      sep = "",
+      '<figure><img src="', filein, '" alt="', alt_caption, '"', sprintf(" width=\"%f%%\" height=\"%f%%\"", width, height), '/><figcaption>', caption, '</figcaption></figure>'
+    )
+  } else {
+    cat('\n![',caption,'\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'"}\n',sep='')
+  }
+  return(invisible())
 }
