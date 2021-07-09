@@ -25,6 +25,7 @@
 #' in terms of percentage of size. The default is 100.
 #' @param height A numeric value between 0 and 100 that dictates the figure height
 #' in terms of percentage of size. The default is 100.
+#' Height does not work in html mode. Use `width` to scale the figure up or down.
 #'
 #' @author Chantel R. Wetzel
 #' @export
@@ -71,7 +72,7 @@ add_figure <- function(
   if (knitr::is_html_output()) {
     cat(
       sep = "",
-      '<figure><img src="', filein, '" alt="', alt_caption, '"', sprintf(" width=\"%f%%\" height=\"%f%%\"", width, height), '/><figcaption>', caption, '</figcaption></figure>'
+      '<figure><img src="', filein, '" alt="', alt_caption, '"', sprintf(" style=\"width: %f%%\"", width), '/><figcaption>', caption, '</figcaption></figure>'
     )
   } else {
     cat('\n![',caption,'\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'"}\n',sep='')

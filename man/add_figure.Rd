@@ -39,7 +39,8 @@ for citation of figure in the document.}
 in terms of percentage of size. The default is 100.}
 
 \item{height}{A numeric value between 0 and 100 that dictates the figure height
-in terms of percentage of size. The default is 100.}
+in terms of percentage of size. The default is 100.
+Height does not work in html mode. Use \code{width} to scale the figure up or down.}
 }
 \value{
 \link{cat} is used to print output to the screen if you run this function
