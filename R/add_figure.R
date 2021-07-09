@@ -9,10 +9,16 @@
 #' @param caption A character string providing the figure caption that will be
 #' added below the figure in the document.
 #' A default text string is provided, but it is not informative and should be changed.
+#' Consider being more verbose here than typical and
+#' remember that captions should be stand-a-lone to ensure their portability between media.
 #' @param alt_caption A character string providing alternative text for the figure.
-#' The default is `NULL`, which will force the alternative text to be equal to `caption`.
-#' Note, that the default is not ideal. Instead, alternative text that describes what
-#' is going on in the figure should be included.
+#' The default is `""`, which will force the alternative text to be blank.
+#' Using `NULL` will force the alternative text to also be blank; previously,
+#' this option copied the caption to the alternative text,
+#' which leads to the screen reader reading the same text twice.
+#' Note, that the default is not ideal.
+#' Instead, alternative text that describes the take-home message or
+#' information that is not available in the caption should be included.
 #' @param label A character string that will be used as the figure reference
 #' for citation of figure in the document.
 #' @param width A numeric value between 0 and 100 that dictates the figure width
@@ -45,7 +51,7 @@
 add_figure <- function(
   filein,
   caption = "Add figure caption",
-  alt_caption = NULL,
+  alt_caption = "",
   label = "default",
   width = 100,
   height = 100
@@ -55,7 +61,9 @@ add_figure <- function(
   caption <- add_fullstop(caption)
   alt_caption <- add_fullstop(alt_caption)
 
-  if (is.null(alt_caption)) { alt_caption = caption }
+  if (is.null(alt_caption)) {
+    alt_caption <- ""
+  }
 
   cat('\n![',caption,'\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'"}\n',sep='')
 

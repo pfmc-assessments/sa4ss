@@ -7,7 +7,7 @@
 add_figure(
   filein,
   caption = "Add figure caption",
-  alt_caption = NULL,
+  alt_caption = "",
   label = "default",
   width = 100,
   height = 100
@@ -19,12 +19,18 @@ add_figure(
 
 \item{caption}{A character string providing the figure caption that will be
 added below the figure in the document.
-A default text string is provided, but it is not informative and should be changed.}
+A default text string is provided, but it is not informative and should be changed.
+Consider being more verbose here than typical and
+remember that captions should be stand-a-lone to ensure their portability between media.}
 
 \item{alt_caption}{A character string providing alternative text for the figure.
-The default is \code{NULL}, which will force the alternative text to be equal to \code{caption}.
-Note, that the default is not ideal. Instead, alternative text that describes what
-is going on in the figure should be included.}
+The default is \code{""}, which will force the alternative text to be blank.
+Using \code{NULL} will force the alternative text to also be blank; previously,
+this option copied the caption to the alternative text,
+which leads to the screen reader reading the same text twice.
+Note, that the default is not ideal.
+Instead, alternative text that describes the take-home message or
+information that is not available in the caption should be included.}
 
 \item{label}{A character string that will be used as the figure reference
 for citation of figure in the document.}
