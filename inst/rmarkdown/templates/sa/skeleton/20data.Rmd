@@ -1,2 +1,21 @@
 # Data
-A description of each data source is provided below (Figure \ref{fig:data-plot}).
+
+Data comprise the foundational components of stock assessment models.
+The decision to include or exclude particular data sources in an assessment model depends on many factors.
+These factors often include, but are not limited to,
+the way in which data were collected (e.g., measurement method and consistency);
+the spatial and temporal coverage of the data;
+the quantity of data available per desired sampling unit;
+the representativeness of the data to inform the modeled processes of importance;
+timing of when the data were provided;
+limitations imposed by the Terms of Reference; and
+the presence of an avenue for the inclusion of the data in the assessment model.
+Attributes associated with a data source can change through time,
+as can the applicability of the data source when different modeling approaches are explored (e.g., stock structure or time-varying processes).
+Therefore, the specific data sources included or excluded from this assessment should not necessarily constrain the selection of data sources applicable to future stock assessments for `r spp`.
+Even if a data source is not directly used in the stock assessment they can provide valuable insights into biology, fishery behavior, or localized dynamics.
+
+Data from a wide range of programs were available for possible inclusion in the current assessment model.
+Descriptions of each data source included in the model (Figure \@ref(fig:data-plot)) and sources that were explored but not included in the base model are provided below.
+Data that were excluded from the base model were explicitly explored during the development of this stock assessment or have not changed since their past exploration in a previous `r spp` stock assessment.
+In some cases, the inclusion of excluded data sources were explored through sensitivity analyses (see Section \@ref(assessment-model)).
