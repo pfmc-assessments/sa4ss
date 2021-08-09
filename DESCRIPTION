@@ -50,5 +50,5 @@ Suggests:
   testthat,
   usethis
 Remotes:
-  github::r4ss/r4ss@main,
+  github::r4ss/r4ss,
   github::nmfs-general-modeling-tools/nmfspalette
