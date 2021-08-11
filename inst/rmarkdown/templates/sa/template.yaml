@@ -1,6 +1,6 @@
 name: sa4ss-sa
 description: >
   Template for creating a stock assessment document for the
-  Pacific Fisheries Management Council using R Markdown and
+  Pacific Fishery Management Council using R Markdown and
   the bookdown package.
 create_dir: true

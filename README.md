@@ -10,7 +10,7 @@
 
 # Rationale
 
-sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the [Pacific Fisheries Management Council](www.pcouncil.org).
+sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the [Pacific Fishery Management Council](www.pcouncil.org).
 The package provides 
 (1) a consistent structure,
 (2) generic text that should be the same across all stocks,
