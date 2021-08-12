@@ -4,36 +4,90 @@ executive[["stock"]] <- paste0("This assessment reports the status of ",
   spp, " (_", spp.sci, "_) off the ", coast, 
   " coast using data through xxxx.")
 ```
-# Executive Summary{-}
+
+# Executive summary{-}
+
 ## Stock{-}
+
 `r executive[["stock"]]`
 
-## Landings{-}
-Replace text.
+## Catches{-}
 
-## Data and Assessment{-}
-Replace text.
+Replace text with
+trends and current levels.
+Include Table for last 10 years.
+Include Figure with long-term estimates.
 
-## Stock Biomass{-}
-Replace text.
+## Data and assessment{-}
+
+Replace text with
+date of last assessment,
+type of assessment model,
+data available,
+new information, and
+information lacking.
+
+## Stock biomass and dynamics{-}
+
+Replace text with
+trends and current levels relative to virgin or historic levels and
+description of uncertainty.
+Include Table for last 10 years.
+Include Figure with long-term estimates.
 
 ## Recruitment{-}
-Replace text.
 
-## Exploitation Status{-}
-Replace text.
+Replace text with
+trends and current levels relative to virgin or historic levels and
+description of uncertainty.
+Include Table for last 10 years.
+Include Figure with long-term estimates.
 
-## Reference Points{-}
-Replace text.
+## Exploitation status{-}
 
-## Management Performance{-}
-Replace text.
+Replace text with
+total catch divided by exploitable biomass or SPR harvest rate.
+Include Table for last 10 years.
+Include Figure with trend in f relative to target vs. trend in biomass relative to the target.
 
-## Unresolved Problems and Major Uncertainties{-}
-Replace text.
+## Ecosystem considerations{-}
 
-## Decision Table{-}
-Replace text.
+Replace text with
+a summary of reviewed environmental and ecosystem factors that appear to be correlated with stock dynamics.
+These may include variability in they physical environment, habitat, competitors, prey, or predators that directly or indirectly affects the stock's status, vital rates (growth, survival, productivity/recruitment) or range and distribution.
+Note which, if any, ecosystem factors are used in the assessment and how (e.g., as background information, in data preparations, as data inputs, in decisions about model structure).
 
-## Research and Data Needs{-}
-Replace text.
+## Reference points{-}
+
+Replace text with
+management targets and definition of overfishing, including the harvest rate that brings the stock to equilibrium at $B_{40\%}$, i.e., the $B_{MSY}$ proxy and the equilibrium stock size that results from fishing at the default harvest rate, i.e., the $F_{MSY}$ proxy.
+Include Table of estimated reference points for ssb, SPR, exploitation rate, and yield based on SSB proxy for MSY, SPR proxy for MSY, and estimated MSY values.
+
+## Management performance{-}
+
+Include Table of most recent 10 years of
+catches in comparison with OFL, ABC, HG, and OY/ACL values,
+overfishing levels,
+actual catch and discard.
+Include OFL (encountered), OFL (retained), and OFL (dead) if different due to discard and discard mortality.
+
+## Unresolved problems and major uncertainties{-}
+
+Replace text with
+any special issues that complicate scientific assessment, questions about the best model scenario, etc.
+
+## Decision table and projections{-}
+
+Replace text with
+projected yields (OFL, ABC, and ACL), spawning biomass, and stock depletion levels for each year.
+OFL calculations should be based on the assumption that future catches equal ABCs and not OFLs.
+
+## Scientific uncertainty{-}
+
+Replace text with
+the sigma value and the basis for its calculation.
+
+## Research and data needs{-}
+
+Replace text with
+information gaps that seriously impede the stock assessment.
