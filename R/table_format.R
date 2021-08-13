@@ -143,7 +143,7 @@ table_format <- function(x,
 
   if(create_png){
     if(is.null(label)) { 
-      message("Need to specifiy label to name the .png") 
+      message("Need to specify label to name the .png") 
     } else {
     suppressWarnings(k <- kableExtra::save_kable(k, file = paste0("/inst/", label, ".png")))
     } 
