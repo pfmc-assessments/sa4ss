@@ -9,7 +9,7 @@ output:
   bookdown::pdf_document2:
     keep_tex: true
 lang: en
-papersize: a4
+papersize: letter
 ---
 
 ```{r opts, include = FALSE}
