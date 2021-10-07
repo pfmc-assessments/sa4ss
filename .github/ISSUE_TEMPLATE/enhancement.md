@@ -1,7 +1,7 @@
 ---
 name: Enhancement
 about: Help develop sa4ss by providing enhancement requests.
-title: Installation error
+title: Enhancement
 labels: 'enhancement'
 assignees: kellijohnson-NOAA
 ---
@@ -15,4 +15,5 @@ assignees: kellijohnson-NOAA
 
 
 ## Potential problems
+
 
