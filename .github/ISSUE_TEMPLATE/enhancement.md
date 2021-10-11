@@ -1,19 +1,17 @@
 ---
-name: Enhancement
+name: enhancement
 about: Help develop sa4ss by providing enhancement requests.
-title: Enhancement
-labels: 'enhancement'
-assignees: kellijohnson-NOAA
+title: "[Enhancement]: "
+labels: 'type: enhancement'
+assignees:
+  - kellijohnson-NOAA
 ---
 
-## Problem
+## **Problem**
 
 
-
-## Proposed solution
-
+## **Proposed solution**
 
 
-## Potential problems
-
+## **Potential problems**
 
