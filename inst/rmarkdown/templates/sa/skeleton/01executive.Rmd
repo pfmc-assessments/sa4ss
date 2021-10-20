@@ -21,7 +21,14 @@ Include Figure with long-term estimates.
 ## Data and assessment{-}
 
 This assessment uses the stock assessment framework
-Stock Synthesis `r strsplit(model$SS_version,";")[[1]][1]` (SS3).
+Stock Synthesis 
+```{r es-modelversion, echo=FALSE} 
+if (exists("model")) {
+  strsplit(model$SS_version,";")[[1]][1]
+}
+```
+(SS3).
+
 Replace text with
 date of last assessment,
 type of assessment model,
