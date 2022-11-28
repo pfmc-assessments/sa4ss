@@ -1,11 +1,11 @@
 #' Create a \pkg{sa4ss} an RData object
 #'
-#' Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
+#' Read an SS3 model output using \pkg{r4ss} to create a RData object with defined quantities
 #' to be used when creating an assessment document using sa4ss
 #' document written with \pkg{sa4ss}.
 #'
 #' @details
-#' Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
+#' Read an SS3 model output using \pkg{r4ss} to create a RData object with defined quantities
 #' to be used when creating an assessment document using sa4ss
 #' document written with \pkg{sa4ss}.
 #'
@@ -16,9 +16,9 @@
 #' @param plotfolder location of the r4ss figure directory
 #' @param printstats Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen
 #' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if
-#' fecundity is defined in terms of numbers within SS.  The default is millions of eggs but
+#' fecundity is defined in terms of numbers within SS3.  The default is millions of eggs but
 #' there may be instances where the multiplier may be lower or higher, billions or thousands,
-#' which can be revised by the user. If the fecundity units in SS are set as biomass then the
+#' which can be revised by the user. If the fecundity units in SS3 are set as biomass then the
 #' fecundity units (fecund_unit) will be set as metric tons.
 #' @param create_plots TRUE//FALSE to specify whether to create model plots using r4ss
 #' @param png TRUE create png plot files
@@ -41,7 +41,7 @@
 #' if requested on their own (e.g., Table 'f' can't be created
 #' without also creating Table 'a')
 #' @param divide_by_2 This will allow the user to calculate single sex values
-#' based on the new sex specification (-1) in SS for single sex models. Default value is FALSE.
+#' based on the new sex specification (-1) in SS3 for single sex models. Default value is FALSE.
 #' TRUE will divide by 2.
 #' @param adopted_ofl Vector of adopted ofl values to be printed in the mangagement performance
 #' table. This should be a vector of 10 values.
