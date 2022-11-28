@@ -270,11 +270,6 @@ $header-includes$
 \trAuthsBack{}. \trYear{}. \trTitle{}. \glsentrylong{pfmc}, Portland, Oregon. \pageref{LastPage}{}\,p.
 \end{hangparas}}
 
-\AtBeginDocument{\tagstructbegin{tag=Document}}
-\AtEndDocument{\tagstructend}
-\pretocmd{\maketitle}{\tagstructbegin{tag=H1}\tagmcbegin{tag=H1}}{}{}
-\apptocmd{\maketitle}{\tagmcend\tagstructend}{}{}
-
 \begin{document}
 
 %%%%% Frontmatter %%%%%

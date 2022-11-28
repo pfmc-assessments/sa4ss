@@ -8,13 +8,18 @@
 #' default because it leads to a 508 compliant document. This argument
 #' is passed to \code{\link[bookdown]{pdf_book}}. Only a single value
 #' can be passed, but all options are listed below.
-#' @param pandoc_args Arguments for pandoc. This argument
-#' is passed to \code{\link[bookdown]{pdf_book}}.
+#' @param pandoc_args A vector of strings that lead to arguments for pandoc.
+#'   This argument is passed to [bookdown::pdf_book()]. An optional argument
+#'   that users may wish to add to the default arguments is
+#'   `"--lua-filter=tagged-filter.lua"` which will lead to the package-supplied
+#'   filter being used to generate tags. This is no longer the preferred method
+#'   for creating accessible documents as the kernel for LaTeX now includes
+#'   much of this functionality by default.
 #' @param ... Additional arguments passed to \code{\link[bookdown]{pdf_book}}.
 #' @export
 techreport_pdf <- function(
   latex_engine = c("lualatex", "pdflatex"),
-  pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png", "--lua-filter=tagged-filter.lua"),
+  pandoc_args = c("--top-level-division=section", "--wrap=none", "--default-image-extension=png"),
   ...) {
   latex_engine <- match.arg(latex_engine, several.ok = FALSE)
   file <- system.file("rmarkdown","templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
