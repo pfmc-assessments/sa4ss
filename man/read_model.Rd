@@ -2,24 +2,24 @@
 % Please edit documentation in R/read_model.R
 \name{read_model}
 \alias{read_model}
-\title{Create a \pkg{sa4ss} an RData object}
+\title{Create an RData object specific for \pkg{sa4ss}}
 \usage{
 read_model(
   mod_loc,
   save_loc = NULL,
   plotfolder = "plots",
-  printstats = FALSE,
+  printstats = lifecycle::deprecated(),
   fecund_mult = "million eggs",
   create_plots = TRUE,
-  png = TRUE,
-  html = FALSE,
-  datplot = TRUE,
+  png = lifecycle::deprecated(),
+  html = lifecycle::deprecated(),
+  datplot = lifecycle::deprecated(),
   fleetnames = NULL,
   forecastplot = TRUE,
   maxrows = 4,
   maxcols = 4,
   bub_scale = 6,
-  create_tables = TRUE,
+  create_tables = lifecycle::deprecated(),
   ci_value = 0.95,
   es_only = FALSE,
   tables = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "catch", "timeseries",
@@ -37,43 +37,75 @@ read_model(
 \item{mod_loc}{A file path to the directory that houses the
 Stock Synthesis model that will be used as the base model in this document.}
 
-\item{save_loc}{optional input that requires a full path which will
-allow users to save the tex file created from csv files to a specific location (e.g. inside doc folder)
-other than the \code{file.path(mod_loc, table_folder)}. Default NULL}
+\item{save_loc}{An optional argument passed to \code{\link[=es_table_tex]{es_table_tex()}} pointing to
+the directory where you want \code{.tex} files to be saved to.
+For example, \code{file.path(getwd(), "doc")}. Use full paths.
+See \code{\link[=es_table_tex]{es_table_tex()}} for details of the default behavior i.e., \code{NULL},
+which leads to \code{file.path(mod_loc, table_folder)}.}
 
-\item{plotfolder}{location of the r4ss figure directory}
+\item{plotfolder}{A file path relative to \code{mod_loc} where
+the figures will be saved. The argument is passed to \code{printfolder} in
+\code{\link[r4ss:SS_plots]{r4ss::SS_plots()}}. The default is \code{plots}.}
 
-\item{printstats}{Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen}
+\item{printstats}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{printstats = FALSE} is no longer supported;
+this function will always suppress printing output to the screen with
+\code{r4ss::SS_output(printstats = FALSE, verbose = FALSE)}.}
 
-\item{fecund_mult}{User input to define the multiplier for fecundity in terms of eggs if
-fecundity is defined in terms of numbers within SS.  The default is millions of eggs but
-there may be instances where the multiplier may be lower or higher, billions or thousands,
-which can be revised by the user. If the fecundity units in SS are set as biomass then the
-fecundity units (fecund_unit) will be set as metric tons.}
+\item{fecund_mult}{A character string,
+providing the multiplier for fecundity in terms of eggs
+if fecundity is defined in terms of numbers within Stock Synthesis.
+The default is millions of eggs but billions or thousands could be used.
+If the fecundity units, i.e.,
+\code{r4ss::SS_output()$SpawnOutputUnits == "biomass"},
+then \code{fecund_unit} will be changed to `fecund_unit = "mt".}
 
-\item{create_plots}{TRUE//FALSE to specify whether to create model plots using r4ss}
+\item{create_plots}{A logical that leads to executing \code{\link[r4ss:SS_plots]{r4ss::SS_plots()}}
+and creating the suite of {r4ss} figures,
+where default is \code{TRUE}.}
 
-\item{png}{TRUE create png plot files}
+\item{png}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{png = FALSE} is no longer supported;
+this function will always print graphics to the disk if \code{create_plots = TRUE},
+which is the default behavior of \code{\link[r4ss:SS_plots]{r4ss::SS_plots()}}.}
 
-\item{html}{create html files}
+\item{html}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{html = TRUE} is no longer supported;
+this function will always stop \code{\link[r4ss:SS_plots]{r4ss::SS_plots()}} from running
+\code{\link[r4ss:SS_html]{r4ss::SS_html()}}.}
 
-\item{datplot}{create the data plots using \code{\link[r4ss]{SS_plots}}}
+\item{datplot}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{datplot = FALSE} is no longer supported; plots of the data are
+always created with \code{r4ss::SS_plots(datplot = TRUE)}.}
 
 \item{fleetnames}{A vector of user-defined fleet names.
-If input left as the default value of \code{NULL}, then the model-object fleet
-names will be used.}
+The default behavior of \code{NULL} leads to the use of
+\code{fleetnames = r4ss::SS_output$FleetNames}.}
 
-\item{forecastplot}{Add forecast years to figure plost}
+\item{forecastplot}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{forecastplot = FALSE} is no longer supported; plots of the data are
+always created with \code{r4ss::SS_plots(forecastplot = TRUE)}.
+This behavior helps ensure that users of Stock Synthesis are aware
+of the specifications that are present in the forecast file, i.e.,
+if you do not want to display forecasts then turn off forecasting in
+the \code{forecast.ss} file.}
 
 \item{maxrows}{Number of rows for plots. Default set to 4.}
 
 \item{maxcols}{Number of columns for plots. Default set to 4.}
 
-\item{bub_scale}{Bubble scale size to use for plotting.}
+\item{bub_scale}{Bubble scale size to use for plotting.
+Passed to the \verb{bub.scale.dat = } argument in \code{\link[r4ss:SS_plots]{r4ss::SS_plots()}}.}
 
-\item{create_tables}{TRUE/FALSE to run \code{\link[r4ss]{SSexecutivesummary}} tables}
+\item{create_tables}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{create_tables} is no longer needed; the call to
+\code{\link[r4ss:SSexecutivesummary]{r4ss::SSexecutivesummary()}} is made if a character vector is
+passed to the \code{tables} argument, and thus, the old behavior of
+\code{create_tables = FALSE} can be recreated with \code{tables = NULL}.}
 
-\item{ci_value}{To calculate confidence intervals, default is set at 0.95}
+\item{ci_value}{A single numerical value specifying the desired
+confidence interval, where the default is to calculate the 95\% interval.
+\code{ci_value} is passed to \code{\link[r4ss:SSexecutivesummary]{r4ss::SSexecutivesummary()}}.}
 
 \item{es_only}{TRUE/FALSE switch to produce only the executive summary tables
 will be produced, default is FALSE which will return all executive summary
@@ -85,7 +117,7 @@ if requested on their own (e.g., Table 'f' can't be created
 without also creating Table 'a')}
 
 \item{divide_by_2}{This will allow the user to calculate single sex values
-based on the new sex specification (-1) in SS for single sex models. Default value is FALSE.
+based on the new sex specification (-1) in SS3 for single sex models. Default value is FALSE.
 TRUE will divide by 2.}
 
 \item{adopted_ofl}{Vector of adopted ofl values to be printed in the mangagement performance
@@ -109,14 +141,13 @@ ABC values. Example input: c(1500, 1300)}
 output files from Stock Synthesis into a list.}
 }
 \description{
-Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
-to be used when creating an assessment document using sa4ss
-document written with \pkg{sa4ss}.
+Use \code{\link[r4ss:SS_output]{r4ss::SS_output()}} to read model output from
+Stock Synthesis and save the resulting object as \code{.RData}.
 }
 \details{
-Read an SS model output using \pkg{r4ss} to create a RData object with defined quantities
-to be used when creating an assessment document using sa4ss
-document written with \pkg{sa4ss}.
+This RData object will have defined quantities such that
+{sa4ss} functions can easily be used to write documentation.
+Thus, saving users from having to perform multiple similar calculations.
 }
 \examples{
 \dontrun{

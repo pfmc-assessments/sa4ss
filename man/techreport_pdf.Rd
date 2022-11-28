@@ -7,7 +7,7 @@
 techreport_pdf(
   latex_engine = c("lualatex", "pdflatex"),
   pandoc_args = c("--top-level-division=section", "--wrap=none",
-    "--default-image-extension=png", "--lua-filter=tagged-filter.lua"),
+    "--default-image-extension=png"),
   ...
 )
 }
@@ -17,8 +17,13 @@ default because it leads to a 508 compliant document. This argument
 is passed to \code{\link[bookdown]{pdf_book}}. Only a single value
 can be passed, but all options are listed below.}
 
-\item{pandoc_args}{Arguments for pandoc. This argument
-is passed to \code{\link[bookdown]{pdf_book}}.}
+\item{pandoc_args}{A vector of strings that lead to arguments for pandoc.
+This argument is passed to \code{\link[bookdown:pdf_book]{bookdown::pdf_book()}}. An optional argument
+that users may wish to add to the default arguments is
+\code{"--lua-filter=tagged-filter.lua"} which will lead to the package-supplied
+filter being used to generate tags. This is no longer the preferred method
+for creating accessible documents as the kernel for LaTeX now includes
+much of this functionality by default.}
 
 \item{...}{Additional arguments passed to \code{\link[bookdown]{pdf_book}}.}
 }
