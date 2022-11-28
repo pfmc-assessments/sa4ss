@@ -1,38 +1,69 @@
-#' Create a \pkg{sa4ss} an RData object
+#' Create an RData object specific for \pkg{sa4ss}
 #'
-#' Read an SS3 model output using \pkg{r4ss} to create a RData object with defined quantities
-#' to be used when creating an assessment document using sa4ss
-#' document written with \pkg{sa4ss}.
+#' Use [r4ss::SS_output()] to read model output from
+#' Stock Synthesis and save the resulting object as `.RData`.
 #'
 #' @details
-#' Read an SS3 model output using \pkg{r4ss} to create a RData object with defined quantities
-#' to be used when creating an assessment document using sa4ss
-#' document written with \pkg{sa4ss}.
+#' This RData object will have defined quantities such that
+#' {sa4ss} functions can easily be used to write documentation.
+#' Thus, saving users from having to perform multiple similar calculations.
 #'
 #' @template mod_loc
-#' @param save_loc optional input that requires a full path which will 
-#' allow users to save the tex file created from csv files to a specific location (e.g. inside doc folder)
-#' other than the \code{file.path(mod_loc, table_folder)}. Default NULL
-#' @param plotfolder location of the r4ss figure directory
-#' @param printstats Input to \code{\link[r4ss]{SS_output}} to prevent output to the screen
-#' @param fecund_mult User input to define the multiplier for fecundity in terms of eggs if
-#' fecundity is defined in terms of numbers within SS3.  The default is millions of eggs but
-#' there may be instances where the multiplier may be lower or higher, billions or thousands,
-#' which can be revised by the user. If the fecundity units in SS3 are set as biomass then the
-#' fecundity units (fecund_unit) will be set as metric tons.
-#' @param create_plots TRUE//FALSE to specify whether to create model plots using r4ss
-#' @param png TRUE create png plot files
-#' @param html create html files
-#' @param datplot create the data plots using \code{\link[r4ss]{SS_plots}}
+#' @param save_loc An optional argument passed to [es_table_tex()] pointing to
+#'   the directory where you want `.tex` files to be saved to.
+#'   For example, `file.path(getwd(), "doc")`. Use full paths.
+#'   See [es_table_tex()] for details of the default behavior i.e., `NULL`,
+#'   which leads to `file.path(mod_loc, table_folder)`.
+#' @param plotfolder A file path relative to `mod_loc` where
+#'   the figures will be saved. The argument is passed to `printfolder` in
+#'   [r4ss::SS_plots()]. The default is `plots`.
+#' @param printstats `r lifecycle::badge("deprecated")`
+#'   `printstats = FALSE` is no longer supported;
+#'   this function will always suppress printing output to the screen with
+#'   `r4ss::SS_output(printstats = FALSE, verbose = FALSE)`.
+#' @param fecund_mult A character string,
+#'   providing the multiplier for fecundity in terms of eggs
+#'   if fecundity is defined in terms of numbers within Stock Synthesis.
+#'   The default is millions of eggs but billions or thousands could be used.
+#'   If the fecundity units, i.e.,
+#'   `r4ss::SS_output()$SpawnOutputUnits == "biomass"`,
+#'   then `fecund_unit` will be changed to `fecund_unit = "mt".
+#' @param create_plots A logical that leads to executing [r4ss::SS_plots()]
+#'   and creating the suite of {r4ss} figures,
+#'   where default is `TRUE`.
+#' @param png `r lifecycle::badge("deprecated")`
+#'   `png = FALSE` is no longer supported;
+#'   this function will always print graphics to the disk if `create_plots = TRUE`,
+#'   which is the default behavior of [r4ss::SS_plots()].
+#' @param html `r lifecycle::badge("deprecated")`
+#'   `html = TRUE` is no longer supported;
+#'   this function will always stop [r4ss::SS_plots()] from running
+#'   [r4ss::SS_html()].
+#' @param datplot `r lifecycle::badge("deprecated")`
+#'   `datplot = FALSE` is no longer supported; plots of the data are
+#'   always created with `r4ss::SS_plots(datplot = TRUE)`.
 #' @param fleetnames A vector of user-defined fleet names.
-#' If input left as the default value of \code{NULL}, then the model-object fleet
-#' names will be used.
-#' @param forecastplot Add forecast years to figure plost
+#' The default behavior of `NULL` leads to the use of
+#'   `fleetnames = r4ss::SS_output$FleetNames`.
+#' @param forecastplot `r lifecycle::badge("deprecated")`
+#'   `forecastplot = FALSE` is no longer supported; plots of the data are
+#'   always created with `r4ss::SS_plots(forecastplot = TRUE)`.
+#'   This behavior helps ensure that users of Stock Synthesis are aware
+#'   of the specifications that are present in the forecast file, i.e.,
+#'   if you do not want to display forecasts then turn off forecasting in
+#'   the `forecast.ss` file.
 #' @param maxrows Number of rows for plots. Default set to 4.
 #' @param maxcols Number of columns for plots. Default set to 4.
 #' @param bub_scale Bubble scale size to use for plotting.
-#' @param create_tables TRUE/FALSE to run \code{\link[r4ss]{SSexecutivesummary}} tables
-#' @param ci_value To calculate confidence intervals, default is set at 0.95
+#'   Passed to the `bub.scale.dat = ` argument in [r4ss::SS_plots()].
+#' @param create_tables `r lifecycle::badge("deprecated")`
+#'   `create_tables` is no longer needed; the call to
+#'   [r4ss::SSexecutivesummary()] is made if a character vector is
+#'   passed to the `tables` argument, and thus, the old behavior of
+#'   `create_tables = FALSE` can be recreated with `tables = NULL`.
+#' @param ci_value A single numerical value specifying the desired
+#'   confidence interval, where the default is to calculate the 95% interval.
+#'   `ci_value` is passed to [r4ss::SSexecutivesummary()].
 #' @param es_only TRUE/FALSE switch to produce only the executive summary tables
 #' will be produced, default is FALSE which will return all executive summary
 #' tables, historical catches, and numbers-at-ages
@@ -75,18 +106,18 @@ read_model <- function(
   mod_loc,
   save_loc = NULL,
   plotfolder = 'plots',
-  printstats = FALSE,
+  printstats = lifecycle::deprecated(),
   fecund_mult = 'million eggs',
   create_plots = TRUE,
-  png = TRUE,
-  html = FALSE,
-  datplot = TRUE,
+  png = lifecycle::deprecated(),
+  html = lifecycle::deprecated(),
+  datplot = lifecycle::deprecated(),
   fleetnames = NULL,
   forecastplot = TRUE,
   maxrows = 4,
   maxcols = 4,
   bub_scale = 6,
-  create_tables = TRUE, 
+  create_tables = lifecycle::deprecated(), 
   ci_value = 0.95,
   es_only = FALSE,
   tables = c('a','b','c','d','e','f','g','h','i','catch', 'timeseries', 'numbers'),
@@ -96,11 +127,65 @@ read_model <- function(
   adopted_acl = NULL,
   forecast_ofl = NULL,
   forecast_abc = NULL,
-  ...)
-{
-
+  ...) {
+  if (lifecycle::is_present(printstats)) {
+    lifecycle::deprecate_soft(
+      when = "0.0.0.9015",
+      what = "read_model(printstats)",
+      details = paste(
+        sep = "\n",
+        "'r4ss::SS_output(printstats = FALSE, verbose = FALSE)'",
+        "is forced internally in sa4ss::read_model()."
+      )
+    )
+  }
+  if (lifecycle::is_present(png)) {
+    lifecycle::deprecate_soft(
+      when = "0.0.0.9015",
+      what = "read_model(png)",
+      details = paste(
+        sep = "\n",
+        "'r4ss::SS_plots(png = TRUE)'",
+        "is forced internally in sa4ss::read_model()."
+      )
+    )
+  }
+  if (lifecycle::is_present(html)) {
+    lifecycle::deprecate_soft(
+      when = "0.0.0.9015",
+      what = "read_model(html)",
+      details = paste(
+        sep = "\n",
+        "'r4ss::SS_plots(html = FALSE)'",
+        "is forced internally in sa4ss::read_model()."
+      )
+    )
+  }
+  if (lifecycle::is_present(datplot)) {
+    lifecycle::deprecate_soft(
+      when = "0.0.0.9015",
+      what = "read_model(datplot)",
+      details = paste(
+        sep = "\n",
+        "'r4ss::SS_plots(datplot = TRUE)'",
+        "is forced internally in sa4ss::read_model()."
+      )
+    )
+  }
+  if (lifecycle::is_present(create_tables)) {
+    lifecycle::deprecate_soft(
+      when = "0.0.0.9015",
+      what = "read_model(create_tables)",
+      details = paste(
+        sep = "\n",
+        "If `tables = NULL` then essentially `create_tables = FALSE`",
+        "making `create_tables` unnecessary. Thus, the previous default",
+        "behavior of `create_tables = TRUE` is still the default."
+      )
+    )
+  }
   model = r4ss::SS_output(dir = mod_loc,
-                          printstats = printstats,
+                          printstats = FALSE, verbose = FALSE,
                           ...)
 
   plot_dir = file.path(mod_loc, plotfolder)
@@ -135,8 +220,8 @@ read_model <- function(
     }
     r4ss::SS_plots(replist = model,
                    png = png,
-                   html = html,
-                   datplot = datplot,
+                   html = FALSE,
+                   datplot = TRUE,
                    fleetnames = fleetnames,
                    forecastplot = forecastplot,
                    maxrows = maxrows,
@@ -149,7 +234,7 @@ read_model <- function(
 
   get_plotinfo(mod_loc = mod_loc, plot_folder = plotfolder)
 
-  if (create_tables){
+  if (!is.null(tables)){
     r4ss::SSexecutivesummary(replist = model,
                             ci_value = ci_value,
                             es_only = es_only,
