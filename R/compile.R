@@ -12,7 +12,7 @@
 #' * might be helpful,
 #' * could contain bugs,
 #' * will more than likely have non-descript error and warning messages.
-#' Please post an [issue](https::/github.com/nwfsc-assess/sa4ss/issues)
+#' Please post an [issue](https::/github.com/pfmc-assessments/sa4ss/issues)
 #' or email the author of this function.
 #' Thank you for helping test it out, and we hope the pain is worth the gain!
 #'

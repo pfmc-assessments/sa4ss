@@ -32,7 +32,7 @@ This function is currently in beta testing, which means that it
 \item might be helpful,
 \item could contain bugs,
 \item will more than likely have non-descript error and warning messages.
-Please post an \href{https::/github.com/nwfsc-assess/sa4ss/issues}{issue}
+Please post an \href{https::/github.com/pfmc-assessments/sa4ss/issues}{issue}
 or email the author of this function.
 Thank you for helping test it out, and we hope the pain is worth the gain!
 }

@@ -17,7 +17,7 @@ sa4sssticker <- hexSticker::sticker(
   h_color = nmfspalette::nmfs_cols("darkblue"),
   spotlight = FALSE,
   l_y = 1.65, l_width = 1.4, l_alpha = 0.2,
-  url = "https://github.com/nwfsc-assess/sa4ss/",
+  url = "https://github.com/pfmc-assessments/sa4ss/",
   u_size = 4,
   u_color = nmfspalette::nmfs_cols("darkblue")
 )
