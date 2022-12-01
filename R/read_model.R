@@ -149,6 +149,8 @@ read_model <- function(
         "is forced internally in sa4ss::read_model()."
       )
     )
+  } else {
+    png = TRUE
   }
   if (lifecycle::is_present(html)) {
     lifecycle::deprecate_soft(
