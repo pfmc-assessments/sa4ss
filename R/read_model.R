@@ -149,8 +149,6 @@ read_model <- function(
         "is forced internally in sa4ss::read_model()."
       )
     )
-  } else {
-    png = TRUE
   }
   if (lifecycle::is_present(html)) {
     lifecycle::deprecate_soft(
@@ -221,7 +219,6 @@ read_model <- function(
         fleetnames = model$FleetNames
     }
     r4ss::SS_plots(replist = model,
-                   png = png,
                    html = FALSE,
                    datplot = TRUE,
                    fleetnames = fleetnames,
