@@ -219,7 +219,6 @@ read_model <- function(
         fleetnames = model$FleetNames
     }
     r4ss::SS_plots(replist = model,
-                   png = png,
                    html = FALSE,
                    datplot = TRUE,
                    fleetnames = fleetnames,
