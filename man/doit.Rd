@@ -28,5 +28,5 @@ build and load \pkg{sa4ss} and copy and render the template
 for a stock assessment document.
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }

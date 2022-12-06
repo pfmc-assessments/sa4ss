@@ -66,7 +66,7 @@
 #' @export
 #' @seealso
 #' See \code{\link[rmarkdown]{draft}}.
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #'
 draft <- function(
   authors,

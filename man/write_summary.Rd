@@ -19,5 +19,5 @@ Write a file to the disk with the title
 using the yaml form for inclusion in the stock assessment.
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }

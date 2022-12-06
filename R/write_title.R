@@ -18,7 +18,7 @@
 #' digit character value.
 #' @template fileout
 #'
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #' @family write
 
 write_title <- function(species, latin, coast,

@@ -6,7 +6,7 @@
 #'
 #' @param dirgit A file path to where the sa4ss repository is cloned.
 #' @template authors
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #'
 doit <- function (dirgit = "c:/stockAssessment/ss/sa4ss",
   authors = c("Kelli F. Johnson", "Chantel R. Wetzel", "Joseph J. Bizzarro")) {

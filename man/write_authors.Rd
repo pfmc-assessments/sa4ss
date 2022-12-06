@@ -44,6 +44,6 @@ Other write:
 \code{\link{write_title}()}
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }
 \concept{write}

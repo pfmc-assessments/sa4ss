@@ -66,6 +66,6 @@ testthat::expect_equal(test, "Success")
 
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }
 \concept{check functions}

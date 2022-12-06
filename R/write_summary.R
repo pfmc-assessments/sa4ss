@@ -8,7 +8,7 @@
 #' call to \code{write_summary}.
 #' @template fileout
 #' 
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 
 write_summary <- function(type = c("executive", "onepage"),
   fileout = "01summaries.Rmd") {

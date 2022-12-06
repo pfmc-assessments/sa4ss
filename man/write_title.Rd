@@ -57,6 +57,6 @@ Other write:
 \code{\link{write_bibliography}()}
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }
 \concept{write}

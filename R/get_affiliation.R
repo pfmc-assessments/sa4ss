@@ -3,7 +3,7 @@
 #' Get addresses for each author using a look-up function, where
 #' addresses are stored internally.
 #' @template authors
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #' @export
 #' @returns A vector the same length as the input author argument is returned,
 #' providing the matching address for each entry as a text string.

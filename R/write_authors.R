@@ -5,7 +5,7 @@
 #' 
 #' @template authors
 #' @template fileout
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #' @family write
 #' @export
 #' @examples

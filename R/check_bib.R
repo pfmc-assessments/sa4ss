@@ -42,7 +42,7 @@
 #' * "{Steele Jr.}, Guy L."
 #' * "{von Beethoven}, Ludwig"
 #'
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #' @export
 #' @family check functions
 #' @return

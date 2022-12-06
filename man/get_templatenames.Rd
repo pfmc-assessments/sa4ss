@@ -51,5 +51,5 @@ get_templatenames()
 gsub("\\\\..{3}$", "", get_templatenames())
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }

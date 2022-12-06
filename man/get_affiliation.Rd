@@ -32,5 +32,5 @@ get_affiliation(c("Kelli F. Johnson", "Chantel R. Wetzel"))
 testthat::expect_true(is.na(get_affiliation("Kelli Johnson")))
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }

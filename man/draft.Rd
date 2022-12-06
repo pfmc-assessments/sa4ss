@@ -121,5 +121,5 @@ sa4ss::draft()
 See \code{\link[rmarkdown]{draft}}.
 }
 \author{
-Kelli Faye Johnson
+Kelli F. Johnson
 }

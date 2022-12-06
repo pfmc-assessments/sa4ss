@@ -27,7 +27,7 @@
 #' files from the default template.
 #' @returns Returns a vector of file names with their extensions.
 #' @export
-#' @author Kelli Faye Johnson
+#' @author Kelli F. Johnson
 #' @examples
 #' # To list all available templates within each section
 #' get_templatenames()
