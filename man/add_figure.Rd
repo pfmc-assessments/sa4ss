@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_figure.R
 \name{add_figure}
 \alias{add_figure}
-\title{Read, render, and use a figure from a specific directory.}
+\title{Read, render, and use a figure from a specific directory}
 \usage{
 add_figure(
   filein,
@@ -14,40 +14,41 @@ add_figure(
 )
 }
 \arguments{
-\item{filein}{The path of the figure to be added
-(e.g., "C:\\My figure directory\\plot.png").}
+\item{filein}{The path of the figure to be added (e.g., "C:\\My figure
+directory\\plot.png").}
 
 \item{caption}{A character string providing the figure caption that will be
-added below the figure in the document.
-A default text string is provided, but it is not informative and should be changed.
-Consider being more verbose here than typical and
-remember that captions should be stand-a-lone to ensure their portability between media.}
+added below the figure in the document. A default text string is provided,
+but it is not informative and should be changed. Consider being more
+verbose here than typical and remember that captions should be stand-a-lone
+to ensure their portability between media.}
 
-\item{alt_caption}{A character string providing alternative text for the figure.
-The default is \code{""}, which will force the alternative text to be blank.
-Using \code{NULL} will force the alternative text to also be blank; previously,
-this option copied the caption to the alternative text,
-which leads to the screen reader reading the same text twice.
-Note, that the default is not ideal.
-Instead, alternative text that describes the take-home message or
-information that is not available in the caption should be included.}
+\item{alt_caption}{A character string providing alternative text for the
+figure. The default is \code{""}, which will force the alternative text to be
+blank. Using \code{NULL} will force the alternative text to also be blank;
+previously, this option copied the caption to the alternative text, which
+leads to the screen reader reading the same text twice. Note, that the
+default is not ideal. Instead, alternative text that describes the
+take-home message or information that is not available in the caption
+should be included.}
 
-\item{label}{A character string that will be used as the figure reference
-for citation of figure in the document.}
+\item{label}{A character string that will be used as the figure reference for
+citation of figure in the document.}
 
 \item{width}{A numeric value between 0 and 100 that dictates the figure width
 in terms of percentage of size. The default is 100.}
 
-\item{height}{A numeric value between 0 and 100 that dictates the figure height
-in terms of percentage of size. The default is 100.
-Height does not work in html mode. Use \code{width} to scale the figure up or down.}
+\item{height}{A numeric value between 0 and 100 that dictates the figure
+height in terms of percentage of size. The default is 100. Height does not
+work in html mode. Use \code{width} to scale the figure up or down.}
 }
 \value{
-\link{cat} is used to print output to the screen if you run this function
-on its own or to a resulting rendered file if called within an .Rmd file,
-where the latter is more likely.
-Results are specific to the document being rendered, i.e.,
-where \link[knitr:output_type]{knitr::is_html_output} is used to determine if your result is html or latex.
+Nothing is returned. Instead, \code{\link[=cat]{cat()}} is used to print output to the
+screen if you run this function on its own or to a resulting rendered file if
+called within an .Rmd file, where the latter is more likely. Results are
+specific to the document being rendered, i.e., where
+\code{\link[knitr:output_type]{knitr::is_html_output()}} is used to determine if your result is html or
+latex.
 }
 \description{
 Concatenate input regarding a specified figure with
@@ -60,11 +61,17 @@ reference label.
 # See below for how to include this function in your .Rmd file.
 
 ```{r, results = 'asis'}
-add_figure(filein = file.path("My figure directory", "plots", "ts7_Spawning_output.png")
-  caption = "Spawning output timeseries.",
+add_figure(
+  filein = file.path(
+    "My figure directory",
+    "plots",
+    "ts7_Spawning_output.png"
+  ),
+  caption = "Spawning output time series.",
   alt_caption = NULL,
   label = "ssb",
-  width = 100, height = 100
+  width = 100,
+  height = 100
 )
 ```
 }
