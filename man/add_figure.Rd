@@ -20,7 +20,7 @@ directory\\plot.png").}
 \item{caption}{A character string providing the figure caption that will be
 added below the figure in the document. A default text string is provided,
 but it is not informative and should be changed. Consider being more
-verbose here than typical and remember that captions should be stand-a-lone
+verbose here than typical and remember that captions should be stand-alone
 to ensure their portability between media.}
 
 \item{alt_caption}{A character string providing alternative text for the
@@ -37,12 +37,10 @@ citation of figure in the document. There is no default value for this
 argument because each figure needs to have a unique label that is known by
 the user, and thus, the user needs to specify it.}
 
-\item{width}{A numeric value between 0 and 100 that dictates the figure width
-in terms of percentage of size. The default is 100.}
-
-\item{height}{A numeric value between 0 and 100 that dictates the figure
-height in terms of percentage of size. The default is 100. Height does not
-work in html mode. Use \code{width} to scale the figure up or down.}
+\item{width, height}{A numeric value between 0 and 100 that dictates the
+figure width or height in terms of a percentage of its size. The default
+is 100. \verb{height`` does not work in html mode; instead, use }width` to
+scale the figure up or down.}
 }
 \value{
 Nothing is returned. Instead, \code{\link[=cat]{cat()}} is used to print output to the
