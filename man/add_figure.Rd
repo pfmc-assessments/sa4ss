@@ -8,7 +8,7 @@ add_figure(
   filein,
   caption = "Add figure caption",
   alt_caption = "",
-  label = "default",
+  label,
   width = 100,
   height = 100
 )
@@ -33,7 +33,9 @@ take-home message or information that is not available in the caption
 should be included.}
 
 \item{label}{A character string that will be used as the figure reference for
-citation of figure in the document.}
+citation of figure in the document. There is no default value for this
+argument because each figure needs to have a unique label that is known by
+the user, and thus, the user needs to specify it.}
 
 \item{width}{A numeric value between 0 and 100 that dictates the figure width
 in terms of percentage of size. The default is 100.}
