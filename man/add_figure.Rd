@@ -55,6 +55,23 @@ Concatenate input regarding a specified figure with
 the caption, alternative caption for accessibility, and
 reference label.
 }
+\details{
+Translation of code from markdown to tex is developing for figures
+as more and more features for accessibility are developed. This code offers
+a way to ensure that your figures are coded in the resulting .tex file such
+that they are most likely to take advantage of the latest and greatest
+features available. For example, when this function was written, alternative
+text via rmarkdown chunks was not an option. Instead, the insertion of a
+figure used html code. Now, for pdf files, there are tagging capabilities
+such that screen readers can access the alternative text without any
+post-processing of files if the .tex structure is set up properly. Thus,
+rather than constantly having to change your document ... just rely on
+the code within in this function to ensure that your .tex files are up to
+date. Happy texting!
+
+For potentially more information see the \href{www.github.com/pfmc-assessments/sa4ss/discussions}{GitHub Discussion Board} and search for
+accessibility.
+}
 \examples{
 \dontrun{
 
