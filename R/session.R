@@ -77,7 +77,7 @@ session_find <- function(name) {
 session_info <- function() {
   info <- Sys.getenv()
   info[["pandoc_version"]] <- rmarkdown::pandoc_version()
-  info[["pandoc_location"]] <- session_find("pandoc")
+  info[["pandoc_location"]] <- rmarkdown::pandoc_exec()
   info[["sed_location"]] <- session_find("sed")
 
   return(info)
