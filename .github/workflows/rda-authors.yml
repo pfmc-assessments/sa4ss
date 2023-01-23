@@ -1,0 +1,36 @@
+name: update authors.rda file
+
+on:
+  push:
+    paths:
+      'data-raw/authors.csv'
+
+jobs:
+  rda-authors:
+    runs-on: ubuntu-latest
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'pfmc-assessments/sa4ss'
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+      - name: Setup dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::usethis
+      - name: Run R
+        run: |
+          install.packages("usethis")
+          source("data-raw/authors.R")
+        shell: Rscript {0}
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit_message: Update authors.rda
+          branch: rda-authors
+          title: 'Update the authors.rda file upon push'
