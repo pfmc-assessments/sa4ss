@@ -30,6 +30,7 @@ Depends:
 Imports:
   bibtex,
   bookdown,
+  here,
   knitr,
   kableExtra,
   lifecycle,
