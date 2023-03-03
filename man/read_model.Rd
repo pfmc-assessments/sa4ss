@@ -151,11 +151,15 @@ Thus, saving users from having to perform multiple similar calculations.
 }
 \examples{
 \dontrun{
-simplemod_loc <- tail(dir(pattern = "simple",
+simplemod_loc <- tail(dir(
+  pattern = "simple",
   system.file("extdata", package = "r4ss"),
-  full.names = TRUE), 1)
-sa4ss::read_model(mod_loc = simplemod_loc,
-  fecund_mult = "billion eggs")
+  full.names = TRUE
+), 1)
+sa4ss::read_model(
+  mod_loc = simplemod_loc,
+  fecund_mult = "billion eggs"
+)
 }
 }
 \author{

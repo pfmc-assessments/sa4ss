@@ -1,5 +1,5 @@
 #' Get Available `.Rmd` Template Files For A Given Section
-#' 
+#'
 #' Get a vector of template file names that are available for a given section.
 #' By section, we are referring to a section in the document such as the
 #' section on fishery-independent information, which is denoted in the
@@ -13,7 +13,7 @@
 #' to work up a given data set should be the same across most species such
 #' as the ageing-error software that has been kindly provided by
 #' Dr. Punt and others.
-#' 
+#'
 #' @param precursor A character string that starts with a two-digit number
 #' and is followed by a single alpha character that specifies the type.
 #' Specifically, everything before the `"-"` in the `.Rmd` files
@@ -33,17 +33,17 @@
 #' get_templatenames()
 #' # To remove file extension from the returned names
 #' gsub("\\..{3}$", "", get_templatenames())
-
-get_templatenames <- function(
-  precursor = "",
-  separator = "-",
-  dir = system.file("rmarkdown", "templates", "sa", package = "sa4ss")
-) {
+get_templatenames <- function(precursor = "",
+                              separator = "-",
+                              dir = system.file(
+                                "rmarkdown",
+                                "templates", "sa",
+                                package = "sa4ss"
+                              )) {
   basename(dir(
     path = dir,
     pattern = paste0(precursor, separator, ".+\\.Rmd$"),
     recursive = TRUE,
     ignore.case = TRUE
-    )
-  )
+  ))
 }

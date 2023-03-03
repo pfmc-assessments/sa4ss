@@ -28,8 +28,6 @@ addresses are stored internally.
 \examples{
 get_affiliation("Kelli F. Johnson")
 get_affiliation(c("Kelli F. Johnson", "Chantel R. Wetzel"))
-# Returns an NA for the unknown name
-testthat::expect_true(is.na(get_affiliation("Kelli Johnson")))
 }
 \author{
 Kelli F. Johnson

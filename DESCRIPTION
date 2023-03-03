@@ -24,7 +24,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Depends:
   R (>= 4.0)
 Imports:
@@ -32,6 +32,7 @@ Imports:
   bookdown,
   knitr,
   kableExtra,
+  lifecycle,
   pkgload,
   r4ss,
   rmarkdown,
@@ -44,11 +45,12 @@ Imports:
   yaml,
   ymlthis
 Suggests:
-  devtools,
-  hexSticker,
-  nmfspalette,
-  testthat,
-  usethis
+    devtools,
+    hexSticker,
+    nmfspalette,
+    testthat (>= 3.0.0),
+    usethis
 Remotes:
   github::r4ss/r4ss,
   github::nmfs-general-modeling-tools/nmfspalette
+Config/testthat/edition: 3

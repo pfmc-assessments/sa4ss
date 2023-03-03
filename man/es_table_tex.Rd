@@ -42,14 +42,16 @@ Create tex file from executive summary tables
 }
 \examples{
 \dontrun{
-#example of creating tex files for those created by the 
- # r4ss function SSexecutivesummary
-	es_table_tex(dir = mod_loc)
-#example of using a user created csv file:
-es_table_tex(dir = "C:/models/table_to_add_to_doc",
-			 save_loc = "C:/model/tex_tables",
-			 csv_name = "non_es_document_tables.csv")
-}			
+# example of creating tex files for those created by the
+# r4ss function SSexecutivesummary
+es_table_tex(dir = mod_loc)
+# example of using a user created csv file:
+es_table_tex(
+  dir = "C:/models/table_to_add_to_doc",
+  save_loc = "C:/model/tex_tables",
+  csv_name = "non_es_document_tables.csv"
+)
+}
 }
 \author{
 Chantel Wetzel

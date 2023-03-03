@@ -93,10 +93,33 @@ add_figure <- function(filein,
   if (knitr::is_html_output()) {
     cat(
       sep = "",
-      '<figure><img src="', filein, '" alt="', alt_caption, '"', sprintf(" style=\"width: %f%%\"", width), '/><figcaption>', caption, '</figcaption></figure>'
+      '<figure><img src="',
+      filein,
+      '" alt="',
+      alt_caption,
+      '"',
+      sprintf(" style=\"width: %f%%\"", width),
+      '/><figcaption>',
+      caption,
+      '</figcaption></figure>'
     )
   } else {
-    cat('\n![',caption,'\\label{fig:',label,'}](',filein,'){width=',width,'% height=',height,'% alt="',alt_caption,'"}\n',sep='')
+    cat(
+      '\n![',
+      caption,
+      '\\label{fig:',
+      label,
+      '}](',
+      filein,
+      '){width=',
+      width,
+      '% height=',
+      height,
+      '% alt="',
+      alt_caption,
+      '"}\n',
+      sep = ''
+    )
   }
   return(invisible())
 }

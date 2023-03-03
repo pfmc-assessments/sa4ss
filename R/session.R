@@ -31,10 +31,10 @@
 #' @author Kelli F. Johnson
 #' @export
 #' @examples
+#' \dontrun{
 #' localtest <- session_test()
-#'
+#' }
 session_test <- function() {
-
   #### Set up
   oldwd <- getwd()
   on.exit(setwd(oldwd), add = TRUE)
@@ -48,15 +48,18 @@ session_test <- function() {
   sa4ss::draft(authors = "Kelli F. Johnson", create_dir = FALSE)
   theworks <- tryCatch(
     expr = bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd()),
-    error = function(x) x)
+    error = function(x) x
+  )
 
   #### Test for success
   if (!file.exists("_main.pdf")) {
-    writeLines(do.call(paste,list(names(localinfo)," -- ", localinfo)))
+    writeLines(do.call(paste, list(names(localinfo), " -- ", localinfo)))
     utils::flush.console()
     utils::bug.report(package = "sa4ss")
-    message("Use the template for installation issues to get help.\n",
-      "Please, include the output returned from this function in the issue.")
+    message(
+      "Use the template for installation issues to get help.\n",
+      "Please, include the output returned from this function in the issue."
+    )
   }
 
   #### Return information

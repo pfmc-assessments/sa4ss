@@ -4,7 +4,10 @@
 \alias{check_bib}
 \title{Perform checks on a .bib file}
 \usage{
-check_bib(file, package)
+check_bib(file)
+}
+\arguments{
+\item{file}{A file path to the \code{.bib} file of interest.}
 }
 \value{
 A character vector of logged messages from \link[bibtex:read.bib]{bibtex::read.bib} is returned.
@@ -62,7 +65,6 @@ new users? Here are some example names,
 }
 \examples{
 test <- check_bib(bibtex:::findBibFile("bibtex"))
-testthat::expect_equal(test, "Success")
 
 }
 \author{

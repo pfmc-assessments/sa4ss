@@ -2,7 +2,7 @@
 #'
 #' Initiate a directory that contains all of the files needed for a
 #' stock assessment document written with \pkg{sa4ss}.
-#' 
+#'
 #' @details
 #' ## Wrapper for [rmarkdown::draft]
 #' The function is based on [rmarkdown::draft] that creates
@@ -68,15 +68,14 @@
 #' See \code{\link[rmarkdown]{draft}}.
 #' @author Kelli F. Johnson
 #'
-draft <- function(
-  authors,
-  species = "Species name",
-  latin = "Scientific name",
-  coast = "US West",
-  type = c("sa"),
-  create_dir = FALSE,
-  edit = FALSE,
-  ...) {
+draft <- function(authors,
+                  species = "Species name",
+                  latin = "Scientific name",
+                  coast = "US West",
+                  type = c("sa"),
+                  create_dir = FALSE,
+                  edit = FALSE,
+                  ...) {
   type <- match.arg(type, several.ok = FALSE)
 
   filename <- rmarkdown::draft(
@@ -91,15 +90,19 @@ draft <- function(
   newname <- gsub("doc.Rmd", "00a.Rmd", filename)
   file.rename(filename, newname)
   thedir <- dirname(newname)
-  write_title(species = species, latin = latin, coast = coast,
-    fileout = file.path(thedir, formals(write_title)$fileout))
+  write_title(
+    species = species, latin = latin, coast = coast,
+    fileout = file.path(thedir, formals(write_title)$fileout)
+  )
   write_authors(authors,
-    fileout = file.path(thedir, formals(write_authors)$fileout))
+    fileout = file.path(thedir, formals(write_authors)$fileout)
+  )
   spp <- species
   Spp <- stringr::str_to_title(spp)
   spp.sci <- latin
   save(spp, Spp, spp.sci, coast, authors,
-    file = file.path(thedir, "00opts.Rdata"))
+    file = file.path(thedir, "00opts.Rdata")
+  )
 
   return(invisible(newname))
 }

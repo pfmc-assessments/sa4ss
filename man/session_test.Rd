@@ -36,8 +36,9 @@ future individuals like yourself work through installation problems.
 So, thank you for being willing to help.
 }
 \examples{
+\dontrun{
 localtest <- session_test()
-
+}
 }
 \author{
 Kelli F. Johnson

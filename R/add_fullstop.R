@@ -10,7 +10,8 @@
 #' test <- add_fullstop("I ate an apple today")
 #' test <- add_fullstop(c("I ate an apple today", "Example with exclamation!"))
 #'
-add_fullstop <- function(text, punctuation = ".") {
+add_fullstop <- function(text,
+                         punctuation = ".") {
   check <- grepl("\\.$|[?!]$", text)
   out <- ifelse(check, text, paste0(text, punctuation))
   return(out)

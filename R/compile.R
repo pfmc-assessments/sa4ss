@@ -74,8 +74,9 @@ compile <- function(dir = file.path("doc", get_groups(info_groups))) {
 #' @family compile
 #' @export
 #'
-compile_internal <- function(dir, time = 10, ...) {
-
+compile_internal <- function(dir,
+                             time = 10,
+                             ...) {
   # Set working directory back to getwd() upon exit
   stopifnot(length(dir) == 1)
   stopifnot(utils::file_test("-d", dir))
@@ -93,7 +94,7 @@ compile_internal <- function(dir, time = 10, ...) {
 
   # Check if the pdf file exists and if it is open
   test <- tryCatch(
-    pdf(dir(
+    grDevices::pdf(dir(
       pattern = paste0(hidden_book_filename, ".pdf"),
       full.names = TRUE
     )),
@@ -102,13 +103,13 @@ compile_internal <- function(dir, time = 10, ...) {
         "You have ", time, " seconds to close the pdf named ",
         file.path(dir, hidden_book_filename)
       )
-      flush.console()
+      utils::flush.console()
       Sys.sleep(time)
       return(FALSE)
     },
     finally = TRUE
   )
-  if (is.null(test)) dev.off()
+  if (is.null(test)) grDevices::dev.off()
 
   # Make the document
   bookdown::render_book(
@@ -119,7 +120,6 @@ compile_internal <- function(dir, time = 10, ...) {
   )
 
   return(invisible(TRUE))
-
 }
 
 #' Change bookname in the _bookdown.yml file
@@ -139,7 +139,7 @@ compile_changebookname <- function(bookname) {
   tmp_yml <- tempfile(fileext = ".yml")
   if (file.exists(ori_yml)) {
     yml_content <- yaml::read_yaml(ori_yml)
-  } else{
+  } else {
     yml_content <- list(book_filename = "x")
   }
   yml_content[["book_filename"]] <- bookname

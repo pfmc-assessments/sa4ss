@@ -41,13 +41,10 @@
 #' @examples
 #' # print the output to the screen rather than save to a file
 #' write_bibliography(getwd(), fileout = stdout())
-write_bibliography <- function(
-  basedirectory = getwd(),
-  up = 0,
-  recursive = FALSE,
-  fileout = "00bibliography.Rmd"
-) {
-
+write_bibliography <- function(basedirectory = getwd(),
+                               up = 0,
+                               recursive = FALSE,
+                               fileout = "00bibliography.Rmd") {
   changedirectory <- basedirectory
   bibfiles <- vector()
   while (up >= 0) {
@@ -68,16 +65,18 @@ write_bibliography <- function(
     pathname = bibfiles,
     relativeTo = basedirectory
   )
-  if (length(bibfiles) == 0) return()
+  if (length(bibfiles) == 0) {
+    return()
+  }
 
   # Format for yaml
   writeLines(
     con = fileout,
-    text =  utils::capture.output(
+    text = utils::capture.output(
       ymlthis::yml_citations(
         .yml = ymlthis::yml_empty(),
-        bibliography = relativepaths)
+        bibliography = relativepaths
+      )
     )
   )
-
 }

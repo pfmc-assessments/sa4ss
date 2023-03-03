@@ -93,41 +93,44 @@
 #'
 #' @examples
 #' \dontrun{
-#' simplemod_loc <- tail(dir(pattern = "simple",
+#' simplemod_loc <- tail(dir(
+#'   pattern = "simple",
 #'   system.file("extdata", package = "r4ss"),
-#'   full.names = TRUE), 1)
-#' sa4ss::read_model(mod_loc = simplemod_loc,
-#'   fecund_mult = "billion eggs")
+#'   full.names = TRUE
+#' ), 1)
+#' sa4ss::read_model(
+#'   mod_loc = simplemod_loc,
+#'   fecund_mult = "billion eggs"
+#' )
 #' }
 #' @export
 #' @author Chantel Wetzel
 #'
-read_model <- function(
-  mod_loc,
-  save_loc = NULL,
-  plotfolder = 'plots',
-  printstats = lifecycle::deprecated(),
-  fecund_mult = 'million eggs',
-  create_plots = TRUE,
-  png = lifecycle::deprecated(),
-  html = lifecycle::deprecated(),
-  datplot = lifecycle::deprecated(),
-  fleetnames = NULL,
-  forecastplot = TRUE,
-  maxrows = 4,
-  maxcols = 4,
-  bub_scale = 6,
-  create_tables = lifecycle::deprecated(), 
-  ci_value = 0.95,
-  es_only = FALSE,
-  tables = c('a','b','c','d','e','f','g','h','i','catch', 'timeseries', 'numbers'),
-  divide_by_2 = FALSE,
-  adopted_ofl = NULL,
-  adopted_abc = NULL,
-  adopted_acl = NULL,
-  forecast_ofl = NULL,
-  forecast_abc = NULL,
-  ...) {
+read_model <- function(mod_loc,
+                       save_loc = NULL,
+                       plotfolder = "plots",
+                       printstats = lifecycle::deprecated(),
+                       fecund_mult = "million eggs",
+                       create_plots = TRUE,
+                       png = lifecycle::deprecated(),
+                       html = lifecycle::deprecated(),
+                       datplot = lifecycle::deprecated(),
+                       fleetnames = NULL,
+                       forecastplot = TRUE,
+                       maxrows = 4,
+                       maxcols = 4,
+                       bub_scale = 6,
+                       create_tables = lifecycle::deprecated(),
+                       ci_value = 0.95,
+                       es_only = FALSE,
+                       tables = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "catch", "timeseries", "numbers"),
+                       divide_by_2 = FALSE,
+                       adopted_ofl = NULL,
+                       adopted_abc = NULL,
+                       adopted_acl = NULL,
+                       forecast_ofl = NULL,
+                       forecast_abc = NULL,
+                       ...) {
   if (lifecycle::is_present(printstats)) {
     lifecycle::deprecate_soft(
       when = "0.0.0.9015",
@@ -184,92 +187,103 @@ read_model <- function(
       )
     )
   }
-  model = r4ss::SS_output(dir = mod_loc,
-                          printstats = FALSE, verbose = FALSE,
-                          ...)
+  model <- r4ss::SS_output(
+    dir = mod_loc,
+    printstats = FALSE, verbose = FALSE,
+    ...
+  )
 
-  plot_dir = file.path(mod_loc, plotfolder)
-  table_dir = file.path(mod_loc, 'tables')
+  plot_dir <- file.path(mod_loc, plotfolder)
+  table_dir <- file.path(mod_loc, "tables")
 
   # Determine the fecundity units
-  fecund = model$SpawnOutputUnits 
+  fecund <- model$SpawnOutputUnits
   # Fecundity text depending on the input value above (can change this line if you like)
-  if(fecund == 'numbers'){fecund_unit = fecund_mult} else {fecund_unit = 'mt'} 
+  if (fecund == "numbers") {
+    fecund_unit <- fecund_mult
+  } else {
+    fecund_unit <- "mt"
+  }
 
   # Define model years to be used dynamically in text
-  startyr = model$startyr
-  endyr = model$endyr
-  last10 = endyr - 8
-  currentyr = endyr + 1
-  project_start = min(model$timeseries$Yr[model$timeseries$Era == 'FORE'])
-  project_end = max(model$timeseries$Yr[model$timeseries$Era == 'FORE'])
+  startyr <- model$startyr
+  endyr <- model$endyr
+  last10 <- endyr - 8
+  currentyr <- endyr + 1
+  project_start <- min(model$timeseries$Yr[model$timeseries$Era == "FORE"])
+  project_end <- max(model$timeseries$Yr[model$timeseries$Era == "FORE"])
 
   # Determine management targets
-  fore = r4ss::SS_readforecast(file = file.path(mod_loc, "forecast.ss"), verbose = FALSE)
-  spr_target  = fore$SPRtarget
-  bio_target  = fore$Btarget
-  msst = ifelse(bio_target == 0.40, 0.25, 0.125)
+  fore <- r4ss::SS_readforecast(file = file.path(mod_loc, "forecast.ss"), verbose = FALSE)
+  spr_target <- fore$SPRtarget
+  bio_target <- fore$Btarget
+  msst <- ifelse(bio_target == 0.40, 0.25, 0.125)
 
   # Determine the minumum summary age
-  starter = r4ss::SS_readstarter(file = file.path(mod_loc, "starter.ss"), verbose = FALSE)
-  min_sum_age = paste0(starter$min_age_summary_bio, "+")
+  starter <- r4ss::SS_readstarter(file = file.path(mod_loc, "starter.ss"), verbose = FALSE)
+  min_sum_age <- paste0(starter$min_age_summary_bio, "+")
 
-  if (create_plots){
-    if(is.null(fleetnames)){
-        fleetnames = model$FleetNames
+  if (create_plots) {
+    if (is.null(fleetnames)) {
+      fleetnames <- model$FleetNames
     }
-    r4ss::SS_plots(replist = model,
-                   html = FALSE,
-                   datplot = TRUE,
-                   fleetnames = fleetnames,
-                   forecastplot = forecastplot,
-                   maxrows = maxrows,
-                   maxcols = maxcols,
-                   maxrows2 = maxrows,
-                   maxcols2 = maxcols,
-                   printfolder = plotfolder,
-                   bub.scale.dat = bub_scale)
+    r4ss::SS_plots(
+      replist = model,
+      html = FALSE,
+      datplot = TRUE,
+      fleetnames = fleetnames,
+      forecastplot = forecastplot,
+      maxrows = maxrows,
+      maxcols = maxcols,
+      maxrows2 = maxrows,
+      maxcols2 = maxcols,
+      printfolder = plotfolder,
+      bub.scale.dat = bub_scale
+    )
   }
 
   get_plotinfo(mod_loc = mod_loc, plot_folder = plotfolder)
 
-  if (!is.null(tables)){
-    r4ss::SSexecutivesummary(replist = model,
-                            ci_value = ci_value,
-                            es_only = es_only,
-                            tables = tables,
-                            fleetnames = fleetnames,
-                            divide_by_2 = divide_by_2,
-                            endyr = endyr,
-                            adopted_ofl = adopted_ofl,
-                            adopted_abc = adopted_abc,
-                            adopted_acl = adopted_acl,
-                            forecast_ofl = forecast_ofl,
-                            forecast_abc = forecast_abc,
-                            format = FALSE,
-                            verbose = FALSE)
+  if (!is.null(tables)) {
+    r4ss::SSexecutivesummary(
+      replist = model,
+      ci_value = ci_value,
+      es_only = es_only,
+      tables = tables,
+      fleetnames = fleetnames,
+      divide_by_2 = divide_by_2,
+      endyr = endyr,
+      adopted_ofl = adopted_ofl,
+      adopted_abc = adopted_abc,
+      adopted_acl = adopted_acl,
+      forecast_ofl = forecast_ofl,
+      forecast_abc = forecast_abc,
+      format = FALSE,
+      verbose = FALSE
+    )
   }
 
   dir.create(file.path(mod_loc, "tex_tables"), showWarnings = FALSE)
   dir.create(save_loc, showWarnings = FALSE)
-  es_table_tex(dir = mod_loc, table_folder = 'tables', save_loc = save_loc)
+  es_table_tex(dir = mod_loc, table_folder = "tables", save_loc = save_loc)
 
   save(mod_loc,
-       plot_dir,
-       table_dir,
-       model,
-       fecund_unit,
-       startyr,
-       endyr,
-       last10,
-       currentyr,
-       project_start,
-       project_end,
-       spr_target,
-       bio_target,
-       msst,
-       min_sum_age,
-       file = file.path(getwd(), "00mod.Rdata"))
+    plot_dir,
+    table_dir,
+    model,
+    fecund_unit,
+    startyr,
+    endyr,
+    last10,
+    currentyr,
+    project_start,
+    project_end,
+    spr_target,
+    bio_target,
+    msst,
+    min_sum_age,
+    file = file.path(getwd(), "00mod.Rdata")
+  )
 
   return()
 }

@@ -42,6 +42,7 @@
 #' * "{Steele Jr.}, Guy L."
 #' * "{von Beethoven}, Ludwig"
 #'
+#' @param file A file path to the `.bib` file of interest.
 #' @author Kelli F. Johnson
 #' @export
 #' @family check functions
@@ -52,14 +53,15 @@
 #' will return `"Success"`.
 #' @examples
 #' test <- check_bib(bibtex:::findBibFile("bibtex"))
-#' testthat::expect_equal(test, "Success")
 #'
-check_bib <- function(file, package) {
+check_bib <- function(file) {
   logs <- vector("character")
   bib <- withCallingHandlers(
     bibtex::read.bib(file),
     message = function(w) logs <<- append(logs, w$message)
   )
-  if (length(logs) == 0) return ("Success")
+  if (length(logs) == 0) {
+    return("Success")
+  }
   return(logs)
 }
