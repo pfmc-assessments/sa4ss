@@ -23,6 +23,7 @@ jobs:
           extra-packages: any::usethis
       - name: Run R
         run: |
+          install.packages("usethis")
           source("data-raw/authors.R")
         shell: Rscript {0}
       - name: Create pull request
