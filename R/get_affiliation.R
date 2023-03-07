@@ -18,6 +18,7 @@ get_affiliation <- function(authors) {
   doc <- "U.S. Department of Commerce"
   noaa <- "National Oceanic and Atmospheric Administration"
   nmfs <- "National Marine Fisheries Service"
+  afsc <- "Alaska Fisheries Science Center"
   nwfsc <- "Northwest Fisheries Science Center"
   swfsc <- "Southwest Fisheries Science Center"
   if (any(is.na(abbreviations))) {
@@ -31,6 +32,8 @@ get_affiliation <- function(authors) {
   affiliations <- data.frame(
     # Alphabetical order of abbreviations and then affiliations must match order
     abbreviation = c(
+      "AFSC_Juneau",
+      "AFSC_WA",
       "CDFW",
       "NWFSC_OR",
       "NWFSC_WA",
@@ -39,10 +42,16 @@ get_affiliation <- function(authors) {
       "SAFS",
       "SWFSC_FE",
       "SWFSC_SC",
+      "UBC",
+      "UCDavis",
+      "UW_QERM",
+      "UW_SAFS",
       "WCR",
       "WDFW"
     ),
     affiliation = c(
+      paste0(afsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "17109 Point Lena Loop Road, Juneau, Alaska 99801"),
+      paste0(afsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "7600 Sand Point Way N.E., Seattle, Washington 98115"),
       "California Department of Fish and Wildlife, 1123 Industrial Rd., Suite 300, San Carlos, California 94070",
       paste0(nwfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "2032 Southeast OSU Drive, Newport, Oregon 97365"),
       paste0(nwfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "2725 Montlake Boulevard East, Seattle, Washington 98112"),
@@ -51,6 +60,10 @@ get_affiliation <- function(authors) {
       "School of Aquatic and Fishery Sciences, University of Washington, 1122 Northeast Boat Street, Seattle, Washington 98195",
       paste0(swfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "110 Shaffer Road, Santa Cruz, California 95060"),
       paste0(swfsc, ", ", doc, ", ", noaa, ", ", nmfs, ", ", "110 McAllister Way, Santa Cruz, California 95060"),
+      "Institute for the Oceans and Fisheries, University of British Columbia, 2202 Main Mall, Vancouver, British Columbia Canada V6T 1Z4",
+      "University of California Davis, One Shields Avenue, Davis, California 95616",
+      "Quantitative Ecology & Resource Management, University of Washington, Box 357941, Seattle, Washington 98195",
+      "School of Aquatic and Fishery Sciences, University of Washington, 1122 NE Boat Street, Seattle, Washington 98195",
       paste("West Coast Region, ", doc, ", ", noaa, ", ", nmfs, ", ", "7600 Sand Point Way, Seattle, Washington 98115"),
       "Washington Department of Fish and Wildlife, 600 Capital Way North, Olympia, Washington 98501"
     )
