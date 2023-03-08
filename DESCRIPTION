@@ -55,3 +55,5 @@ Remotes:
   github::r4ss/r4ss,
   github::nmfs-general-modeling-tools/nmfspalette
 Config/testthat/edition: 3
+Config/Needs/data:
+  usethis
