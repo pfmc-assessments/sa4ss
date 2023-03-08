@@ -35,3 +35,4 @@ jobs:
           commit_message: Update authors.rda
           branch: rda-authors
           title: 'Update the authors.rda file upon push'
+          labels: 'topic: data-raw'
