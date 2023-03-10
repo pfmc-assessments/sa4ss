@@ -92,10 +92,11 @@ table_pars <- function(output,
     dplyr::select(Label, Value, Phase, Min, Max, Pr_type, Prior, Parm_StDev, Pr_SD, Status) %>%
     dplyr::mutate(
       Value = sprintf("%8.3f", Value),
-      Bounds = sprintf("(%8.3f, %8.3f)", Min, Max),
+      Bounds = sprintf("(%8.3f, %8.3f)", Min, Max) %>% stringr::str_replace("\\(\\s+", "("),
       Status = dplyr::case_when(
         is.na(Status) ~ "fixed",
         Status == "act" ~ "dev",
+        Status == "OK" ~ "ok",
         TRUE ~ Status
       ),
       SD = ifelse(is.na(Parm_StDev), "0", sprintf("%2.2f", Parm_StDev)),
