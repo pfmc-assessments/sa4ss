@@ -91,15 +91,15 @@ table_pars <- function(output,
     dplyr::slice(rows) %>%
     dplyr::select(Label, Value, Phase, Min, Max, Pr_type, Prior, Parm_StDev, Pr_SD, Status) %>%
     dplyr::mutate(
-      Value = sprintf("%8.3f", Value),
-      Bounds = sprintf("(%8.3f, %8.3f)", Min, Max) %>% stringr::str_replace("\\(\\s+", "("),
+      Value = signif_string(Value, 3),
+      Bounds = paste0("(", signif_string(Min, 2), ", ", signif_string(Max, 2), ")"),
       Status = dplyr::case_when(
         is.na(Status) ~ "fixed",
         Status == "act" ~ "dev",
         Status == "OK" ~ "ok",
         TRUE ~ Status
       ),
-      SD = ifelse(is.na(Parm_StDev), "0", sprintf("%2.2f", Parm_StDev)),
+      SD = ifelse(is.na(Parm_StDev), "0", signif_string(Parm_StDev, 3)),
       pv = sprintf("%2.3f", Prior),
       psd = sprintf("%2.3f", Pr_SD),
       Prior = dplyr::case_when(
