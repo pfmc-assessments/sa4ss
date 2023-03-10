@@ -22,9 +22,9 @@ kable_captioncontinue <- function(caption = "", max = 8) {
     paste(
       collapse = " ",
       subcaption[1:min(c(max, length(subcaption)))]
-      ),
+    ),
     "... \\emph{continued}."
-    )
+  )
   return(out)
 }
 
@@ -45,8 +45,8 @@ kable_captioncontinue <- function(caption = "", max = 8) {
 #' then the bottom of a long table is open insinuating that the table continues.
 #' You can also add text to this argument that will be displayed below the
 #' horizontal line.
-#' 
-#' 
+#'
+#'
 kable_styling_sa4ss <- function(ktable, caption) {
   ktable %>% kableExtra::kable_styling(
     latex_options = c("repeat_header"),

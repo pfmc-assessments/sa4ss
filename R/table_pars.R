@@ -1,15 +1,15 @@
 #' Multiple tables of parameters (split to avoid long tables)
 #'
 #' @param output A list from [r4ss::SS_output()].
-#' @param rows Which rows to include from the `parameters` table created by 
+#' @param rows Which rows to include from the `parameters` table created by
 #' [r4ss::SS_output()]. NULL will cause all rows to be included.
 #' @param rows_per_table Number of rows to include in each table.
-#' @param caption A character string for the caption. The caption will be 
-#' appended to include the parameter number in each table 
+#' @param caption A character string for the caption. The caption will be
+#' appended to include the parameter number in each table
 #' (e.g. "Table 1 of 3 showing parameters 1-25.").
 #' @param label A character string with the label for the table.
 #' No underscores allowed. The label will be appended the table number if the
-#' table is split (e.g. "table-pars-base" will be changed to 
+#' table is split (e.g. "table-pars-base" will be changed to
 #' "table-pars-base-1")
 #'
 #' @seealso [table_pars()]
@@ -17,12 +17,10 @@
 #' @export
 
 table_pars_split <- function(output,
-                       rows = NULL,
-                       rows_per_table = 25,
-                       caption = "Parameter estimates, estimation phase, parameter bounds, estimation status, estimated standard deviation (SD), prior information [distribution(mean, SD)] used in the base model.",
-                       label = "table-pars-base"
-                     ) {
-
+                             rows = NULL,
+                             rows_per_table = 25,
+                             caption = "Parameter estimates, estimation phase, parameter bounds, estimation status, estimated standard deviation (SD), prior information [distribution(mean, SD)] used in the base model.",
+                             label = "table-pars-base") {
   # get parameters from model
   pars <- output[["parameters"]]
   # default is all rows from the table
@@ -30,7 +28,7 @@ table_pars_split <- function(output,
     rows <- seq_len(nrow(pars))
   }
   # subset table
-  pars <- pars[rows,]
+  pars <- pars[rows, ]
   # count parameters and number of tables
   npars <- nrow(pars)
   ntables <- ceiling(npars / rows_per_table)
@@ -44,15 +42,18 @@ table_pars_split <- function(output,
     which_pars <- intersect(which_pars, 1:npars)
 
     # adjust caption and label
-    caption_appended <- paste0(caption, " Table ", itable, " of ", ntables, 
-      " showing parameters ", paste(range(which_pars), collapse = "-"), ".")
+    caption_appended <- paste0(
+      caption, " Table ", itable, " of ", ntables,
+      " showing parameters ", paste(range(which_pars), collapse = "-"), "."
+    )
     label_appended <- paste0(label, "-", itable)
 
     # create the table and print it
-    print(table_pars(output, 
-      rows = which_pars, 
-      caption = caption_appended, 
-      label = label_appended))
+    print(table_pars(output,
+      rows = which_pars,
+      caption = caption_appended,
+      label = label_appended
+    ))
     cat("\n")
   }
 }
@@ -60,7 +61,7 @@ table_pars_split <- function(output,
 #' Table of parameters
 #'
 #' @param output A list from [r4ss::SS_output()].
-#' @param rows Which rows to include from the `parameters` table created by 
+#' @param rows Which rows to include from the `parameters` table created by
 #' [r4ss::SS_output()]. NULL will cause all rows to be included.
 #' @param caption A character string for the caption.
 #' @param label A character string with the label for the table.
@@ -73,15 +74,14 @@ table_pars_split <- function(output,
 table_pars <- function(output,
                        rows = NULL,
                        caption = "Parameter estimates, estimation phase, parameter bounds, estimation status, estimated standard deviation (SD), prior information [distribution(mean, SD)] used in the base model.",
-                       label = "table-pars-base"
-                     ) {
+                       label = "table-pars-base") {
   # Find sigma R
   sigmar <- output[["parameters"]] %>%
     dplyr::filter(grepl("sigma", ignore.case = TRUE, Label)) %>%
     dplyr::pull(Value) %>%
     sprintf("%2.2f", .)
   # to do - Could format the names
-  
+
   # default is all rows from the table
   if (is.null(rows)) {
     rows <- seq_along(nrow(output[["parameters"]]))
