@@ -59,26 +59,28 @@ can build a document it is wise to work through the following steps:
     standard, typically R users use pdflatex though they do not know it
     :smile:. If you do not already have tinytex on your computer, run the
     following in an R session.
-  * `install.packages('tinytex')`
-  * `tinytex::install_tinytex()`
+  * `pak::pkg_install("rstudio/tinytex")`
+  * `tinytex::install_tinytex(bundle = "TinyTeX-2")`
   * If you experience issues with the previous code it is more than likely due
     to firewall or other security settings. These settings can prevent R from
     downloading of the [zipped distribution][tinytex_zip] from the [tinytex
-    website][tinytex]. I tried downloading the [zip file][tinytex_zip] myself
+    website][tinytex]. I tried downloading the [exe file][tinytex_zip] myself
     and found that an anti-virus application was stopping my computer from
-    accessing the zip file. Automated prompts helped me change the settings on
-    my computer that allows [tinytex][tinytex] access to the website. The
-    previous code worked after having to restart R.
+    accessing the file. Automated prompts helped me change the settings on my
+    computer that allows [tinytex][tinytex] access to the website. The previous
+    code worked after having to restart R.
   * If you already have tinytex, you can use `packageVersion("tinytex")` to
     determine which version you have and `packageDate("tinytex")` to determine when
     it was compiled. Use your best judgment to determine if you should update it or
     not. I error on the side of updating too often.
-  * `tinytex::reinstall_tinytex()`
-  * Personally, I like to have the full distribution of texlive on my machine
-    rather than the version distributed by tinytex because then I know that I have
-    all the packages that I need. This is especially true for compiling documents
-    that are accessible to those with disabilities as the LaTeX 3 kernel is
-    changing on a daily basis.
+  * `tinytex::reinstall_tinytex(bundle = "TinyTeX-2")`
+  * Personally, I like to have the full distribution of TexLive on my machine
+    rather than the version distributed by tinytex when using the default call
+    to `bundle` of `"TinyTeX-1"` because then I know that I have all the
+    packages that I need. This is especially true for compiling documents that
+    are accessible to those with disabilities as the LaTeX 3 kernel is changing
+    on a daily basis. `"TinyTeX-2"` will install all packages much like the
+    full distribution of TexLive.
 2. Pandoc
   * If you do not already have Pandoc on your computer, then you will need to
     install it using the following directions:
@@ -201,6 +203,6 @@ or activity by DOC or the United States Government.
 [glossaries]: <https://ctan.org/pkg/glossaries?lang=en> "Glossaries package on CTAN"
 [ss3]: <https://github.com/nmfs-stock-synthesis/stock-synthesis> "Stock Synthesis code base"
 [tinytex]: <https://yihui.org/tinytex> "tinytex website"
-[tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-1.zip> "Download tinytex zip file"
+[tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-2.exe> "Download tinytex zip file"
 
 Back to [table of contents](#table-of-contents)
