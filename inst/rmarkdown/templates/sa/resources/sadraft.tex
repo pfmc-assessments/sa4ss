@@ -270,6 +270,8 @@ $header-includes$
 \trAuthsBack{}. \trYear{}. \trTitle{}. \glsentrylong{pfmc}, Portland, Oregon. \pageref{LastPage}{}\,p.
 \end{hangparas}}
 
+\newcommand\includegraphicsifexists[2][width=\linewidth]{\IfFileExists{#2}{\includegraphics[#1]{#2}}{}}
+
 \begin{document}
 
 %%%%% Frontmatter %%%%%
@@ -290,6 +292,8 @@ $endfor$
 % \textnormal{\MakeTextUppercase{\trTitle{}}}
 \vspace{1.5cm}
 {\Large\textbf\newline{$title$}}
+
+\includegraphicsifexists[width=4in]{figure_title.png}
 \vfill
 by\\
 $for(author)$
