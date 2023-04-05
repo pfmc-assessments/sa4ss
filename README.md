@@ -156,7 +156,8 @@ Back to [table of contents](#table-of-contents)
 
 # Tips
 
-* [CTAN glossaries package](#glossaries)
+* [CTAN glossaries package](#ctan-glossaries-package)
+* [Adding a figure to your title page](#adding-a-figure-to-your-title-page)
 
 ## CTAN glossaries package
 
@@ -181,6 +182,20 @@ where each function for generating text is explained. In short,
   * `Glspl{<label>}`: displays the plural form of the uppercase version;
   * `glsentryshort{<label>}`: displays the short version and can be used in a header; and
   * `glsentrylong{<label>}`: displays the long version and can be used in a header.
+
+Back to [table of contents](#table-of-contents)
+
+## Adding a figure to your title page
+
+You can add a figure to your title page by including `figure_title.png` in the
+directory that stores all of your .Rmd files, which is typically called
+`doc(s)`. This figure will be centered, placed below your title, and will be
+four inches wide. For those that do not want a figure on your title page, just
+do nothing. The use of an if statement only includes the figure if it is
+present and a default figure is not included in the package. Thanks to
+[stack exchange](
+https://tex.stackexchange.com/questions/95400/how-to-check-image-exists-or-not)
+for providing the code for the if statement.
 
 Back to [table of contents](#table-of-contents)
 
