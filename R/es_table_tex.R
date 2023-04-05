@@ -41,7 +41,7 @@
 #' )
 #' 
 #'  #example of creating tex files for those created by the 
-#'  # r4ss function SSexecutivesummary
+#'  # r4ss function SSexecutivesummary for a sub-area model
 #' 	es_table_tex(dir = mod_loc)
 #'	#example of using a user created csv file:
 #'	es_table_tex(dir = "C:/models/model_to_reference",
