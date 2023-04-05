@@ -15,6 +15,10 @@
 #' @param save_loc optional input that requires a full path which will
 #' allow users to save the tex file to a specific location (e.g. inside doc folder)
 #' other than the \code{file.path(dir, table_folder)}. Default NULL
+#' @param add_prefix Optional input that should be continous text if used that  
+#' allows users to append a specific identifier to the tex table labels and the
+#' created tex files save the tex file. This option supports the ability to create
+#' a joint executive summary for a stock with multiple sub-area models. Default NULL
 #' @param csv_name CSV file name to create tex table scripts for. This file should have
 #' the following columns: caption, altcaption, label, filenem, loc (optional) where caption will
 #' be the table caption, altcapation is the accessibility text for the table (can be
@@ -35,11 +39,22 @@
 #'   save_loc = "C:/model/tex_tables",
 #'   csv_name = "non_es_document_tables.csv"
 #' )
+#' 
+#'  #example of creating tex files for those created by the 
+#'  # r4ss function SSexecutivesummary
+#' 	es_table_tex(dir = mod_loc)
+#'	#example of using a user created csv file:
+#'	es_table_tex(dir = "C:/models/model_to_reference",
+#'				 save_loc = "C:/model/tex_tables",
+#'				 add_prefix = "oregon",
+#'				 csv_name = "table_labels.csv")
+#' 
 #' }
 #' @export
 es_table_tex <- function(dir,
                          table_folder = NULL,
                          save_loc = NULL,
+                         add_prefix = NULL,
                          csv_name = "table_labels.csv") {
   # Function to round data-frame with characters and numeric values
   round_df <- function(df, digits) {
@@ -81,12 +96,18 @@ es_table_tex <- function(dir,
     if (is.character(tab[, 1])) {
       tab[, 1] <- gsub("\\_", " ", tab[, 1])
     }
+    
+    if(!is.null(add_prefix)) {
+      label <- paste0(add_prefix, "-", df$label[1])
+    } else {
+      label <- df$label[i]
+    }
 
     if (col_names[1] == "Year") {
       t <- table_format(
         x = as.data.frame(tab),
         caption = df$caption[i],
-        label = df$label[i],
+        label = label,
         digits = c(0, rep(2, n)),
         longtable = TRUE,
         col_names = col_names,
@@ -96,15 +117,21 @@ es_table_tex <- function(dir,
       t <- table_format(
         x = round_df(df = data.frame(tab), digits = 2),
         caption = df$caption[i],
-        label = df$label[i],
+        label = label,
         longtable = TRUE,
         col_names = col_names,
         align = c("r", rep("c", n))
       )
     }
+    
+    if(!is.null(add_prefix)) {
+      save_name <- paste0(add_prefix, "_", tex_name, ".tex")
+    } else {
+      save_name <- paste0(tex_name, ".tex")
+    }
 
     kableExtra::save_kable(t,
-      file = file.path(save_loc, paste0(tex_name, ".tex"))
+      file = file.path(save_loc, save_name)
     )
   }
 }
