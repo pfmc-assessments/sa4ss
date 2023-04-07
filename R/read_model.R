@@ -17,6 +17,10 @@
 #' @param plotfolder A file path relative to `mod_loc` where
 #'   the figures will be saved. The argument is passed to `printfolder` in
 #'   [r4ss::SS_plots()]. The default is `plots`.
+#' @param add_prefix Optional input that should be continous text if used that  
+#' allows users to append a specific identifier to the tex table labels and the
+#' created tex files save the tex file. This option supports the ability to create
+#' a joint executive summary for a stock with multiple sub-area models. Default NULL
 #' @param printstats `r lifecycle::badge("deprecated")`
 #'   `printstats = FALSE` is no longer supported;
 #'   this function will always suppress printing output to the screen with
@@ -109,6 +113,7 @@
 read_model <- function(mod_loc,
                        save_loc = NULL,
                        plotfolder = "plots",
+                       add_prefix = NULL,
                        printstats = lifecycle::deprecated(),
                        fecund_mult = "million eggs",
                        create_plots = TRUE,
@@ -219,7 +224,7 @@ read_model <- function(mod_loc,
   bio_target <- fore$Btarget
   msst <- ifelse(bio_target == 0.40, 0.25, 0.125)
 
-  # Determine the minumum summary age
+  # Determine the minimum summary age
   starter <- r4ss::SS_readstarter(file = file.path(mod_loc, "starter.ss"), verbose = FALSE)
   min_sum_age <- paste0(starter$min_age_summary_bio, "+")
 
@@ -265,7 +270,7 @@ read_model <- function(mod_loc,
 
   dir.create(file.path(mod_loc, "tex_tables"), showWarnings = FALSE)
   dir.create(save_loc, showWarnings = FALSE)
-  es_table_tex(dir = mod_loc, table_folder = "tables", save_loc = save_loc)
+  es_table_tex(dir = mod_loc, add_prefix = add_prefix, table_folder = "tables", save_loc = save_loc)
 
   save(mod_loc,
     plot_dir,
