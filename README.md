@@ -33,13 +33,15 @@ The package is intended for use by analysts within the Northwest and Southwest
 Fisheries Science Centers but has also been augmented for use by those working
 at the Alaska Fisheries Science Center.
 
-Regardless of your affiliation, please feel free to post any issues or
-questions that you have to the [issues
-page](https://github.com/pfmc-assessments/sa4ss/issues). Tags are available to
-mark your issue with an appropriate category. These categories are instrumental
-for providing guidance to the package maintainers regarding how to respond your
-issue and to other users that follow this repository where they facilitate
-searching within issues. Before you create an issue, please
+Regardless of your affiliation, please feel free to post any issues regarding
+the package to the [GitHub issues
+page](https://github.com/pfmc-assessments/sa4ss/issues) and any questions
+regarding how to use the package to the [GitHub discussion
+board](https://github.com/pfmc-assessments/sa4ss/discussions). Tags are
+available to mark your issue with an appropriate category. These categories are
+instrumental for providing guidance to the package maintainers regarding how to
+respond your issue and to other users that follow this repository where they
+facilitate searching within issues. Before you create an issue, please
 1. try the [example](#example) to determine if the package works for you in
    general;
 1. if the [example](#example) doesn't work, then please try to reinstall the
