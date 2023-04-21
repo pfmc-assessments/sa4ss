@@ -21,6 +21,10 @@
 #' allows users to append a specific identifier to the tex table labels and the
 #' created tex files save the tex file. This option supports the ability to create
 #' a joint executive summary for a stock with multiple sub-area models. Default NULL
+#' @param add_text Optional input that should be text and can have spaces. Any input will
+#' be incorporated into table captions created for the executive summary using r4ss:SSexecutivesummary
+#' function. For example, add_text = "South of Point Conception" will be appended to all captions
+#' to indicate the sub-area model. Default NULL.
 #' @param printstats `r lifecycle::badge("deprecated")`
 #'   `printstats = FALSE` is no longer supported;
 #'   this function will always suppress printing output to the screen with
@@ -114,6 +118,7 @@ read_model <- function(mod_loc,
                        save_loc = NULL,
                        plotfolder = "plots",
                        add_prefix = NULL,
+                       add_text = NULL,
                        printstats = lifecycle::deprecated(),
                        fecund_mult = "million eggs",
                        create_plots = TRUE,
@@ -252,6 +257,7 @@ read_model <- function(mod_loc,
   if (!is.null(tables)) {
     r4ss::SSexecutivesummary(
       replist = model,
+      add_text = add_text,
       ci_value = ci_value,
       es_only = es_only,
       tables = tables,

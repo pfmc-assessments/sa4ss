@@ -53,8 +53,9 @@
 #' @export
 es_table_tex <- function(dir,
                          table_folder = NULL,
-                         save_loc = NULL,
                          add_prefix = NULL,
+                         save_loc = NULL,
+                         add_text = NULL,
                          csv_name = "table_labels.csv") {
   # Function to round data-frame with characters and numeric values
   round_df <- function(df, digits) {

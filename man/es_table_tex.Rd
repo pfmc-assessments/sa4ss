@@ -7,8 +7,9 @@
 es_table_tex(
   dir,
   table_folder = NULL,
-  save_loc = NULL,
   add_prefix = NULL,
+  save_loc = NULL,
+  add_text = NULL,
   csv_name = "table_labels.csv"
 )
 }
@@ -27,14 +28,14 @@ must be relative to \code{dir} because it will be appended to this
 argument using \code{file.path}. An alternative is to supply the full
 file path in dir and use \code{table_folder = ""}.}
 
-\item{save_loc}{optional input that requires a full path which will
-allow users to save the tex file to a specific location (e.g. inside doc folder)
-other than the \code{file.path(dir, table_folder)}. Default NULL}
-
 \item{add_prefix}{Optional input that should be continous text if used that
 allows users to append a specific identifier to the tex table labels and the
 created tex files save the tex file. This option supports the ability to create
 a joint executive summary for a stock with multiple sub-area models. Default NULL}
+
+\item{save_loc}{optional input that requires a full path which will
+allow users to save the tex file to a specific location (e.g. inside doc folder)
+other than the \code{file.path(dir, table_folder)}. Default NULL}
 
 \item{csv_name}{CSV file name to create tex table scripts for. This file should have
 the following columns: caption, altcaption, label, filenem, loc (optional) where caption will

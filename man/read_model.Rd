@@ -9,6 +9,7 @@ read_model(
   save_loc = NULL,
   plotfolder = "plots",
   add_prefix = NULL,
+  add_text = NULL,
   printstats = lifecycle::deprecated(),
   fecund_mult = "million eggs",
   create_plots = TRUE,
@@ -52,6 +53,11 @@ the figures will be saved. The argument is passed to \code{printfolder} in
 allows users to append a specific identifier to the tex table labels and the
 created tex files save the tex file. This option supports the ability to create
 a joint executive summary for a stock with multiple sub-area models. Default NULL}
+
+\item{add_text}{Optional input that should be text and can have spaces. Any input will
+be incorporated into table captions created for the executive summary using r4ss:SSexecutivesummary
+function. For example, add_text = "South of Point Conception" will be appended to all captions
+to indicate the sub-area model. Default NULL.}
 
 \item{printstats}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 \code{printstats = FALSE} is no longer supported;
