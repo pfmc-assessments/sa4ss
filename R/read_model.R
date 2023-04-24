@@ -199,8 +199,7 @@ read_model <- function(mod_loc,
   }
   model <- r4ss::SS_output(
     dir = mod_loc,
-    printstats = FALSE, verbose = FALSE,
-    ...
+    printstats = FALSE, verbose = FALSE
   )
 
   plot_dir <- file.path(mod_loc, plotfolder)
