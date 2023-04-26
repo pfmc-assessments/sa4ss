@@ -99,7 +99,7 @@ es_table_tex <- function(dir,
     }
     
     if(!is.null(add_prefix)) {
-      label <- paste0(add_prefix, "-", df$label[1])
+      label <- paste0(add_prefix, "-", df$label[i])
     } else {
       label <- df$label[i]
     }
