@@ -7,7 +7,9 @@
 es_table_tex(
   dir,
   table_folder = NULL,
+  add_prefix = NULL,
   save_loc = NULL,
+  add_text = NULL,
   csv_name = "table_labels.csv"
 )
 }
@@ -25,6 +27,11 @@ table folder in that location.}
 must be relative to \code{dir} because it will be appended to this
 argument using \code{file.path}. An alternative is to supply the full
 file path in dir and use \code{table_folder = ""}.}
+
+\item{add_prefix}{Optional input that should be continous text if used that
+allows users to append a specific identifier to the tex table labels and the
+created tex files save the tex file. This option supports the ability to create
+a joint executive summary for a stock with multiple sub-area models. Default NULL}
 
 \item{save_loc}{optional input that requires a full path which will
 allow users to save the tex file to a specific location (e.g. inside doc folder)
@@ -51,6 +58,16 @@ es_table_tex(
   save_loc = "C:/model/tex_tables",
   csv_name = "non_es_document_tables.csv"
 )
+
+ #example of creating tex files for those created by the 
+ # r4ss function SSexecutivesummary for a sub-area model
+	es_table_tex(dir = mod_loc)
+#example of using a user created csv file:
+es_table_tex(dir = "C:/models/model_to_reference",
+			 save_loc = "C:/model/tex_tables",
+			 add_prefix = "oregon",
+			 csv_name = "table_labels.csv")
+
 }
 }
 \author{
