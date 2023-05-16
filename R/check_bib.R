@@ -55,13 +55,13 @@
 #' test <- check_bib(bibtex:::findBibFile("bibtex"))
 #'
 check_bib <- function(file) {
-  logs <- vector("character")
-  bib <- withCallingHandlers(
-    bibtex::read.bib(file),
-    message = function(w) logs <<- append(logs, w$message)
-  )
-  if (length(logs) == 0) {
-    return("Success")
-  }
-  return(logs)
+	logs <- vector("character")
+	bib <- withCallingHandlers(
+		bibtex::read.bib(file),
+		message = function(w) logs <<- append(logs, w$message)
+	)
+	if (length(logs) == 0) {
+		return("Success")
+	}
+	return(logs)
 }

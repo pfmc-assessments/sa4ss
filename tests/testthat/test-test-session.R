@@ -1,6 +1,6 @@
 test_that("session_test is successful", {
-  test <- session_test()
-  expect_false(
-    inherits(test, "error")
-  )
+	test <- session_test()
+	expect_false(
+		inherits(test, "error")
+	)
 })

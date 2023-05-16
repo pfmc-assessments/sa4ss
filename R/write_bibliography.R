@@ -42,41 +42,41 @@
 #' # print the output to the screen rather than save to a file
 #' write_bibliography(getwd(), fileout = stdout())
 write_bibliography <- function(basedirectory = getwd(),
-                               up = 0,
-                               recursive = FALSE,
-                               fileout = "00bibliography.Rmd") {
-  changedirectory <- basedirectory
-  bibfiles <- vector()
-  while (up >= 0) {
-    bibfiles <- append(
-      x = bibfiles,
-      after = length(bibfiles),
-      values = dir(
-        path = changedirectory,
-        recursive = recursive,
-        pattern = "\\.bib$",
-        full.names = TRUE
-      )
-    )
-    up <- up - 1
-    changedirectory <- dirname(changedirectory)
-  }
-  relativepaths <- R.utils::getRelativePath(
-    pathname = bibfiles,
-    relativeTo = basedirectory
-  )
-  if (length(bibfiles) == 0) {
-    return()
-  }
+	up = 0,
+	recursive = FALSE,
+	fileout = "00bibliography.Rmd") {
+	changedirectory <- basedirectory
+	bibfiles <- vector()
+	while (up >= 0) {
+		bibfiles <- append(
+			x = bibfiles,
+			after = length(bibfiles),
+			values = dir(
+				path = changedirectory,
+				recursive = recursive,
+				pattern = "\\.bib$",
+				full.names = TRUE
+			)
+		)
+		up <- up - 1
+		changedirectory <- dirname(changedirectory)
+	}
+	relativepaths <- R.utils::getRelativePath(
+		pathname = bibfiles,
+		relativeTo = basedirectory
+	)
+	if (length(bibfiles) == 0) {
+		return()
+	}
 
-  # Format for yaml
-  writeLines(
-    con = fileout,
-    text = utils::capture.output(
-      ymlthis::yml_citations(
-        .yml = ymlthis::yml_empty(),
-        bibliography = relativepaths
-      )
-    )
-  )
+	# Format for yaml
+	writeLines(
+		con = fileout,
+		text = utils::capture.output(
+			ymlthis::yml_citations(
+				.yml = ymlthis::yml_empty(),
+				bibliography = relativepaths
+			)
+		)
+	)
 }

@@ -31,80 +31,80 @@
 #' es_table_tex(dir = mod_loc)
 #' # example of using a user created csv file:
 #' es_table_tex(
-#'   dir = "C:/models/table_to_add_to_doc",
-#'   save_loc = "C:/model/tex_tables",
-#'   csv_name = "non_es_document_tables.csv"
+#' 	dir = "C:/models/table_to_add_to_doc",
+#' 	save_loc = "C:/model/tex_tables",
+#' 	csv_name = "non_es_document_tables.csv"
 #' )
 #' }
 #' @export
 es_table_tex <- function(dir,
-                         table_folder = NULL,
-                         save_loc = NULL,
-                         csv_name = "table_labels.csv") {
-  # Function to round data-frame with characters and numeric values
-  round_df <- function(df, digits) {
-    nums <- vapply(df, is.numeric, FUN.VALUE = logical(1))
-    df[, nums] <- round(df[, nums], digits = digits)
-    (df)
-  }
+	table_folder = NULL,
+	save_loc = NULL,
+	csv_name = "table_labels.csv") {
+	# Function to round data-frame with characters and numeric values
+	round_df <- function(df, digits) {
+		nums <- vapply(df, is.numeric, FUN.VALUE = logical(1))
+		df[, nums] <- round(df[, nums], digits = digits)
+		(df)
+	}
 
-  if (is.null(table_folder)) {
-    if (dir.exists(file.path(dir, "tables"))) {
-      df <- utils::read.csv(file.path(dir, "tables", csv_name))
-      table_folder <- "tables"
-    } else {
-      df <- utils::read.csv(file.path(dir, csv_name))
-    }
-  } else {
-    df <- utils::read.csv(file.path(dir, table_folder, csv_name))
-  }
+	if (is.null(table_folder)) {
+		if (dir.exists(file.path(dir, "tables"))) {
+			df <- utils::read.csv(file.path(dir, "tables", csv_name))
+			table_folder <- "tables"
+		} else {
+			df <- utils::read.csv(file.path(dir, csv_name))
+		}
+	} else {
+		df <- utils::read.csv(file.path(dir, table_folder, csv_name))
+	}
 
-  if (is.null(save_loc)) {
-    save_loc <- file.path(dir, table_folder)
-  }
+	if (is.null(save_loc)) {
+		save_loc <- file.path(dir, table_folder)
+	}
 
-  for (i in 1:length(df$filename)) {
-    if ("loc" %in% colnames(df)) {
-      tab <- utils::read.csv(file.path(df$loc[i], df$filename[i]), check.names = FALSE)
-    } else {
-      if (is.null(table_folder)) {
-        tab <- utils::read.csv(file.path(dir, df$filename[i]), check.names = FALSE)
-      } else {
-        tab <- utils::read.csv(file.path(dir, table_folder, df$filename[i]), check.names = FALSE)
-      }
-    }
+	for (i in 1:length(df$filename)) {
+		if ("loc" %in% colnames(df)) {
+			tab <- utils::read.csv(file.path(df$loc[i], df$filename[i]), check.names = FALSE)
+		} else {
+			if (is.null(table_folder)) {
+				tab <- utils::read.csv(file.path(dir, df$filename[i]), check.names = FALSE)
+			} else {
+				tab <- utils::read.csv(file.path(dir, table_folder, df$filename[i]), check.names = FALSE)
+			}
+		}
 
-    tex_name <- sub(pattern = ".csv", "", df$filename[i])
-    col_names <- gsub("\\_", " ", colnames(tab))
-    n <- ncol(tab) - 1
+		tex_name <- sub(pattern = ".csv", "", df$filename[i])
+		col_names <- gsub("\\_", " ", colnames(tab))
+		n <- ncol(tab) - 1
 
-    if (is.character(tab[, 1])) {
-      tab[, 1] <- gsub("\\_", " ", tab[, 1])
-    }
+		if (is.character(tab[, 1])) {
+			tab[, 1] <- gsub("\\_", " ", tab[, 1])
+		}
 
-    if (col_names[1] == "Year") {
-      t <- table_format(
-        x = as.data.frame(tab),
-        caption = df$caption[i],
-        label = df$label[i],
-        digits = c(0, rep(2, n)),
-        longtable = TRUE,
-        col_names = col_names,
-        align = c("r", rep("c", n))
-      )
-    } else {
-      t <- table_format(
-        x = round_df(df = data.frame(tab), digits = 2),
-        caption = df$caption[i],
-        label = df$label[i],
-        longtable = TRUE,
-        col_names = col_names,
-        align = c("r", rep("c", n))
-      )
-    }
+		if (col_names[1] == "Year") {
+			t <- table_format(
+				x = as.data.frame(tab),
+				caption = df$caption[i],
+				label = df$label[i],
+				digits = c(0, rep(2, n)),
+				longtable = TRUE,
+				col_names = col_names,
+				align = c("r", rep("c", n))
+			)
+		} else {
+			t <- table_format(
+				x = round_df(df = data.frame(tab), digits = 2),
+				caption = df$caption[i],
+				label = df$label[i],
+				longtable = TRUE,
+				col_names = col_names,
+				align = c("r", rep("c", n))
+			)
+		}
 
-    kableExtra::save_kable(t,
-      file = file.path(save_loc, paste0(tex_name, ".tex"))
-    )
-  }
+		kableExtra::save_kable(t,
+			file = file.path(save_loc, paste0(tex_name, ".tex"))
+		)
+	}
 }

@@ -69,40 +69,40 @@
 #' @author Kelli F. Johnson
 #'
 draft <- function(authors,
-                  species = "Species name",
-                  latin = "Scientific name",
-                  coast = "US West",
-                  type = c("sa"),
-                  create_dir = FALSE,
-                  edit = FALSE,
-                  ...) {
-  type <- match.arg(type, several.ok = FALSE)
+	species = "Species name",
+	latin = "Scientific name",
+	coast = "US West",
+	type = c("sa"),
+	create_dir = FALSE,
+	edit = FALSE,
+	...) {
+	type <- match.arg(type, several.ok = FALSE)
 
-  filename <- rmarkdown::draft(
-    file = "doc.Rmd",
-    template = type,
-    package = "sa4ss",
-    create_dir = create_dir,
-    edit = edit,
-    ...
-  )
+	filename <- rmarkdown::draft(
+		file = "doc.Rmd",
+		template = type,
+		package = "sa4ss",
+		create_dir = create_dir,
+		edit = edit,
+		...
+	)
 
-  newname <- gsub("doc.Rmd", "00a.Rmd", filename)
-  file.rename(filename, newname)
-  thedir <- dirname(newname)
-  write_title(
-    species = species, latin = latin, coast = coast,
-    fileout = file.path(thedir, formals(write_title)$fileout)
-  )
-  write_authors(authors,
-    fileout = file.path(thedir, formals(write_authors)$fileout)
-  )
-  spp <- species
-  Spp <- stringr::str_to_title(spp)
-  spp.sci <- latin
-  save(spp, Spp, spp.sci, coast, authors,
-    file = file.path(thedir, "00opts.Rdata")
-  )
+	newname <- gsub("doc.Rmd", "00a.Rmd", filename)
+	file.rename(filename, newname)
+	thedir <- dirname(newname)
+	write_title(
+		species = species, latin = latin, coast = coast,
+		fileout = file.path(thedir, formals(write_title)$fileout)
+	)
+	write_authors(authors,
+		fileout = file.path(thedir, formals(write_authors)$fileout)
+	)
+	spp <- species
+	Spp <- stringr::str_to_title(spp)
+	spp.sci <- latin
+	save(spp, Spp, spp.sci, coast, authors,
+		file = file.path(thedir, "00opts.Rdata")
+	)
 
-  return(invisible(newname))
+	return(invisible(newname))
 }

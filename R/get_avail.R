@@ -34,16 +34,16 @@
 #' # To remove file extension from the returned names
 #' gsub("\\..{3}$", "", get_templatenames())
 get_templatenames <- function(precursor = "",
-                              separator = "-",
-                              dir = system.file(
-                                "rmarkdown",
-                                "templates", "sa",
-                                package = "sa4ss"
-                              )) {
-  basename(dir(
-    path = dir,
-    pattern = paste0(precursor, separator, ".+\\.Rmd$"),
-    recursive = TRUE,
-    ignore.case = TRUE
-  ))
+	separator = "-",
+	dir = system.file(
+		"rmarkdown",
+		"templates", "sa",
+		package = "sa4ss"
+	)) {
+	basename(dir(
+		path = dir,
+		pattern = paste0(precursor, separator, ".+\\.Rmd$"),
+		recursive = TRUE,
+		ignore.case = TRUE
+	))
 }

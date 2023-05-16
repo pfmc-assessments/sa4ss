@@ -35,53 +35,53 @@
 #' localtest <- session_test()
 #' }
 session_test <- function() {
-  #### Set up
-  oldwd <- getwd()
-  on.exit(setwd(oldwd), add = TRUE)
-  newdir <- file.path(tempdir(), "sa4ss")
-  on.exit(unlink(newdir, recursive = TRUE), add = TRUE)
-  ignore <- dir.create(newdir, recursive = TRUE, showWarnings = FALSE)
-  setwd(newdir)
+	#### Set up
+	oldwd <- getwd()
+	on.exit(setwd(oldwd), add = TRUE)
+	newdir <- file.path(tempdir(), "sa4ss")
+	on.exit(unlink(newdir, recursive = TRUE), add = TRUE)
+	ignore <- dir.create(newdir, recursive = TRUE, showWarnings = FALSE)
+	setwd(newdir)
 
-  #### Make the test pdf
-  localinfo <- session_info()
-  sa4ss::draft(authors = "Kelli F. Johnson", create_dir = FALSE)
-  theworks <- tryCatch(
-    expr = bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd()),
-    error = function(x) x
-  )
+	#### Make the test pdf
+	localinfo <- session_info()
+	sa4ss::draft(authors = "Kelli F. Johnson", create_dir = FALSE)
+	theworks <- tryCatch(
+		expr = bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd()),
+		error = function(x) x
+	)
 
-  #### Test for success
-  if (!file.exists("_main.pdf")) {
-    writeLines(do.call(paste, list(names(localinfo), " -- ", localinfo)))
-    utils::flush.console()
-    utils::bug.report(package = "sa4ss")
-    message(
-      "Use the template for installation issues to get help.\n",
-      "Please, include the output returned from this function in the issue."
-    )
-  }
+	#### Test for success
+	if (!file.exists("_main.pdf")) {
+		writeLines(do.call(paste, list(names(localinfo), " -- ", localinfo)))
+		utils::flush.console()
+		utils::bug.report(package = "sa4ss")
+		message(
+			"Use the template for installation issues to get help.\n",
+			"Please, include the output returned from this function in the issue."
+		)
+	}
 
-  #### Return information
-  return(list(session_info = localinfo, tried = theworks))
+	#### Return information
+	return(list(session_info = localinfo, tried = theworks))
 }
 
 session_find <- function(name) {
-  location <- Sys.which(names = name)
-  if (!file.exists(location)) {
-    warning(name, " was not found on your system.", call. = FALSE)
-  } else {
-    location <- normalizePath(location)
-  }
+	location <- Sys.which(names = name)
+	if (!file.exists(location)) {
+		warning(name, " was not found on your system.", call. = FALSE)
+	} else {
+		location <- normalizePath(location)
+	}
 
-  return(location)
+	return(location)
 }
 
 session_info <- function() {
-  info <- Sys.getenv()
-  info[["pandoc_version"]] <- rmarkdown::pandoc_version()
-  info[["pandoc_location"]] <- rmarkdown::pandoc_exec()
-  info[["sed_location"]] <- session_find("sed")
+	info <- Sys.getenv()
+	info[["pandoc_version"]] <- rmarkdown::pandoc_version()
+	info[["pandoc_location"]] <- rmarkdown::pandoc_exec()
+	info[["sed_location"]] <- session_find("sed")
 
-  return(info)
+	return(info)
 }

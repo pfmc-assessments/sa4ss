@@ -9,32 +9,32 @@
 #' @author Kelli F. Johnson
 #'
 doit <- function(dirgit = "c:/stockAssessment/ss/sa4ss",
-                 authors = c(
-                   "Kelli F. Johnson",
-                   "Chantel R. Wetzel",
-                   "Joseph J. Bizzarro"
-                 )) {
-  oldwd <- getwd()
-  on.exit(setwd(oldwd), add = TRUE)
-  setwd(dirgit)
-  devtools::build()
-  if ("package:sa4ss" %in% search()) pkgload::unload(package = "sa4ss")
-  utils::install.packages(
-    utils::tail(
-      n = 1,
-      dir(dirname(dirgit),
-        pattern = "sa4ss_[0-9\\.]+\\.tar.gz",
-        full.names = TRUE
-      )
-    ),
-    type = "source"
-  )
-  library(sa4ss)
-  unlink("doc", recursive = TRUE)
-  sa4ss::draft(
-    authors = authors,
-    create_dir = TRUE
-  )
-  setwd("doc")
-  bookdown::render_book("00a.Rmd", clean = FALSE)
+	authors = c(
+		"Kelli F. Johnson",
+		"Chantel R. Wetzel",
+		"Joseph J. Bizzarro"
+	)) {
+	oldwd <- getwd()
+	on.exit(setwd(oldwd), add = TRUE)
+	setwd(dirgit)
+	devtools::build()
+	if ("package:sa4ss" %in% search()) pkgload::unload(package = "sa4ss")
+	utils::install.packages(
+		utils::tail(
+			n = 1,
+			dir(dirname(dirgit),
+				pattern = "sa4ss_[0-9\\.]+\\.tar.gz",
+				full.names = TRUE
+			)
+		),
+		type = "source"
+	)
+	library(sa4ss)
+	unlink("doc", recursive = TRUE)
+	sa4ss::draft(
+		authors = authors,
+		create_dir = TRUE
+	)
+	setwd("doc")
+	bookdown::render_book("00a.Rmd", clean = FALSE)
 }

@@ -11,7 +11,7 @@
 #' @author Kelli F. Johnson
 
 write_summary <- function(type = c("executive", "onepage"),
-                          fileout = "01summaries.Rmd") {
-  type <- match.arg(type, several.ok = TRUE)
-  stop("This function is incomplete.")
+	fileout = "01summaries.Rmd") {
+	type <- match.arg(type, several.ok = TRUE)
+	stop("This function is incomplete.")
 }

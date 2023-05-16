@@ -52,10 +52,10 @@
 #' }
 #'
 compile <- function(dir = file.path("doc", get_groups(info_groups))) {
-  mapply(
-    FUN = compile_internal,
-    dir = dir
-  )
+	mapply(
+		FUN = compile_internal,
+		dir = dir
+	)
 }
 
 #' A non-vectorized version of [compile]
@@ -75,51 +75,51 @@ compile <- function(dir = file.path("doc", get_groups(info_groups))) {
 #' @export
 #'
 compile_internal <- function(dir,
-                             time = 10,
-                             ...) {
-  # Set working directory back to getwd() upon exit
-  stopifnot(length(dir) == 1)
-  stopifnot(utils::file_test("-d", dir))
-  olddir <- getwd()
-  setwd(dir)
-  on.exit(setwd(olddir), add = TRUE)
+	time = 10,
+	...) {
+	# Set working directory back to getwd() upon exit
+	stopifnot(length(dir) == 1)
+	stopifnot(utils::file_test("-d", dir))
+	olddir <- getwd()
+	setwd(dir)
+	on.exit(setwd(olddir), add = TRUE)
 
-  # Create the file name for the output based on in dir name
-  hidden_book_filename <- paste0("_", ifelse(
-    basename(dir) == ".",
-    basename(getwd()),
-    basename(dir)
-  ))
-  tmp_yml <- compile_changebookname(hidden_book_filename)
+	# Create the file name for the output based on in dir name
+	hidden_book_filename <- paste0("_", ifelse(
+		basename(dir) == ".",
+		basename(getwd()),
+		basename(dir)
+	))
+	tmp_yml <- compile_changebookname(hidden_book_filename)
 
-  # Check if the pdf file exists and if it is open
-  test <- tryCatch(
-    grDevices::pdf(dir(
-      pattern = paste0(hidden_book_filename, ".pdf"),
-      full.names = TRUE
-    )),
-    error = function(e) {
-      message(
-        "You have ", time, " seconds to close the pdf named ",
-        file.path(dir, hidden_book_filename)
-      )
-      utils::flush.console()
-      Sys.sleep(time)
-      return(FALSE)
-    },
-    finally = TRUE
-  )
-  if (is.null(test)) grDevices::dev.off()
+	# Check if the pdf file exists and if it is open
+	test <- tryCatch(
+		grDevices::pdf(dir(
+			pattern = paste0(hidden_book_filename, ".pdf"),
+			full.names = TRUE
+		)),
+		error = function(e) {
+			message(
+				"You have ", time, " seconds to close the pdf named ",
+				file.path(dir, hidden_book_filename)
+			)
+			utils::flush.console()
+			Sys.sleep(time)
+			return(FALSE)
+		},
+		finally = TRUE
+	)
+	if (is.null(test)) grDevices::dev.off()
 
-  # Make the document
-  bookdown::render_book(
-    "00a.Rmd",
-    output_dir = getwd(),
-    config_file = tmp_yml,
-    ...
-  )
+	# Make the document
+	bookdown::render_book(
+		"00a.Rmd",
+		output_dir = getwd(),
+		config_file = tmp_yml,
+		...
+	)
 
-  return(invisible(TRUE))
+	return(invisible(TRUE))
 }
 
 #' Change bookname in the _bookdown.yml file
@@ -135,14 +135,14 @@ compile_internal <- function(dir,
 #' @author Kelli F. Johnson
 #' @family compile
 compile_changebookname <- function(bookname) {
-  ori_yml <- "_bookdown.yml"
-  tmp_yml <- tempfile(fileext = ".yml")
-  if (file.exists(ori_yml)) {
-    yml_content <- yaml::read_yaml(ori_yml)
-  } else {
-    yml_content <- list(book_filename = "x")
-  }
-  yml_content[["book_filename"]] <- bookname
-  yaml::write_yaml(yml_content, tmp_yml)
-  return(tmp_yml)
+	ori_yml <- "_bookdown.yml"
+	tmp_yml <- tempfile(fileext = ".yml")
+	if (file.exists(ori_yml)) {
+		yml_content <- yaml::read_yaml(ori_yml)
+	} else {
+		yml_content <- list(book_filename = "x")
+	}
+	yml_content[["book_filename"]] <- bookname
+	yaml::write_yaml(yml_content, tmp_yml)
+	return(tmp_yml)
 }

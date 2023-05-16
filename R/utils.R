@@ -18,45 +18,45 @@
 #' @param ... Additional arguments passed to \code{\link[bookdown]{pdf_book}}.
 #' @export
 techreport_pdf <- function(latex_engine = c("lualatex", "pdflatex"),
-                           pandoc_args = c(
-                             "--top-level-division=section", "--wrap=none", "--default-image-extension=png"
-                           ),
-                           ...) {
-  latex_engine <- match.arg(latex_engine, several.ok = FALSE)
-  file <- system.file("rmarkdown", "templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
+	pandoc_args = c(
+		"--top-level-division=section", "--wrap=none", "--default-image-extension=png"
+	),
+	...) {
+	latex_engine <- match.arg(latex_engine, several.ok = FALSE)
+	file <- system.file("rmarkdown", "templates", "sa", "resources", "sadraft.tex", package = "sa4ss")
 
-  base <- bookdown::pdf_book(
-    template = file,
-    keep_tex = TRUE,
-    keep_md = TRUE,
-    pandoc_args = pandoc_args,
-    latex_engine = latex_engine,
-    ...
-  )
+	base <- bookdown::pdf_book(
+		template = file,
+		keep_tex = TRUE,
+		keep_md = TRUE,
+		pandoc_args = pandoc_args,
+		latex_engine = latex_engine,
+		...
+	)
 
-  base$knitr$opts_chunk$comment <- NA
-  old_opt <- getOption("bookdown.post.latex")
-  on.exit(options(bookdown.post.late = old_opt))
-  base
+	base$knitr$opts_chunk$comment <- NA
+	old_opt <- getOption("bookdown.post.latex")
+	on.exit(options(bookdown.post.late = old_opt))
+	base
 }
 
 inject_refstepcounters <- function(x) {
-  chpts <- grep("^\\\\starredchapter\\{", x)
-  for (i in chpts) {
-    # in very rare setups hypertarget doesn't appear(?):
-    .i <- if (grepl("hypertarget", x[i - 1])) i else i + 1
-    x <- c(
-      x[seq(1, .i - 3)],
-      paste0(x[.i - 2], "\n\n\\clearpage\n\n\\refstepcounter{chapter}"),
-      x[seq(.i - 1, length(x))]
-    )
-  }
-  x
+	chpts <- grep("^\\\\starredchapter\\{", x)
+	for (i in chpts) {
+		# in very rare setups hypertarget doesn't appear(?):
+		.i <- if (grepl("hypertarget", x[i - 1])) i else i + 1
+		x <- c(
+			x[seq(1, .i - 3)],
+			paste0(x[.i - 2], "\n\n\\clearpage\n\n\\refstepcounter{chapter}"),
+			x[seq(.i - 1, length(x))]
+		)
+	}
+	x
 }
 
 
 is_windows <- function() {
-  identical(.Platform$OS.type, "windows")
+	identical(.Platform$OS.type, "windows")
 }
 
 #' Check to make sure index.Rmd contains all current YAML options
@@ -71,18 +71,18 @@ is_windows <- function() {
 #'
 #' @export
 check_yaml <- function(type = "resdoc") {
-  x_skeleton <- names(rmarkdown::yaml_front_matter(
-    system.file("rmarkdown", "templates", "resdoc", "skeleton", "skeleton.Rmd",
-      package = "csasdown"
-    )
-  ))
-  x_index <- names(rmarkdown::yaml_front_matter("index.Rmd"))
-  .diff <- setdiff(x_skeleton, x_index)
-  if (length(.diff) > 0L) {
-    stop("Your `index.Rmd` file is missing: ", paste(.diff, collapse = ", "), ".")
-  } else {
-    message("Your `index.Rmd` file contains all necessary YAML options.")
-  }
+	x_skeleton <- names(rmarkdown::yaml_front_matter(
+		system.file("rmarkdown", "templates", "resdoc", "skeleton", "skeleton.Rmd",
+			package = "csasdown"
+		)
+	))
+	x_index <- names(rmarkdown::yaml_front_matter("index.Rmd"))
+	.diff <- setdiff(x_skeleton, x_index)
+	if (length(.diff) > 0L) {
+		stop("Your `index.Rmd` file is missing: ", paste(.diff, collapse = ", "), ".")
+	} else {
+		message("Your `index.Rmd` file contains all necessary YAML options.")
+	}
 }
 
 #' Creates a temporary directory for compiling the latex file with latex commands for a csasdown type
@@ -110,45 +110,45 @@ check_yaml <- function(type = "resdoc") {
 #' setwd(root_dir)
 #' }
 create_tempdir_for_latex <- function(type = NULL,
-                                     where = "r",
-                                     tmp_dir = NULL,
-                                     root_dir = here::here()) {
-  stopifnot(type == "resdoc" ||
-    type == "sr" ||
-    type == "techreport")
-  stopifnot(where == "r" ||
-    where == "b")
+	where = "r",
+	tmp_dir = NULL,
+	root_dir = here::here()) {
+	stopifnot(type == "resdoc" ||
+		type == "sr" ||
+		type == "techreport")
+	stopifnot(where == "r" ||
+		where == "b")
 
-  if (is.null(tmp_dir)) {
-    tmp_dir <- tempdir()
-  }
+	if (is.null(tmp_dir)) {
+		tmp_dir <- tempdir()
+	}
 
-  copy_dir <- function(from_dir, to_dir, recursive = TRUE) {
-    dir.create(to_dir, showWarnings = FALSE)
-    to_dir <- file.path(to_dir, from_dir)
-    dir.create(to_dir, showWarnings = FALSE)
-    from_dir <- file.path(root_dir, from_dir)
-    from_files <- file.path(from_dir, dir(from_dir))
-    invisible(file.copy(from_files, to_dir, recursive = recursive))
-  }
+	copy_dir <- function(from_dir, to_dir, recursive = TRUE) {
+		dir.create(to_dir, showWarnings = FALSE)
+		to_dir <- file.path(to_dir, from_dir)
+		dir.create(to_dir, showWarnings = FALSE)
+		from_dir <- file.path(root_dir, from_dir)
+		from_files <- file.path(from_dir, dir(from_dir))
+		invisible(file.copy(from_files, to_dir, recursive = recursive))
+	}
 
-  # Copy required directories and files recursively
-  copy_dir("csas-style", tmp_dir)
-  copy_dir("knitr-cache-pdf", tmp_dir)
-  copy_dir("knitr-cache-word", tmp_dir)
-  copy_dir("knitr-figs-pdf", tmp_dir)
-  copy_dir("knitr-figs-word", tmp_dir)
+	# Copy required directories and files recursively
+	copy_dir("csas-style", tmp_dir)
+	copy_dir("knitr-cache-pdf", tmp_dir)
+	copy_dir("knitr-cache-word", tmp_dir)
+	copy_dir("knitr-figs-pdf", tmp_dir)
+	copy_dir("knitr-figs-word", tmp_dir)
 
-  # Copy the TEX file
-  tex_file_name <- paste0(type, ".tex")
-  if (where == "b") {
-    tex_file <- file.path(root_dir, "_book", tex_file_name)
-  } else if (where == "r") {
-    tex_file <- file.path(root_dir, tex_file_name)
-  }
-  if (!file.exists(tex_file)) {
-    stop(paste0(type, ".tex"), " does not exist in the ", ifelse(where == "b", "_book", "root"), " directory")
-  }
-  invisible(file.copy(tex_file, tmp_dir))
-  tmp_dir
+	# Copy the TEX file
+	tex_file_name <- paste0(type, ".tex")
+	if (where == "b") {
+		tex_file <- file.path(root_dir, "_book", tex_file_name)
+	} else if (where == "r") {
+		tex_file <- file.path(root_dir, tex_file_name)
+	}
+	if (!file.exists(tex_file)) {
+		stop(paste0(type, ".tex"), " does not exist in the ", ifelse(where == "b", "_book", "root"), " directory")
+	}
+	invisible(file.copy(tex_file, tmp_dir))
+	tmp_dir
 }
