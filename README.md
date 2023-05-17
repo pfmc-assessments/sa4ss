@@ -6,6 +6,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/pfmc-assessments/sa4ss/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pfmc-assessments/sa4ss/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/pfmc-assessments/sa4ss/branch/main/graph/badge.svg)](https://app.codecov.io/gh/pfmc-assessments/sa4ss)
 <!-- badges: end -->
 
 # Table of contents
