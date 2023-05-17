@@ -14,8 +14,8 @@ add_figure(
 )
 }
 \arguments{
-\item{filein}{The path of the figure to be added (e.g., "C:\\My figure
-directory\\plot.png").}
+\item{filein}{The path of the figure to be added (e.g.,
+\code{"C:\\\\My figure directory\\\\plot.png"}).}
 
 \item{caption}{A character string providing the figure caption that will be
 added below the figure in the document. A default text string is provided,
@@ -51,23 +51,22 @@ specific to the document being rendered, i.e., where
 latex.
 }
 \description{
-Concatenate input regarding a specified figure with
-the caption, alternative caption for accessibility, and
-reference label.
+Concatenate input regarding a specified figure with the caption, alternative
+caption for accessibility, and reference label.
 }
 \details{
-Translation of code from markdown to tex is developing for figures
-as more and more features for accessibility are developed. This code offers
-a way to ensure that your figures are coded in the resulting .tex file such
-that they are most likely to take advantage of the latest and greatest
-features available. For example, when this function was written, alternative
-text via rmarkdown chunks was not an option. Instead, the insertion of a
-figure used html code. Now, for pdf files, there are tagging capabilities
-such that screen readers can access the alternative text without any
-post-processing of files if the .tex structure is set up properly. Thus,
-rather than constantly having to change your document ... just rely on
-the code within in this function to ensure that your .tex files are up to
-date. Happy texting!
+Translation of code from markdown to tex is developing for figures as more
+and more features for accessibility are developed. This code offers a way to
+ensure that your figures are coded in the resulting .tex file such that they
+are most likely to take advantage of the latest and greatest features
+available. For example, when this function was written, alternative text via
+rmarkdown chunks was not an option. Instead, the insertion of a figure used
+html code. Now, for pdf files, there are tagging capabilities such that
+screen readers can access the alternative text without any post-processing
+of files if the .tex structure is set up properly. Thus, rather than
+constantly having to change your document ... just rely on the code within
+in this function to ensure that your .tex files are up to date. Happy
+texting!
 
 For potentially more information see the \href{www.github.com/pfmc-assessments/sa4ss/discussions}{GitHub Discussion Board} and search for
 accessibility.
@@ -76,21 +75,21 @@ accessibility.
 \dontrun{
 
 # See below for how to include this function in your .Rmd file.
-
-```{r, results = 'asis'}
-add_figure(
-  filein = file.path(
-    "My figure directory",
-    "plots",
-    "ts7_Spawning_output.png"
-  ),
-  caption = "Spawning output time series.",
-  alt_caption = NULL,
-  label = "ssb",
-  width = 100,
-  height = 100
-)
-```
+#
+# ```{r, results = 'asis'}
+# add_figure(
+#   filein = file.path(
+#     "My figure directory",
+#     "plots",
+#     "ts7_Spawning_output.png"
+#   ),
+#   caption = "Spawning output time series.",
+#   alt_caption = NULL,
+#   label = "ssb",
+#   width = 100,
+#   height = 100
+# )
+# ```
 }
 
 }
