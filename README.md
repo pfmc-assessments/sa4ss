@@ -4,6 +4,10 @@
 > this R library that can be used to summarize output from [Stock
 > Synthesis][ss3] in .pdf form.
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/pfmc-assessments/sa4ss/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pfmc-assessments/sa4ss/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 # Table of contents
 
 * [Rationale](#rationale)
@@ -203,7 +207,10 @@ Back to [table of contents](#table-of-contents)
 
 ## Code of Conduct
 
-Please note that the sa4ss project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+This project adheres to the [National Marine Fisheries Service fish tools code
+of
+conduct](https://github.com/nmfs-fish-tools/Resources/blob/main/CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
 
 # Disclaimer
 
