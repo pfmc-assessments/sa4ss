@@ -8,18 +8,18 @@ read_model(
   mod_loc,
   save_loc = NULL,
   plotfolder = "plots",
-  printstats = lifecycle::deprecated(),
+  printstats = deprecated(),
   fecund_mult = "million eggs",
   create_plots = TRUE,
-  png = lifecycle::deprecated(),
-  html = lifecycle::deprecated(),
-  datplot = lifecycle::deprecated(),
+  png = deprecated(),
+  html = deprecated(),
+  datplot = deprecated(),
   fleetnames = NULL,
   forecastplot = TRUE,
   maxrows = 4,
   maxcols = 4,
   bub_scale = 6,
-  create_tables = lifecycle::deprecated(),
+  create_tables = deprecated(),
   ci_value = 0.95,
   es_only = FALSE,
   tables = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "catch", "timeseries",
@@ -152,13 +152,13 @@ Thus, saving users from having to perform multiple similar calculations.
 \examples{
 \dontrun{
 simplemod_loc <- tail(dir(
-  pattern = "simple",
-  system.file("extdata", package = "r4ss"),
-  full.names = TRUE
+	pattern = "simple",
+	system.file("extdata", package = "r4ss"),
+	full.names = TRUE
 ), 1)
 sa4ss::read_model(
-  mod_loc = simplemod_loc,
-  fecund_mult = "billion eggs"
+	mod_loc = simplemod_loc,
+	fecund_mult = "billion eggs"
 )
 }
 }
