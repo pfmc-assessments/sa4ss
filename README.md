@@ -1,4 +1,4 @@
-# sa4ss
+# sa4ss <a href='https://github.com/pfmc-assessments/sa4ss'><img src='inst/logo/sa4ss.png' align="right" height="139" alt="sa4ss logo with braille 'accessible science for all'"/></a>
 
 > Accessible science for all is the motto of sa4ss and underpins the code in
 > this R library that can be used to summarize output from [Stock
@@ -14,6 +14,7 @@
 sa4ss was created to ease some of the tedious overhead put on analysts when
 creating stock assessment documents for the [Pacific Fishery Management
 Council](www.pcouncil.org). The package provides
+
 1. a consistent structure to ease reviewer fatigue,
 1. generic text for sections that are consistent across populations,
 1. imbedded functionality to create pdf that is accessible to those with
@@ -83,18 +84,18 @@ can build a document it is wise to work through the following steps:
 2. Pandoc
   * If you do not already have Pandoc on your computer, then you will need to
     install it using the following directions:
-    1. via R terminal or Rstudio:
+    * via R terminal or Rstudio:
       * `rmarkdown::pandoc_available()`;
       * if the result is `TRUE`, you deserve a :trophy:; move on to the section on
         rtools;
-      * if the result if `FALSE`, try adding Pandoc to your path.
+      * if the result is `FALSE`, try adding Pandoc to your path.
       `rmarkdown::pandoc_exec()` will show the path that needs to be added if
       Pandoc is installed. You can 'edit environment variables for your account'
       without needing IT.
-    1. if the previous step is not successful, then you will need to install
+    * if the previous step is not successful, then you will need to install
       [Pandoc](https://pandoc.org/installing.html).
-    1. restart R so new path variables are found!
-    1. rinse and repeat until successful.
+    * restart R so new path variables are found!
+    * rinse and repeat until successful.
 3. rtools
   * If you are using Windows, please make sure that you have rtools installed
     on your machine prior to using sa4ss. I do **NOT** recommend rtools40,
@@ -110,7 +111,7 @@ can build a document it is wise to work through the following steps:
     `*\rtools42\x86_64-w64-mingw32.static.posix\bin` is added to your path.
 4. sa4ss package
   * Install sa4ss
-    * :stop:, do you have a GitHub personal access token (PAT)? GitHub PATs will stop
+    * :stop_sign:, do you have a GitHub personal access token (PAT)? GitHub PATs will stop
       you from running into issues surrounding rate limits for GitHub. If you do not
       have a PAT, please see navigate to the instructions for [creating a personal
       access token](
