@@ -1,4 +1,4 @@
-# sa4ss <a href='https://github.com/pfmc-assessments/sa4ss'><img src='inst/logo/sa4ss.png' align="right" height="139" alt="sa4ss logo with braille 'accessible science for all'"/></a>
+# sa4ss
 
 > Accessible science for all is the motto of sa4ss and underpins the code in
 > this R library that can be used to summarize output from [Stock
@@ -9,15 +9,7 @@
 [![codecov](https://codecov.io/gh/pfmc-assessments/sa4ss/branch/main/graph/badge.svg)](https://app.codecov.io/gh/pfmc-assessments/sa4ss)
 <!-- badges: end -->
 
-# Table of contents
-
-* [Rationale](#rationale)
-* [User community](#user-community)
-* [Example](#example)
-* [Tips](#tips)
-* [Disclaimer](#disclaimer)
-
-# Rationale
+## Rationale
 
 sa4ss was created to ease some of the tedious overhead put on analysts when
 creating stock assessment documents for the [Pacific Fishery Management
@@ -30,9 +22,9 @@ Council](www.pcouncil.org). The package provides
 1. an infrastructure to reduce the time  needed to create an assessment
    relative to creating a document from scratch.
 
-Back to [table of contents](#table-of-contents)
+Back to [top](#sa4ss)
 
-# User community
+## User community
 
 The package is intended for use by analysts within the Northwest and Southwest
 Fisheries Science Centers but has also been augmented for use by those working
@@ -53,9 +45,9 @@ facilitate searching within issues. Before you create an issue, please
 package before posting an issue, see the [example](#example) for how to do this
 without needing to restart your R session.
 
-Back to [table of contents](#table-of-contents)
+Back to [top](#sa4ss)
 
-# Example
+## Example
 
 Below is a minimal example to familiarize yourself with using sa4ss. Before you
 can build a document it is wise to work through the following steps:
@@ -159,14 +151,14 @@ bookdown::render_book("00a.Rmd", clean = FALSE, output_dir = getwd())
 setwd("..")
 ```
 
-Back to [table of contents](#table-of-contents)
+Back to [top](#sa4ss)
 
-# Tips
+## Tips
 
 * [CTAN glossaries package](#ctan-glossaries-package)
 * [Adding a figure to your title page](#adding-a-figure-to-your-title-page)
 
-## CTAN glossaries package
+### CTAN glossaries package
 
 The [glossaries package][glossaries] on [CTAN][ctan] can help organize
 acronyms. It works by using a [master list of acronyms supplied in sa4ss](
@@ -190,9 +182,9 @@ where each function for generating text is explained. In short,
   * `glsentryshort{<label>}`: displays the short version and can be used in a header; and
   * `glsentrylong{<label>}`: displays the long version and can be used in a header.
 
-Back to [table of contents](#table-of-contents)
+Back to [top](#sa4ss)
 
-## Adding a figure to your title page
+### Adding a figure to your title page
 
 You can add a figure to your title page by including `figure_title.png` in the
 directory that stores all of your .Rmd files, which is typically called
@@ -204,7 +196,7 @@ present and a default figure is not included in the package. Thanks to
 https://tex.stackexchange.com/questions/95400/how-to-check-image-exists-or-not)
 for providing the code for the if statement.
 
-Back to [table of contents](#table-of-contents)
+Back to [top](#sa4ss)
 
 ## Code of Conduct
 
@@ -213,7 +205,7 @@ of
 conduct](https://github.com/nmfs-fish-tools/Resources/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
-# Disclaimer
+## Disclaimer
 
 This repository is a scientific product and is not official communication of
 the National Oceanic and Atmospheric Administration, or the United States
@@ -234,4 +226,4 @@ or activity by DOC or the United States Government.
 [tinytex]: <https://yihui.org/tinytex> "tinytex website"
 [tinytex_zip]: <https://yihui.org/tinytex/TinyTeX-2.exe> "Download tinytex zip file"
 
-Back to [table of contents](#table-of-contents)
+Back to [top](#sa4ss)
