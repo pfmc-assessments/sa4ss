@@ -1,4 +1,4 @@
-# sa4ss <a href='https://github.com/pfmc-assessments/sa4ss'><img src='inst/logo/sa4ss.png' align="right" height="139" alt="sa4ss logo with braille 'accessible science for all'"/></a>
+# sa4ss <a href='https://github.com/pfmc-assessments/sa4ss'><img src='man/figures/sa4ss.png' align="right" height="139" alt="sa4ss logo with braille 'accessible science for all'"/></a>
 
 > Accessible science for all is the motto of sa4ss and underpins the code in
 > this R library that can be used to summarize output from [Stock
