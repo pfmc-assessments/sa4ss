@@ -67,9 +67,162 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="sa4ss">sa4ss<a class="anchor" aria-label="anchor" href="#sa4ss"></a>
+<div class="page-header"><h1 id="sa4ss-">sa4ss <a href="https://github.com/pfmc-assessments/sa4ss" class="external-link"><img src="inst/logo/sa4ss.png" align="right" height="139" alt="sa4ss logo with braille 'accessible science for all'"></a>
+<a class="anchor" aria-label="anchor" href="#sa4ss-"></a>
 </h1></div>
-<p>An R package.</p>
+<blockquote>
+<p>Accessible science for all is the motto of sa4ss and underpins the code in this R library that can be used to summarize output from <a href="https://github.com/nmfs-stock-synthesis/stock-synthesis" title="Stock Synthesis code base" class="external-link">Stock Synthesis</a> in .pdf form.</p>
+</blockquote>
+<!-- badges: start -->
+
+<div class="section level2">
+<h2 id="rationale">Rationale<a class="anchor" aria-label="anchor" href="#rationale"></a>
+</h2>
+<p>sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the <a href="www.pcouncil.org">Pacific Fishery Management Council</a>. The package provides</p>
+<ol style="list-style-type: decimal">
+<li>a consistent structure to ease reviewer fatigue,</li>
+<li>generic text for sections that are consistent across populations,</li>
+<li>imbedded functionality to create pdf that is accessible to those with disabilities according to <a href="https://libguides.library.noaa.gov/Section508" class="external-link">NOAA’s guidance for 508 compliance</a>, and</li>
+<li>an infrastructure to reduce the time needed to create an assessment relative to creating a document from scratch.</li>
+</ol>
+<p>Back to <a href="#sa4ss">top</a></p>
+</div>
+<div class="section level2">
+<h2 id="user-community">User community<a class="anchor" aria-label="anchor" href="#user-community"></a>
+</h2>
+<p>The package is intended for use by analysts within the Northwest and Southwest Fisheries Science Centers but has also been augmented for use by those working at the Alaska Fisheries Science Center.</p>
+<p>Regardless of your affiliation, please feel free to post any issues regarding the package to the <a href="https://github.com/pfmc-assessments/sa4ss/issues" class="external-link">GitHub issues page</a> and any questions regarding how to use the package to the <a href="https://github.com/pfmc-assessments/sa4ss/discussions" class="external-link">GitHub discussion board</a>. Tags are available to mark your issue with an appropriate category. These categories are instrumental for providing guidance to the package maintainers regarding how to respond your issue and to other users that follow this repository where they facilitate searching within issues. Before you create an issue, please 1. try the <a href="#example">example</a> to determine if the package works for you in general; 1. if the <a href="#example">example</a> doesn’t work, then please try to reinstall the package before posting an issue, see the <a href="#example">example</a> for how to do this without needing to restart your R session.</p>
+<p>Back to <a href="#sa4ss">top</a></p>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>Below is a minimal example to familiarize yourself with using sa4ss. Before you can build a document it is wise to work through the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>tinytex</li>
+</ol>
+<ul>
+<li>sa4ss will only work if you have lualatex installed on your computer. Thankfully, the R package tinytex contains this compiler. lualatex is not standard, typically R users use pdflatex though they do not know it <span class="emoji" data-emoji="smile">😄</span>. If you do not already have tinytex on your computer, run the following in an R session.</li>
+<li><code>pak::pkg_install("rstudio/tinytex")</code></li>
+<li><code>tinytex::install_tinytex(bundle = "TinyTeX-2")</code></li>
+<li>If you experience issues with the previous code it is more than likely due to firewall or other security settings. These settings can prevent R from downloading of the <a href="https://yihui.org/tinytex/TinyTeX-2.exe" title="Download tinytex zip file" class="external-link">zipped distribution</a> from the <a href="https://yihui.org/tinytex" title="tinytex website" class="external-link">tinytex website</a>. I tried downloading the <a href="https://yihui.org/tinytex/TinyTeX-2.exe" title="Download tinytex zip file" class="external-link">exe file</a> myself and found that an anti-virus application was stopping my computer from accessing the file. Automated prompts helped me change the settings on my computer that allows <a href="https://yihui.org/tinytex" title="tinytex website" class="external-link">tinytex</a> access to the website. The previous code worked after having to restart R.</li>
+<li>If you already have tinytex, you can use <code>packageVersion("tinytex")</code> to determine which version you have and <code>packageDate("tinytex")</code> to determine when it was compiled. Use your best judgment to determine if you should update it or not. I error on the side of updating too often.</li>
+<li><code>tinytex::reinstall_tinytex(bundle = "TinyTeX-2")</code></li>
+<li>Personally, I like to have the full distribution of TexLive on my machine rather than the version distributed by tinytex when using the default call to <code>bundle</code> of <code>"TinyTeX-1"</code> because then I know that I have all the packages that I need. This is especially true for compiling documents that are accessible to those with disabilities as the LaTeX 3 kernel is changing on a daily basis. <code>"TinyTeX-2"</code> will install all packages much like the full distribution of TexLive.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Pandoc</li>
+</ol>
+<ul>
+<li>If you do not already have Pandoc on your computer, then you will need to install it using the following directions:
+<ul>
+<li>via R terminal or Rstudio:
+<ul>
+<li>
+<code><a href="https://pkgs.rstudio.com/rmarkdown/reference/pandoc_available.html" class="external-link">rmarkdown::pandoc_available()</a></code>;</li>
+<li>if the result is <code>TRUE</code>, you deserve a <span class="emoji" data-emoji="trophy">🏆</span>; move on to the section on rtools;</li>
+<li>if the result is <code>FALSE</code>, try adding Pandoc to your path. <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/pandoc_exec.html" class="external-link">rmarkdown::pandoc_exec()</a></code> will show the path that needs to be added if Pandoc is installed. You can ‘edit environment variables for your account’ without needing IT.</li>
+</ul>
+</li>
+<li>if the previous step is not successful, then you will need to install <a href="https://pandoc.org/installing.html" class="external-link">Pandoc</a>.</li>
+<li>restart R so new path variables are found!</li>
+<li>rinse and repeat until successful.</li>
+</ul>
+</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>rtools</li>
+</ol>
+<ul>
+<li>If you are using Windows, please make sure that you have rtools installed on your machine prior to using sa4ss. I do <strong>NOT</strong> recommend rtools40, which was previous to rtools42. You should be using at least R 4.2, which requires rtools42.</li>
+<li>Many think that rtools is just for building packages but it provides a lot of functionality with respect to compiling anything such as TMB. You can check if you have it already with <code><a href="https://r-lib.github.io/pkgbuild/reference/has_rtools.html" class="external-link">pkgbuild::rtools_path(); Sys.getenv("RTOOLS42_HOME")</a></code>
+</li>
+<li>
+<a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Instructions for downloading rtools</a> will help you download it but ensuring that your path is modified properly will be up to you. Please make sure that at least the folder within rtools42 named <code>*\rtools42\x86_64-w64-mingw32.static.posix\bin</code> is added to your path.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>sa4ss package</li>
+</ol>
+<ul>
+<li>Install sa4ss
+<ul>
+<li>
+<span class="emoji" data-emoji="stop_sign">🛑</span>, do you have a GitHub personal access token (PAT)? GitHub PATs will stop you from running into issues surrounding rate limits for GitHub. If you do not have a PAT, please see navigate to the instructions for <a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token" class="external-link">creating a personal access token</a>. Also, before downloading and installing sa4ss, ensure that you do not already have it in your workspace. The first line of code below does that for you. Also, I like using {pak} rather than {remotes} for installing packages but either will work.</li>
+<li><code>tryCatch(expr = pkgload::unload("sa4ss"), error = function(x) "")</code></li>
+<li><code>pak::pkg_install("pfmc-assessments/sa4ss")</code></li>
+</ul>
+</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Create a pdf</li>
+</ol>
+<ul>
+<li>As a first test, you will want to run <code><a href="reference/session_test.html">sa4ss::session_test()</a></code> to ensure that sa4ss works on your machine.</li>
+<li>Next, you can try building your own pdf. The following code will set up your machine to start your own stock assessment document from which you can build upon. You only have to run <code>draft</code> once, but the call to <code>bookdown</code> will be your go-to function to compile the document after you update any of the files. The resulting pdf (i.e., <code>_main.pdf</code>) will be located within the directory doc because I have set <code>create_dir</code> to be <code>TRUE</code>. If you set it to be <code>FALSE</code> then it will save the files to your current working directory.</li>
+<li>You can compare this user-generated pdf to the one generated automatically within the package when tests are run to ensure that the package is not broken. To find the stored pdf,
+<ul>
+<li>first navigate to <a href="https://github.com/pfmc-assessments/sa4ss/actions/workflows/bookdown.yaml" class="external-link">‘bookdown’ workflow</a> on GitHub actions;</li>
+<li>find the most recent job that was run (i.e., top of the list) and click on the name, which will be the name of the most recent commit;</li>
+<li>scroll to the bottom of the page under the Artifacts label, where you can download the zip file called <code>_main.pdf</code> that includes the md, tex, and pdf files.</li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pfmc-assessments/sa4ss" class="external-link">sa4ss</a></span><span class="op">)</span></span>
+<span><span class="fu">sa4ss</span><span class="fu">::</span><span class="fu"><a href="reference/draft.html">draft</a></span><span class="op">(</span>authors <span class="op">=</span> <span class="st">"Kelli F. Johnson"</span>, create_dir <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="st">"doc"</span><span class="op">)</span></span>
+<span><span class="fu">bookdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/bookdown/reference/render_book.html" class="external-link">render_book</a></span><span class="op">(</span><span class="st">"00a.Rmd"</span>, clean <span class="op">=</span> <span class="cn">FALSE</span>, output_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="st">".."</span><span class="op">)</span></span></code></pre></div>
+<p>Back to <a href="#sa4ss">top</a></p>
+</div>
+<div class="section level2">
+<h2 id="tips">Tips<a class="anchor" aria-label="anchor" href="#tips"></a>
+</h2>
+<ul>
+<li><a href="#ctan-glossaries-package">CTAN glossaries package</a></li>
+<li><a href="#adding-a-figure-to-your-title-page">Adding a figure to your title page</a></li>
+</ul>
+<div class="section level3">
+<h3 id="ctan-glossaries-package">CTAN glossaries package<a class="anchor" aria-label="anchor" href="#ctan-glossaries-package"></a>
+</h3>
+<p>The <a href="https://ctan.org/pkg/glossaries?lang=en" title="Glossaries package on CTAN" class="external-link">glossaries package</a> on <a href="https://ctan.org/" title="The Comprehensive TEX Archive Network" class="external-link">CTAN</a> can help organize acronyms. It works by using a <a href="https://github.com/pfmc-assessments/sa4ss/blob/master/inst/rmarkdown/templates/sa/skeleton/sa4ss_glossaries.tex" class="external-link">master list of acronyms supplied in sa4ss</a> and <code>\gls{}</code>, which will be the main function that you use in your text. Glossaries will determine if the term should be abbreviated or if the long form should be used, where it automatically will use the long form if it is the first instance. This functionality is helpful when you have code split amongst multiple files, you expect text to be moved around in the future, you want to standardize the way things are written, your document has multiple authors.</p>
+<p>For more information please see page 16 of the <a href="https://ctan.math.illinois.edu/macros/latex/contrib/glossaries/glossariesbegin.pdf" class="external-link">glossaries for beginners guide</a> where each function for generating text is explained. In short,</p>
+<ul>
+<li>
+<code>gls{&lt;label&gt;}</code>: displays the long form in its first use and short form thereafter;</li>
+<li>
+<code>glspl{&lt;label&gt;}</code>: displays the plural version;</li>
+<li>
+<code>Gls{&lt;label&gt;}</code>: displays an uppercase version for the beginning of a sentence;</li>
+<li>
+<code>Glspl{&lt;label&gt;}</code>: displays the plural form of the uppercase version;</li>
+<li>
+<code>glsentryshort{&lt;label&gt;}</code>: displays the short version and can be used in a header; and</li>
+<li>
+<code>glsentrylong{&lt;label&gt;}</code>: displays the long version and can be used in a header.</li>
+</ul>
+<p>Back to <a href="#sa4ss">top</a></p>
+</div>
+<div class="section level3">
+<h3 id="adding-a-figure-to-your-title-page">Adding a figure to your title page<a class="anchor" aria-label="anchor" href="#adding-a-figure-to-your-title-page"></a>
+</h3>
+<p>You can add a figure to your title page by including <code>figure_title.png</code> in the directory that stores all of your .Rmd files, which is typically called <code>doc(s)</code>. This figure will be centered, placed below your title, and will be four inches wide. For those that do not want a figure on your title page, just do nothing. The use of an if statement only includes the figure if it is present and a default figure is not included in the package. Thanks to <a href="https://tex.stackexchange.com/questions/95400/how-to-check-image-exists-or-not" class="external-link">stack exchange</a> for providing the code for the if statement.</p>
+<p>Back to <a href="#sa4ss">top</a></p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>This project adheres to the <a href="https://github.com/nmfs-fish-tools/Resources/blob/main/CODE_OF_CONDUCT.md" class="external-link">National Marine Fisheries Service fish tools code of conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+</div>
+<div class="section level2">
+<h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
+</h2>
+<p>This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.</p>
+<p>Back to <a href="#sa4ss">top</a></p>
+<p><img src="https://raw.githubusercontent.com/nmfs-general-modeling-tools/nmfspalette/main/man/figures/noaa-fisheries-rgb-2line-horizontal-small.png" height="75" alt="NOAA Fisheries"></p>
+<p><a href="https://www.commerce.gov/" class="external-link">U.S. Department of Commerce</a> | <a href="https://www.noaa.gov" class="external-link">National Oceanographic and Atmospheric Administration</a> | <a href="https://www.fisheries.noaa.gov/" class="external-link">NOAA Fisheries</a></p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -103,7 +256,13 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/pfmc-assessments/sa4ss/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pfmc-assessments/sa4ss/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/pfmc-assessments/sa4ss" class="external-link"><img src="https://codecov.io/gh/pfmc-assessments/sa4ss/branch/main/graph/badge.svg" alt="codecov"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
