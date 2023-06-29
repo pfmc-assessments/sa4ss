@@ -11,25 +11,26 @@
 
 ## Rationale
 
-sa4ss was created to ease some of the tedious overhead put on analysts when
-creating stock assessment documents for the [Pacific Fishery Management
+sa4ss was created to ease some of the tedious overhead that comes with producing
+status updates of marine species for the [Pacific Fishery Management
 Council](www.pcouncil.org). The package provides
 
 1. a consistent structure to ease reviewer fatigue,
 1. generic text for sections that are consistent across populations,
-1. imbedded functionality to create pdf that is accessible to those with
-   disabilities according to [NOAA's guidance for 508
+1. imbedded functionality that works towards creating a tagged pdf that is
+   readable via a screen reader and fulfills [NOAA's guidance regarding 508 
    compliance](https://libguides.library.noaa.gov/Section508), and
-1. an infrastructure to reduce the time  needed to create an assessment
-   relative to creating a document from scratch.
+1. an infrastructure to reduce the time  needed to create a document
+   relative to creating it from scratch.
 
 Back to [top](#sa4ss)
 
 ## User community
 
 The package is intended for use by analysts within the Northwest and Southwest
-Fisheries Science Centers but has also been augmented for use by those working
-at the Alaska Fisheries Science Center.
+Fisheries Science Centers but the developers are happy to entertain ideas
+regarding future development scenarios that could facilitate adding additional
+templates that would be useful to others.
 
 Regardless of your affiliation, please feel free to post any issues regarding
 the package to the [GitHub issues
@@ -38,8 +39,8 @@ regarding how to use the package to the [GitHub discussion
 board](https://github.com/pfmc-assessments/sa4ss/discussions). Tags are
 available to mark your issue with an appropriate category. These categories are
 instrumental for providing guidance to the package maintainers regarding how to
-respond your issue and to other users that follow this repository where they
-facilitate searching within issues. Before you create an issue, please
+respond your issue and to other users that follow this repository. Before you
+create an issue, please
 1. try the [example](#example) to determine if the package works for you in
    general;
 1. if the [example](#example) doesn't work, then please try to reinstall the
@@ -59,28 +60,31 @@ can build a document it is wise to work through the following steps:
     standard, typically R users use pdflatex though they do not know it
     :smile:. If you do not already have tinytex on your computer, run the
     following in an R session.
+  * Software support is only provided for TeXLive, if you are using MikTex the
+    package will not work. Thanksfully {tinytex} is based on TeXLive.
   * `pak::pkg_install("rstudio/tinytex")`
   * `tinytex::install_tinytex(bundle = "TinyTeX-2")`
   * If you experience issues with the previous code it is more than likely due
     to firewall or other security settings. These settings can prevent R from
-    downloading of the [zipped distribution][tinytex_zip] from the [tinytex
+    downloading the [zipped distribution][tinytex_zip] from the [tinytex
     website][tinytex]. I tried downloading the [exe file][tinytex_zip] myself
     and found that an anti-virus application was stopping my computer from
     accessing the file. Automated prompts helped me change the settings on my
-    computer that allows [tinytex][tinytex] access to the website. The previous
-    code worked after having to restart R.
+    computer that allows [tinytex][tinytex] access to the website. After
+    making the necessary changes to my settings and restarting R, I was able
+    use the code above to install the tinytex software.
   * If you already have tinytex, you can use `packageVersion("tinytex")` to
     determine which version you have and `packageDate("tinytex")` to determine when
     it was compiled. Use your best judgment to determine if you should update it or
     not. I error on the side of updating too often.
   * `tinytex::reinstall_tinytex(bundle = "TinyTeX-2")`
-  * Personally, I like to have the full distribution of TexLive on my machine
+  * Personally, I like to have the full distribution of TeXLive on my machine
     rather than the version distributed by tinytex when using the default call
     to `bundle` of `"TinyTeX-1"` because then I know that I have all the
     packages that I need. This is especially true for compiling documents that
     are accessible to those with disabilities as the LaTeX 3 kernel is changing
     on a daily basis. `"TinyTeX-2"` will install all packages much like the
-    full distribution of TexLive.
+    full distribution of TeXLive.
 2. Pandoc
   * If you do not already have Pandoc on your computer, then you will need to
     install it using the following directions:
@@ -118,26 +122,22 @@ can build a document it is wise to work through the following steps:
       https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
       Also, before downloading and installing sa4ss, ensure that you do not already
       have it in your workspace. The first line of code below does that for you.
-      Also, I like using {pak} rather than {remotes} for installing packages but
-      either will work.
+      Also, I like using {pak}, which will eventually replace {remotes}.
     * `tryCatch(expr = pkgload::unload("sa4ss"), error = function(x) "")`
     * `pak::pkg_install("pfmc-assessments/sa4ss")`
 5. Create a pdf
   * As a first test, you will want to run `sa4ss::session_test()` to ensure
     that sa4ss works on your machine.
   * Next, you can try building your own pdf. The following code will set up your
-    machine to start your own stock assessment document from which you can build
-    upon. You only have to run `draft` once, but the call to `bookdown` will be
-    your go-to function to compile the document after you update any of the files.
+    machine with default files. You only have to run `draft()` once, but the call
+    to `bookdown` will be your go-to function cor compiling the document after you
+    update any of the files.
     The resulting pdf (i.e., `_main.pdf`) will be located within the directory doc
     because I have set `create_dir` to be `TRUE`. If you set it to be `FALSE` then
     it will save the files to your current working directory.
-  * You can compare this user-generated pdf to the one generated automatically
-    within the package when tests are run to ensure that the package is not broken.
-    To find the stored pdf,
-    * first navigate to ['bookdown'
+  * See the GitHub acction results from the ['bookdown'
       workflow](https://github.com/pfmc-assessments/sa4ss/actions/workflows/bookdown.yaml)
-      on GitHub actions;
+      for an example pdf;
     * find the most recent job that was run (i.e., top of the list) and click
       on the name, which will be the name of the most recent commit;
     * scroll to the bottom of the page under the Artifacts label, where you can
