@@ -103,20 +103,20 @@
 <div class="section level2">
 <h2 id="rationale">Rationale<a class="anchor" aria-label="anchor" href="#rationale"></a>
 </h2>
-<p>sa4ss was created to ease some of the tedious overhead put on analysts when creating stock assessment documents for the <a href="www.pcouncil.org">Pacific Fishery Management Council</a>. The package provides</p>
+<p>sa4ss was created to ease some of the tedious overhead that comes with producing status updates of marine species for the <a href="www.pcouncil.org">Pacific Fishery Management Council</a>. The package provides</p>
 <ol style="list-style-type: decimal">
 <li>a consistent structure to ease reviewer fatigue,</li>
 <li>generic text for sections that are consistent across populations,</li>
-<li>imbedded functionality to create pdf that is accessible to those with disabilities according to <a href="https://libguides.library.noaa.gov/Section508" class="external-link">NOAA’s guidance for 508 compliance</a>, and</li>
-<li>an infrastructure to reduce the time needed to create an assessment relative to creating a document from scratch.</li>
+<li>imbedded functionality that works towards creating a tagged pdf that is readable via a screen reader and fulfills <a href="https://libguides.library.noaa.gov/Section508" class="external-link">NOAA’s guidance regarding 508 compliance</a>, and</li>
+<li>an infrastructure to reduce the time needed to create a document relative to creating it from scratch.</li>
 </ol>
 <p>Back to <a href="#sa4ss">top</a></p>
 </div>
 <div class="section level2">
 <h2 id="user-community">User community<a class="anchor" aria-label="anchor" href="#user-community"></a>
 </h2>
-<p>The package is intended for use by analysts within the Northwest and Southwest Fisheries Science Centers but has also been augmented for use by those working at the Alaska Fisheries Science Center.</p>
-<p>Regardless of your affiliation, please feel free to post any issues regarding the package to the <a href="https://github.com/pfmc-assessments/sa4ss/issues" class="external-link">GitHub issues page</a> and any questions regarding how to use the package to the <a href="https://github.com/pfmc-assessments/sa4ss/discussions" class="external-link">GitHub discussion board</a>. Tags are available to mark your issue with an appropriate category. These categories are instrumental for providing guidance to the package maintainers regarding how to respond your issue and to other users that follow this repository where they facilitate searching within issues. Before you create an issue, please 1. try the <a href="#example">example</a> to determine if the package works for you in general; 1. if the <a href="#example">example</a> doesn’t work, then please try to reinstall the package before posting an issue, see the <a href="#example">example</a> for how to do this without needing to restart your R session.</p>
+<p>The package is intended for use by analysts within the Northwest and Southwest Fisheries Science Centers but the developers are happy to entertain ideas regarding future development scenarios that could facilitate adding additional templates that would be useful to others.</p>
+<p>Regardless of your affiliation, please feel free to post any issues regarding the package to the <a href="https://github.com/pfmc-assessments/sa4ss/issues" class="external-link">GitHub issues page</a> and any questions regarding how to use the package to the <a href="https://github.com/pfmc-assessments/sa4ss/discussions" class="external-link">GitHub discussion board</a>. Tags are available to mark your issue with an appropriate category. These categories are instrumental for providing guidance to the package maintainers regarding how to respond your issue and to other users that follow this repository. Before you create an issue, please 1. try the <a href="#example">example</a> to determine if the package works for you in general; 1. if the <a href="#example">example</a> doesn’t work, then please try to reinstall the package before posting an issue, see the <a href="#example">example</a> for how to do this without needing to restart your R session.</p>
 <p>Back to <a href="#sa4ss">top</a></p>
 </div>
 <div class="section level2">
@@ -128,12 +128,13 @@
 </ol>
 <ul>
 <li>sa4ss will only work if you have lualatex installed on your computer. Thankfully, the R package tinytex contains this compiler. lualatex is not standard, typically R users use pdflatex though they do not know it <span class="emoji" data-emoji="smile">😄</span>. If you do not already have tinytex on your computer, run the following in an R session.</li>
+<li>Software support is only provided for TeXLive, if you are using MikTex the package will not work. Thanksfully {tinytex} is based on TeXLive.</li>
 <li><code>pak::pkg_install("rstudio/tinytex")</code></li>
 <li><code>tinytex::install_tinytex(bundle = "TinyTeX-2")</code></li>
-<li>If you experience issues with the previous code it is more than likely due to firewall or other security settings. These settings can prevent R from downloading of the <a href="https://yihui.org/tinytex/TinyTeX-2.exe" title="Download tinytex zip file" class="external-link">zipped distribution</a> from the <a href="https://yihui.org/tinytex" title="tinytex website" class="external-link">tinytex website</a>. I tried downloading the <a href="https://yihui.org/tinytex/TinyTeX-2.exe" title="Download tinytex zip file" class="external-link">exe file</a> myself and found that an anti-virus application was stopping my computer from accessing the file. Automated prompts helped me change the settings on my computer that allows <a href="https://yihui.org/tinytex" title="tinytex website" class="external-link">tinytex</a> access to the website. The previous code worked after having to restart R.</li>
+<li>If you experience issues with the previous code it is more than likely due to firewall or other security settings. These settings can prevent R from downloading the <a href="https://yihui.org/tinytex/TinyTeX-2.exe" title="Download tinytex zip file" class="external-link">zipped distribution</a> from the <a href="https://yihui.org/tinytex" title="tinytex website" class="external-link">tinytex website</a>. I tried downloading the <a href="https://yihui.org/tinytex/TinyTeX-2.exe" title="Download tinytex zip file" class="external-link">exe file</a> myself and found that an anti-virus application was stopping my computer from accessing the file. Automated prompts helped me change the settings on my computer that allows <a href="https://yihui.org/tinytex" title="tinytex website" class="external-link">tinytex</a> access to the website. After making the necessary changes to my settings and restarting R, I was able use the code above to install the tinytex software.</li>
 <li>If you already have tinytex, you can use <code>packageVersion("tinytex")</code> to determine which version you have and <code>packageDate("tinytex")</code> to determine when it was compiled. Use your best judgment to determine if you should update it or not. I error on the side of updating too often.</li>
 <li><code>tinytex::reinstall_tinytex(bundle = "TinyTeX-2")</code></li>
-<li>Personally, I like to have the full distribution of TexLive on my machine rather than the version distributed by tinytex when using the default call to <code>bundle</code> of <code>"TinyTeX-1"</code> because then I know that I have all the packages that I need. This is especially true for compiling documents that are accessible to those with disabilities as the LaTeX 3 kernel is changing on a daily basis. <code>"TinyTeX-2"</code> will install all packages much like the full distribution of TexLive.</li>
+<li>Personally, I like to have the full distribution of TeXLive on my machine rather than the version distributed by tinytex when using the default call to <code>bundle</code> of <code>"TinyTeX-1"</code> because then I know that I have all the packages that I need. This is especially true for compiling documents that are accessible to those with disabilities as the LaTeX 3 kernel is changing on a daily basis. <code>"TinyTeX-2"</code> will install all packages much like the full distribution of TeXLive.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Pandoc</li>
@@ -160,7 +161,7 @@
 </ol>
 <ul>
 <li>If you are using Windows, please make sure that you have rtools installed on your machine prior to using sa4ss. I do <strong>NOT</strong> recommend rtools40, which was previous to rtools42. You should be using at least R 4.2, which requires rtools42.</li>
-<li>Many think that rtools is just for building packages but it provides a lot of functionality with respect to compiling anything such as TMB. You can check if you have it already with <code><a href="https://r-lib.github.io/pkgbuild/reference/has_rtools.html" class="external-link">pkgbuild::rtools_path(); Sys.getenv("RTOOLS42_HOME")</a></code>
+<li>Many think that rtools is just for building packages but it provides a lot of functionality with respect to compiling anything such as TMB. You can check if you have it already with <code><a href="https://pkgbuild.r-lib.org/reference/has_rtools.html" class="external-link">pkgbuild::rtools_path(); Sys.getenv("RTOOLS42_HOME")</a></code>
 </li>
 <li>
 <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Instructions for downloading rtools</a> will help you download it but ensuring that your path is modified properly will be up to you. Please make sure that at least the folder within rtools42 named <code>*\rtools42\x86_64-w64-mingw32.static.posix\bin</code> is added to your path.</li>
@@ -172,7 +173,7 @@
 <li>Install sa4ss
 <ul>
 <li>
-<span class="emoji" data-emoji="stop_sign">🛑</span>, do you have a GitHub personal access token (PAT)? GitHub PATs will stop you from running into issues surrounding rate limits for GitHub. If you do not have a PAT, please see navigate to the instructions for <a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token" class="external-link">creating a personal access token</a>. Also, before downloading and installing sa4ss, ensure that you do not already have it in your workspace. The first line of code below does that for you. Also, I like using {pak} rather than {remotes} for installing packages but either will work.</li>
+<span class="emoji" data-emoji="stop_sign">🛑</span>, do you have a GitHub personal access token (PAT)? GitHub PATs will stop you from running into issues surrounding rate limits for GitHub. If you do not have a PAT, please see navigate to the instructions for <a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token" class="external-link">creating a personal access token</a>. Also, before downloading and installing sa4ss, ensure that you do not already have it in your workspace. The first line of code below does that for you. Also, I like using {pak}, which will eventually replace {remotes}.</li>
 <li><code>tryCatch(expr = pkgload::unload("sa4ss"), error = function(x) "")</code></li>
 <li><code>pak::pkg_install("pfmc-assessments/sa4ss")</code></li>
 </ul>
@@ -183,10 +184,9 @@
 </ol>
 <ul>
 <li>As a first test, you will want to run <code><a href="reference/session_test.html">sa4ss::session_test()</a></code> to ensure that sa4ss works on your machine.</li>
-<li>Next, you can try building your own pdf. The following code will set up your machine to start your own stock assessment document from which you can build upon. You only have to run <code>draft</code> once, but the call to <code>bookdown</code> will be your go-to function to compile the document after you update any of the files. The resulting pdf (i.e., <code>_main.pdf</code>) will be located within the directory doc because I have set <code>create_dir</code> to be <code>TRUE</code>. If you set it to be <code>FALSE</code> then it will save the files to your current working directory.</li>
-<li>You can compare this user-generated pdf to the one generated automatically within the package when tests are run to ensure that the package is not broken. To find the stored pdf,
+<li>Next, you can try building your own pdf. The following code will set up your machine with default files. You only have to run <code><a href="reference/draft.html">draft()</a></code> once, but the call to <code>bookdown</code> will be your go-to function cor compiling the document after you update any of the files. The resulting pdf (i.e., <code>_main.pdf</code>) will be located within the directory doc because I have set <code>create_dir</code> to be <code>TRUE</code>. If you set it to be <code>FALSE</code> then it will save the files to your current working directory.</li>
+<li>See the GitHub acction results from the <a href="https://github.com/pfmc-assessments/sa4ss/actions/workflows/bookdown.yaml" class="external-link">‘bookdown’ workflow</a> for an example pdf;
 <ul>
-<li>first navigate to <a href="https://github.com/pfmc-assessments/sa4ss/actions/workflows/bookdown.yaml" class="external-link">‘bookdown’ workflow</a> on GitHub actions;</li>
 <li>find the most recent job that was run (i.e., top of the list) and click on the name, which will be the name of the most recent commit;</li>
 <li>scroll to the bottom of the page under the Artifacts label, where you can download the zip file called <code>_main.pdf</code> that includes the md, tex, and pdf files.</li>
 </ul>
