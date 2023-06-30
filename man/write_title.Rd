@@ -32,24 +32,22 @@ the document though because case will not be altered.}
 the stock assessment includes. For example, \code{"US West"}.
 Do not include \code{"coast"} because it will be added internally.}
 
-\item{year}{A numeric or character string specifying the year.
-The default uses \code{Sys.Date()} to format the year into a four
-digit character value.}
+\item{year}{A numeric or character string specifying the year. The default
+uses \code{\link[=Sys.Date]{Sys.Date()}} to format the year into a four digit character value.}
 
 \item{fileout}{A file path for the file that will be saved to the disk.
 Typically, full or relative paths are allowed.}
 }
 \description{
-Write a file to the disk with the title
-using the yaml form for inclusion in the stock assessment.
+Write a file to the disk with the title using the yaml form for inclusion in
+the stock assessment.
 }
 \details{
-The Latin name as specified in \code{"latin"} argument
-will be encased in underscores to facilitate it being italicized.
-Using emph is not allowed because the tagging structure
-for the creation of the 508 compliant pdf will not render the LaTex
-code here. Nevertheless, the use of markdown inside the yaml seems
-to work just fine.
+The Latin name as specified in \code{"latin"} argument will be encased in
+underscores to facilitate it being italicized. Using emph is not allowed
+because the tagging structure for the creation of the 508 compliant pdf will
+not render the LaTex code here. Nevertheless, the use of markdown inside the
+yaml seems to work just fine.
 }
 \seealso{
 Other write: 

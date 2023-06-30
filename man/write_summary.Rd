@@ -7,16 +7,16 @@
 write_summary(type = c("executive", "onepage"), fileout = "01summaries.Rmd")
 }
 \arguments{
-\item{type}{A vector of the type of summaries you want included in the
-stock assessment document. Current options are listed in the default
-call to \code{write_summary}.}
+\item{type}{A vector of the type of summaries you want included in the stock
+assessment document. Current options are listed in the default call to
+\code{write_summary()}.}
 
 \item{fileout}{A file path for the file that will be saved to the disk.
 Typically, full or relative paths are allowed.}
 }
 \description{
-Write a file to the disk with the title
-using the yaml form for inclusion in the stock assessment.
+Write a file to the disk with the title using the yaml form for inclusion in
+the stock assessment.
 }
 \author{
 Kelli F. Johnson

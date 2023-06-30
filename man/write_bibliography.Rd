@@ -15,9 +15,9 @@ write_bibliography(
 \item{basedirectory}{The directory that you want to look for bib files
 in. If \code{up = 0}, then this will be the only directory that is searched.}
 
-\item{up}{An integer value specifying how many directory levels you want
-to search above \code{basedirectory}.
-The default is to only search the base directory.}
+\item{up}{An integer value specifying how many directory levels you want to
+search above \code{basedirectory}. The default is to only search the base
+directory.}
 
 \item{recursive}{A logical value specifying if each directory should be
 searched for using recursion. The default is to not search recursively
@@ -27,32 +27,29 @@ because you could have other folders higher up that are not relevant.}
 Typically, full or relative paths are allowed.}
 }
 \value{
-A yaml header for markdown either printed to a file or
-returned to the screen if using \code{fileout = stdout()}.
+A yaml header for markdown either printed to a file or returned to the screen
+if using \code{fileout = stdout()}.
 }
 \description{
-Write the yaml header entry for bibliographies based on
-\code{.bib} files found within the directory (\code{basedirectory}).
-Users can also search through higher-level directories using \code{up} and
-lower-level directories using \code{recursive}.
-This function is helpful when using bookdown because you will often
-be sourcing files from multiple levels and have many bibliography files,
-which can all be included in a single call within your yaml header.
-No need to put all references into a single bib file or specify
-the bib files ahead of time. Let us use R for this!
+Write the yaml header entry for bibliographies based on \code{.bib} files found
+within the directory (\code{basedirectory}). Users can also search through
+higher-level directories using \code{up} and lower-level directories using
+\code{recursive}. This function is helpful when using bookdown because you will
+often be sourcing files from multiple levels and have many bibliography
+files, which can all be included in a single call within your yaml header. No
+need to put all references into a single bib file or specify the bib files
+ahead of time. Let us use R for this!
 }
 \details{
-Within this package, note that this function is not currently
-called by any other function, which is fine because each template
-has its own \code{.bib} file.
+Within this package, note that this function is not currently called by any
+other function, which is fine because each template has its own \code{.bib} file.
 You can add \code{.bib} files later by running this function prior to compiling
-your document. Or, you could add it to your index/skeleton.Rmd file
-using a code chunk. For example,
-\code{write_bibliography(getwd(), up = 1)} would update the yaml header
-every time that you compile, but be aware that you will have to run
-\link[bookdown:render_book]{bookdown::render_book} multiple times to get get this to work.
-Developers are working on using the code within the yaml to get it
-to work instantaneously; so, stay tuned.
+your document. Or, you could add it to your index/skeleton.Rmd file using a
+code chunk. For example, \code{write_bibliography(getwd(), up = 1)} would update
+the yaml header every time that you compile, but be aware that you will have
+to run \link[bookdown:render_book]{bookdown::render_book} multiple times to get get this to work.
+Developers are working on using the code within the yaml to get it to work
+instantaneously; so, stay tuned.
 }
 \examples{
 # print the output to the screen rather than save to a file
