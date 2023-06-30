@@ -98,7 +98,10 @@ draft <- function(authors,
 		fileout = file.path(thedir, formals(write_authors)$fileout)
 	)
 	spp <- species
-	Spp <- stringr::str_to_title(spp)
+	# Make the first letter of the first word capital Cannot use title case or
+	# sentence case because I do not want to change the case of the second word,
+	# only the first.
+	Spp <- stringr::str_replace(spp, "^\\w{1}", toupper)
 	spp.sci <- latin
 	save(spp, Spp, spp.sci, coast, authors,
 		file = file.path(thedir, "00opts.Rdata")
