@@ -1,6 +1,6 @@
 Package: sa4ss
 Title: Write Stock Assessments for Stock Synthesis
-Version: 23.0
+Version: 23.1
 Authors@R: c(
     person(c("Kelli", "F."), "Johnson", , "kelli.johnson@noaa.gov", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5149-451X")),
