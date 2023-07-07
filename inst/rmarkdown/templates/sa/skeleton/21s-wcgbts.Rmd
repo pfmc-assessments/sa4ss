@@ -1,8 +1,3 @@
 ### \acrlong{s-wcgbt}
 
-The \Gls{s-wcgbt} is based on a random-grid design;
-covering the coastal waters from a depth of 55-1,280 m [@bradburn_2003_2011].
-This design generally uses four industry-chartered vessels per year assigned to a roughly equal number of randomly selected grid cells and divided into two 'passes' of the coast.
-Two vessels fish from north to south during each pass between late May to early October.
-This design therefore incorporates both vessel-to-vessel differences in catchability,
-as well as variance associated with selecting a relatively small number (approximately 700) of possible cells from a very large set of possible cells spread from the Mexican to the Canadian borders.
+The \gls{s-wcgbt} is based on a random-grid design; covering the coastal waters from a depth of 55--1,280 m [@bradburn_2003_2011]. This design generally uses four industry-chartered vessels per year assigned to a roughly equal number of randomly selected grid cells and divided into two `passes' of the coast. Two vessels fish from north to south during each pass between late May to early October. There were only two vessels used in 2019 and three in 2013, with one of the three that year unable to complete its survey pass due to a government shutdown. No survey occurred in 2020 due to \gls{covid}. This design therefore incorporates both vessel-to-vessel differences in catchability, as well as variance associated with selecting a relatively small number (approximately 700) of possible cells from a very large set of possible cells spread from the Mexican to the Canadian borders. Note that the Survey is not permitted to access the \glspl{cca} in Southern California.

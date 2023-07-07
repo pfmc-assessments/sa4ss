@@ -1,0 +1,3 @@
+### \acrlong{calcofi}
+
+The \gls{calcofi} survey began in 1951 and conducts quarterly cruises off Southern and Central California, collecting a suite of hydrographic and biological data at fixed stations and while underway; ichthyoplankon sampling with a paired bongo started in 1978. Data on larval abundance from the survey have been used in stock assessments of several species, including bocaccio, cowcod and shortbelly rockfish. Although the long-term dataset is limited to a subset of species for which morphological identification of larvae has been possible, recent research has been successful at identifying a broader range of species based on genetic identification of larvae [@Thompson:2016:RAS]. Larval fish were enumerated from winter samples from 1998--2013.
