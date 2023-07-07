@@ -4,6 +4,7 @@ month: "`r format(Sys.Date(), '%B')`"
 year: "`r format(Sys.Date(), '%Y')`"
 preamble: |
 csl: canadian-journal-of-fisheries-and-aquatic-sciences.csl
+disclaimer: true
 output:
   sa4ss::techreport_pdf:
     default
