@@ -107,9 +107,14 @@ the document though because case will not be altered.</p></dd>
 
 
 <dt>coast</dt>
-<dd><p>A character string specifying which part of the coast
-the stock assessment includes. For example, <code>"US West"</code>.
-Do not include <code>"coast"</code> because it will be added internally.</p></dd>
+<dd><p>A character string specifying which part of the coast the stock
+assessment includes. For example, <code>"U.S. West Coast"</code>, which is the
+default, will be used to create the following title: "Status of common
+name (latin name) along the U.S. West Coast in 2010". Previously, the word
+coast was added internally to the text, this is no longer the default
+behavior of sa4ss and instead you must explicitly add the word, which
+allows users to have more flexibility. For example, "California Coast from
+Point Conception north" is a viable option.</p></dd>
 
 
 <dt>year</dt>
