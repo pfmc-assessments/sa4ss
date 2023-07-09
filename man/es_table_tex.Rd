@@ -54,5 +54,5 @@ es_table_tex(
 }
 }
 \author{
-Chantel Wetzel
+Chantel R. Wetzel
 }

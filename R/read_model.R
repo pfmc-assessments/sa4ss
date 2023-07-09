@@ -104,7 +104,7 @@
 #' )
 #' }
 #' @export
-#' @author Chantel Wetzel
+#' @author Chantel R. Wetzel
 #'
 read_model <- function(mod_loc,
 	save_loc = NULL,

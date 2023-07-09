@@ -23,5 +23,5 @@ The most recent version of plotInfoTable with the complete list of plots will
 be used.
 }
 \author{
-Melissa Monk & Chantel Wetzel
+Melissa Monk & Chantel R. Wetzel
 }

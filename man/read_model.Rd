@@ -163,5 +163,5 @@ sa4ss::read_model(
 }
 }
 \author{
-Chantel Wetzel
+Chantel R. Wetzel
 }

@@ -22,7 +22,7 @@
 #' is the file name of the csv file to be read, and loc (optional) is the location to file the
 #' csv file indicated by the filename.
 #'
-#' @author Chantel Wetzel
+#' @author Chantel R. Wetzel
 #'
 #' @examples
 #' \dontrun{

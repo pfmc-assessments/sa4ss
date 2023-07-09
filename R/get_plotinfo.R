@@ -7,7 +7,7 @@
 #' @param mod_loc directory of the model
 #' @param plot_folder folder name of the r4ss plots
 #'
-#' @author Melissa Monk & Chantel Wetzel
+#' @author Melissa Monk & Chantel R. Wetzel
 #'
 get_plotinfo <- function(mod_loc,
 	plot_folder = "plots") {
