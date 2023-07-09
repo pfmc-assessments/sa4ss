@@ -28,9 +28,14 @@ beginning of a sentence.}
 italic formatting. Please capitalize as you want it to be used in
 the document though because case will not be altered.}
 
-\item{coast}{A character string specifying which part of the coast
-the stock assessment includes. For example, \code{"US West"}.
-Do not include \code{"coast"} because it will be added internally.}
+\item{coast}{A character string specifying which part of the coast the stock
+assessment includes. For example, \code{"U.S. West Coast"}, which is the
+default, will be used to create the following title: "Status of common
+name (latin name) along the U.S. West Coast in 2010". Previously, the word
+coast was added internally to the text, this is no longer the default
+behavior of sa4ss and instead you must explicitly add the word, which
+allows users to have more flexibility. For example, "California Coast from
+Point Conception north" is a viable option.}
 
 \item{year}{A numeric or character string specifying the year. The default
 uses \code{\link[=Sys.Date]{Sys.Date()}} to format the year into a four digit character value.}

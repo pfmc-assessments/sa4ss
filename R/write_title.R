@@ -29,7 +29,7 @@ write_title <- function(species,
       "---\n",
       yaml::as.yaml(list(title = paste0(
         "Status of ", species, " (_", latin, "_)",
-        " along the ", coast, " coast in ", year
+        " along the ", coast, " in ", year
       ))),
       "---"
     ),

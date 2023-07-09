@@ -8,7 +8,7 @@ draft(
   authors,
   species = "Species name",
   latin = "Scientific name",
-  coast = "US West",
+  coast = "U.S. West Coast",
   type = c("sa"),
   create_dir = FALSE,
   edit = FALSE,
@@ -41,59 +41,61 @@ beginning of a sentence.}
 italic formatting. Please capitalize as you want it to be used in
 the document though because case will not be altered.}
 
-\item{coast}{A character string specifying which part of the coast
-the stock assessment includes. For example, \code{"US West"}.
-Do not include \code{"coast"} because it will be added internally.}
+\item{coast}{A character string specifying which part of the coast the stock
+assessment includes. For example, \code{"U.S. West Coast"}, which is the
+default, will be used to create the following title: "Status of common
+name (latin name) along the U.S. West Coast in 2010". Previously, the word
+coast was added internally to the text, this is no longer the default
+behavior of sa4ss and instead you must explicitly add the word, which
+allows users to have more flexibility. For example, "California Coast from
+Point Conception north" is a viable option.}
 
-\item{type}{The name of the template you want to initiate.
-The default template is \code{sa}, which stands for stock assessment.
-As development for \pkg{sa4ss} progresses, expect to see more templates
-become available. Available templates are listed in the default function call.
-Specify a single character value from those available if you want to change
-the type from the default.}
+\item{type}{The name of the template you want to initiate. The default
+template is \code{sa}, which stands for stock assessment. As development for
+\pkg{sa4ss} progresses, expect to see more templates become available.
+Available templates are listed in the default function call. Specify a
+single character value from those available if you want to change the type
+from the default.}
 
 \item{create_dir}{A logical value that leads to the draft document being
-placed in its own directory called \code{"doc"}.
-The default value of \code{FALSE} uses the current working directory
-rather than containing all of the files in a new directory,
-which is helpful if you want to use your own name for the directory.
-\code{TRUE} will create the new directory \code{"doc"} and copy of the necessary
-files into it.
-A third option also exists, \code{"default"}, which allows \link[rmarkdown:draft]{rmarkdown::draft},
-to determine the appropriate directory structure.}
+placed in its own directory called \code{"doc"}. The default value of
+\code{FALSE} uses the current working directory rather than containing all
+of the files in a new directory, which is helpful if you want to use your
+own name for the directory. \code{TRUE} will create the new directory
+\code{"doc"} and copy of the necessary files into it. A third option also
+exists, \code{"default"}, which allows \code{\link[rmarkdown:draft]{rmarkdown::draft()}}, to determine the
+appropriate directory structure.}
 
 \item{edit}{A logical value, with a default of \code{FALSE}, specifying if
-you want to open the indexing file for editing by default. The software chosen
-by R is normally not ideal and
-the file is not a file that is normally edited by users,
-which is why \pkg{sa4ss} does not follow the default value used by
-\link[rmarkdown:draft]{rmarkdown::draft}.}
+you want to open the indexing file for editing by default. The software
+chosen by R is normally not ideal and the file is not a file that is
+normally edited by users, which is why \pkg{sa4ss} does not follow the
+default value used by \code{\link[rmarkdown:draft]{rmarkdown::draft()}}.}
 
 \item{...}{Additional arguments that you wish to pass to
-\link[rmarkdown:draft]{rmarkdown::draft}. See \code{args(rmarkdown::draft)}.}
+\code{\link[rmarkdown:draft]{rmarkdown::draft()}}. See \code{args(rmarkdown::draft)}.}
 }
 \value{
-Invisibly returns the file name of the document,
-which will be the main indexing file that links to the auxiliary files.
-If \code{edit = TRUE}, this file will be opened for editing.
+Invisibly returns the file name of the document, which will be the main
+indexing file that links to the auxiliary files. If \code{edit = TRUE}, this file
+will be opened for editing.
 }
 \description{
 Initiate a directory that contains all of the files needed for a
 stock assessment document written with \pkg{sa4ss}.
 }
 \details{
-\subsection{Wrapper for \link[rmarkdown:draft]{rmarkdown::draft}}{
+\subsection{Wrapper for \code{\link[rmarkdown:draft]{rmarkdown::draft()}}}{
 
-The function is based on \link[rmarkdown:draft]{rmarkdown::draft} that creates
-new R Markdown documents based on templates stored within R packages.
-The \href{https://github.com/rstudio/rticles}{rticles} R package stores the
-most templates, mainly for the submission of manuscripts to journals.
+The function is based on \code{\link[rmarkdown:draft]{rmarkdown::draft()}} that creates new R Markdown
+documents based on templates stored within R packages. The
+\href{https://github.com/rstudio/rticles}{rticles} R package stores the most
+templates, mainly for the submission of manuscripts to journals.
 
-User input for parameters such as \code{authors} and \code{species} help customize
-the draft to your stock assessment document. Therefore,
-users should focus on the input arguments that come before \verb{type =}
-because these will be specific to the stock assessment and are used to
-set up the initial file structure.
+User input for parameters such as \code{authors} and \code{species} help customize the
+draft to your stock assessment document. Therefore, users should focus on
+the input arguments that come before \verb{type =} because these will be specific
+to the stock assessment and are used to set up the initial file structure.
 }
 
 \subsection{File structure}{
@@ -102,13 +104,12 @@ A template contains two mandatory objects,
 \itemize{
 \item template.yaml
 \item skeleton/skeleton.Rmd,
-and optional files include those in a directory named resources
-and additional files within the skeleton directory.
-Because it is not known what your directory will be named, the
-skeleton file is renamed to \verb{00a.Rmd} by this function to ensure that
-it comes first in bookdown's rendering of all of the .Rmd files,
-which is done alphabetically unless users specify all the files,
-an option that we do not really want to use.
+and optional files include those in a directory named resources and
+additional files within the skeleton directory. Because it is not known what
+your directory will be named, the skeleton file is renamed to \verb{00a.Rmd} by
+this function to ensure that it comes first in bookdown's rendering of all
+of the .Rmd files, which is done alphabetically unless users specify all the
+files, an option that we do not really want to use.
 }
 }
 }
