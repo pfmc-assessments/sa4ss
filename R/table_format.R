@@ -118,7 +118,7 @@ table_format <- function(x,
 	} else {
 		# Create some logic of how to dynamically determine width
 		if (ncol(x) >= 5) {
-			adj_wid <- paste0(round(11 / ncol(x), 2), "cm")
+			adj_wid <- paste0(round(ifelse(landscape, 11, 8) / ncol(x), 2), "cm")
 		} else {
 			adj_wid <- "2cm"
 		}
