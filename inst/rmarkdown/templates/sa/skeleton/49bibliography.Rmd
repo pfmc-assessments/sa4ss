@@ -1,7 +1,7 @@
 \clearpage
 
 # References
-<!-- If you want to references to appear somewhere before the end, add: -->
+<!-- If you want the references to appear somewhere before the end, add: -->
 <div id="refs"></div>
 <!-- where you want it to appear -->
 <!-- The following sets the appropriate indentation for the references
