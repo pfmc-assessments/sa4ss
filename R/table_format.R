@@ -88,7 +88,15 @@ table_format <- function(x,
 			format.args = format.args,
 			...
 		)
-		suppressWarnings(k <- kableExtra::kable_styling(k, font_size = font_size, latex_options = c("repeat_header")))
+		suppressWarnings(
+      k <- kableExtra::kable_styling(
+        k,
+        font_size = font_size,
+        latex_options = c("repeat_header"),
+        repeat_header_text = paste(caption, "(\\textit{continued)}"),
+        repeat_header_method = "replace"
+      )
+    )
 	} else {
 		k <- kableExtra::kbl(
 			x = x,
@@ -104,7 +112,15 @@ table_format <- function(x,
 			format.args = format.args,
 			...
 		)
-		suppressWarnings(k <- kableExtra::kable_styling(k, font_size = font_size, latex_options = c("repeat_header")))
+		suppressWarnings(
+      k <- kableExtra::kable_styling(
+        k,
+        font_size = font_size,
+        latex_options = c("repeat_header"),
+        repeat_header_text = paste(caption, "(\\textit{continued)}"),
+        repeat_header_method = "replace"
+      )
+    )
 	}
 
 	# Add bold to a table
