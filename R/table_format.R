@@ -73,6 +73,12 @@ table_format <- function(x,
 			col_names <- kableExtra::linebreak(col_names, align = col_names_align)
 		}
 
+    old_option <- knitr::opts_knit$get("bookdown.internal.label")
+		on.exit(
+			knitr::opts_knit$set(bookdown.internal.label = old_option),
+			add = TRUE
+		)
+		knitr::opts_knit$set(bookdown.internal.label = FALSE)
 		k <- kableExtra::kbl(
 			x = x,
 			format = format,
@@ -88,6 +94,7 @@ table_format <- function(x,
 			format.args = format.args,
 			...
 		)
+
 		suppressWarnings(
       k <- kableExtra::kable_styling(
         k,
