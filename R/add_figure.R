@@ -1,7 +1,6 @@
 #' Read, render, and use a figure from a specific directory
 #'
-#' Concatenate input regarding a specified figure with the caption, alternative
-#' caption for accessibility, and reference label.
+#' This function is an easy way to add a figure to your document if the figure is already available in a png file. [cat()] is used to print the information to the screen; so, when your .Rmd file is rendered, the resulting LaTeX file will include all the information that was printed to the screen.
 #'
 #' @details
 #' Translation of code from markdown to tex is developing for figures as more
@@ -22,12 +21,15 @@
 #' accessibility.
 #'
 #' @param filein The path of the figure to be added (e.g.,
-#'   `"C:\\My figure directory\\plot.png"`).
+#'   `"C:\\My figure directory\\plot.png"`). Relative paths are not recommended
+#'   because the path of your working directory will change when you are
+#'   rendering to the working directory of the file that you are rendering and
+#'   the relative path no longer be valid.
 #' @param caption A character string providing the figure caption that will be
-#'   added below the figure in the document. A default text string is provided,
+#'   added below the figure in the document. A default text string is provided
 #'   but it is not informative and should be changed. Consider being more
-#'   verbose here than typical and remember that captions should be stand-alone
-#'   to ensure their portability between media.
+#'   verbose here than typical and remember that captions should be able to 
+#'   stand on their own to ensure their portability between media.
 #' @param alt_caption A character string providing alternative text for the
 #'   figure. The default is `""`, which will force the alternative text to be
 #'   blank. Using `NULL` will force the alternative text to also be blank;
@@ -46,8 +48,14 @@
 #'   scale the figure up or down.
 #'
 #' @author Chantel R. Wetzel
+#' @seealso
+#' * 
 #' @export
-#' @return Nothing is returned. Instead, [cat()] is used to print output to the
+#' @return
+#' A string is returned with the label of the figure. You can use this label to
+#' reference the figure elsewhere in the document.
+#' 
+#' [cat()] is used to print output to the
 #' screen if you run this function on its own or to a resulting rendered file if
 #' called within an .Rmd file, where the latter is more likely. Results are
 #' specific to the document being rendered, i.e., where
@@ -76,50 +84,86 @@
 #' }
 #'
 add_figure <- function(filein,
-	caption = "Add figure caption",
-	alt_caption = "",
-	label,
-	width = 100,
-	height = 100) {
+  caption = "Add figure caption",
+  alt_caption = "",
+  label,
+  width = 100,
+  height = 100) {
 
-	# check for full stop
-	caption <- add_fullstop(caption)
-	alt_caption <- add_fullstop(alt_caption)
+  # check for full stop
+  caption <- add_fullstop(caption)
+  alt_caption <- add_fullstop(alt_caption)
 
-	if (is.null(alt_caption)) {
-		alt_caption <- ""
-	}
+  if (is.null(alt_caption)) {
+    alt_caption <- ""
+  }
 
-	if (knitr::is_html_output()) {
-		cat(
-			sep = "",
-			'<figure><img src="',
-			filein,
-			'" alt="',
-			alt_caption,
-			'"',
-			sprintf(" style=\"width: %f%%\"", width),
-			'/><figcaption>',
-			caption,
-			'</figcaption></figure>'
-		)
-	} else {
-		cat(
-			'\n![',
-			caption,
-			'\\label{fig:',
-			label,
-			'}](',
-			filein,
-			'){width=',
-			width,
-			'% height=',
-			height,
-			'% alt="',
-			alt_caption,
-			'"}\n',
-			sep = ''
-		)
-	}
-	return(invisible())
+  if (knitr::is_html_output()) {
+    cat(
+      sep = "",
+      '<figure><img src="',
+      filein,
+      '" alt="',
+      alt_caption,
+      '"',
+      sprintf(" style=\"width: %f%%\"", width),
+      '/><figcaption>',
+      caption,
+      '</figcaption></figure>'
+    )
+  } else {
+    cat(
+      '\n![',
+      caption,
+      '\\label{fig:',
+      label,
+      '}](',
+      filein,
+      '){width=',
+      width,
+      '% height=',
+      height,
+      '% alt="',
+      alt_caption,
+      '"}\n',
+      sep = ''
+    )
+  }
+  return(invisible(paste("fig", label, sep = ":")))
+}
+
+#' Format a figure or table label for use in a report
+#'
+#' Format a text string that was used to label a figure or a table such that
+#' you can reference that figure or table elsewhere in a report. For example the
+#' label might be `fig:my-best-figure` and in the text you might want `Look at
+#' the beautiful pie chart in my best figure ever (Figure
+#' \ref{fig:mybest-figure})`.
+#'
+#' @param x A vector of strings. The strings should be valid figure or table
+#'   labels. For example `x = c("fig:apple", "fig:banana")`.
+#'
+#' @author Kelli F. Johnson
+#' @seealso 
+#' * [add_figure()]
+#' @export
+#' @examples
+#' # Generate some figure references
+#' report_ref_label("fig:apple")
+#' report_ref_label(c("fig:apple", "fig:banana"))
+#' report_ref_label(c("fig:apple", "fig:banana", "fig:carrot"))
+#' # Works for tables too
+#' report_ref_label("tab:apple")
+report_ref_label <- function(x) {
+  type <- ifelse(grepl("^fig", x[1]), "Figure", "Table")
+  if (length(x) == 1) {
+    out <- glue::glue(
+      "{type} \\@ref({x})"
+    )
+  } else {
+    out <- glue::glue(
+      "{type}s \\@ref({x[1]})--\\@ref({tail(x, 1)})"
+    )
+  }
+  return(out)
 }

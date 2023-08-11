@@ -15,13 +15,16 @@ add_figure(
 }
 \arguments{
 \item{filein}{The path of the figure to be added (e.g.,
-\code{"C:\\\\My figure directory\\\\plot.png"}).}
+\code{"C:\\\\My figure directory\\\\plot.png"}). Relative paths are not recommended
+because the path of your working directory will change when you are
+rendering to the working directory of the file that you are rendering and
+the relative path no longer be valid.}
 
 \item{caption}{A character string providing the figure caption that will be
-added below the figure in the document. A default text string is provided,
+added below the figure in the document. A default text string is provided
 but it is not informative and should be changed. Consider being more
-verbose here than typical and remember that captions should be stand-alone
-to ensure their portability between media.}
+verbose here than typical and remember that captions should be able to
+stand on their own to ensure their portability between media.}
 
 \item{alt_caption}{A character string providing alternative text for the
 figure. The default is \code{""}, which will force the alternative text to be
@@ -43,7 +46,10 @@ is 100. \verb{height`` does not work in html mode; instead, use }width` to
 scale the figure up or down.}
 }
 \value{
-Nothing is returned. Instead, \code{\link[=cat]{cat()}} is used to print output to the
+A string is returned with the label of the figure. You can use this label to
+reference the figure elsewhere in the document.
+
+\code{\link[=cat]{cat()}} is used to print output to the
 screen if you run this function on its own or to a resulting rendered file if
 called within an .Rmd file, where the latter is more likely. Results are
 specific to the document being rendered, i.e., where
@@ -51,8 +57,7 @@ specific to the document being rendered, i.e., where
 latex.
 }
 \description{
-Concatenate input regarding a specified figure with the caption, alternative
-caption for accessibility, and reference label.
+This function is an easy way to add a figure to your document if the figure is already available in a png file. \code{\link[=cat]{cat()}} is used to print the information to the screen; so, when your .Rmd file is rendered, the resulting LaTeX file will include all the information that was printed to the screen.
 }
 \details{
 Translation of code from markdown to tex is developing for figures as more
@@ -92,6 +97,11 @@ accessibility.
 # ```
 }
 
+}
+\seealso{
+\itemize{
+\item 
+}
 }
 \author{
 Chantel R. Wetzel
