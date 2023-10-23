@@ -24,7 +24,8 @@
 #' @param col_to_adjust Vector of columns to adjust width. Only used if custom_width = TRUE.
 #' @param width Vector or single value of column widths (i.e. c('2cm', '2cm')) for the columns defined
 #' in the col_to_adjust.
-#' @param create_png Logical. If set to true tables will be created as png objects in the doc.
+#' @param create_png DEPRECATED. Logical. If set to true tables will be created
+#'   as png objects in the doc.
 #' @param ... Extra arguments supplied to \code{\link[kableExtra]{kbl}}.
 #'
 #' @importFrom kableExtra kbl row_spec kable_styling landscape linebreak
@@ -53,8 +54,14 @@ table_format <- function(x,
 	custom_width = FALSE,
 	col_to_adjust = NULL,
 	width = NULL,
-	create_png = FALSE,
+	create_png = lifecycle::deprecated(),
 	...) {
+  if (!missing("create_png")) {
+    lifecycle::deprecate_warn(
+      when = "24.0",
+      what = "table_format(create_png)"
+    )
+  }
 	if (is.null(label)) {
 		message("Need to define label to reference table.")
 	}
@@ -175,14 +182,6 @@ table_format <- function(x,
 	# Allow users to specify the hold level
 	if (hold_position) {
 		suppressWarnings(k <- kableExtra::kable_styling(k, latex_options = "HOLD_position"))
-	}
-
-	if (create_png) {
-		if (is.null(label)) {
-			message("Need to specify label to name the .png")
-		} else {
-			suppressWarnings(k <- kableExtra::save_kable(k, file = paste0("/inst/", label, ".png")))
-		}
 	}
 
 	k

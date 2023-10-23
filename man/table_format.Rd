@@ -27,7 +27,7 @@ table_format(
   custom_width = FALSE,
   col_to_adjust = NULL,
   width = NULL,
-  create_png = FALSE,
+  create_png = lifecycle::deprecated(),
   ...
 )
 }
@@ -77,7 +77,8 @@ table_format(
 \item{width}{Vector or single value of column widths (i.e. c('2cm', '2cm')) for the columns defined
 in the col_to_adjust.}
 
-\item{create_png}{Logical. If set to true tables will be created as png objects in the doc.}
+\item{create_png}{DEPRECATED. Logical. If set to true tables will be created
+as png objects in the doc.}
 
 \item{...}{Extra arguments supplied to \code{\link[kableExtra]{kbl}}.}
 }
