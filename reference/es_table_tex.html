@@ -85,35 +85,36 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>dir</dt>
-<dd><p>The directory to look for the csv file that has a list of all
-csv files to create tex files for. The csv file format should match
-the table_labels.csv created by r4ss function SSexecutivesummary. The columns
-names in this folder are caption, altcaption, label, filename, and loc (optional).
-The loc column is a directory location to find the file (filename) that
-a tex file should be created for. The <code>dir</code> can be set to the
-<code>mod_loc</code> where the function will automatically look for them inside a
+<dd><p>The directory to look for the csv file that has a list of all csv
+files to create tex files for. The csv file format should match the
+table_labels.csv created by <code><a href="https://r4ss.github.io/r4ss/reference/SSexecutivesummary.html" class="external-link">r4ss::SSexecutivesummary()</a></code>. The columns
+names in this folder are caption, altcaption, label, filename, and loc
+(optional). The loc column is a directory location to find the file
+(filename) that a tex file should be created for. The <code>dir</code> can be set to
+the <code>mod_loc</code> where the function will automatically look for them inside a
 table folder in that location.</p></dd>
 
 
 <dt>table_folder</dt>
-<dd><p>The relative path for the table directory, where it
-must be relative to <code>dir</code> because it will be appended to this
-argument using <code>file.path</code>. An alternative is to supply the full
-file path in dir and use <code>table_folder = ""</code>.</p></dd>
+<dd><p>The relative path for the table directory, where it must
+be relative to <code>dir</code> because it will be appended to this argument using
+<code><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path()</a></code>. An alternative is to supply the full file path in dir and
+use <code>table_folder = ""</code>.</p></dd>
 
 
 <dt>save_loc</dt>
-<dd><p>optional input that requires a full path which will
-allow users to save the tex file to a specific location (e.g. inside doc folder)
-other than the <code>file.path(dir, table_folder)</code>. Default NULL</p></dd>
+<dd><p>optional input that requires a full path which will allow
+users to save the tex file to a specific location (e.g. inside doc folder)
+other than the <code>file.path(dir, table_folder)</code>. Default is <code>NULL</code>.</p></dd>
 
 
 <dt>csv_name</dt>
-<dd><p>CSV file name to create tex table scripts for. This file should have
-the following columns: caption, altcaption, label, filenem, loc (optional) where caption will
-be the table caption, altcapation is the accessibility text for the table (can be
-NA if the caption should be used), label is the text to reference the table, filename
-is the file name of the csv file to be read, and loc (optional) is the location to file the
+<dd><p>CSV file name to create tex table scripts for. This file
+should have the following columns: caption, altcaption, label, filename,
+loc (optional) where caption will be the table caption, altcaption is the
+accessibility text for the table (can be NA if the caption should be
+used), label is the text to reference the table, filename is the file name
+of the csv file to be read, and loc (optional) is the location to file the
 csv file indicated by the filename.</p></dd>
 
 </dl></div>
@@ -126,7 +127,7 @@ csv file indicated by the filename.</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># example of creating tex files for those created by the</span></span></span>
-<span class="r-in"><span><span class="co"># r4ss function SSexecutivesummary</span></span></span>
+<span class="r-in"><span><span class="co"># r4ss::SSexecutivesummary()</span></span></span>
 <span class="r-in"><span><span class="fu">es_table_tex</span><span class="op">(</span>dir <span class="op">=</span> <span class="va">mod_loc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># example of using a user created csv file:</span></span></span>
 <span class="r-in"><span><span class="fu">es_table_tex</span><span class="op">(</span></span></span>
