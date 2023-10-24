@@ -39,7 +39,8 @@ of the csv file to be read, and loc (optional) is the location to file the
 csv file indicated by the filename.}
 }
 \description{
-Create tex file from executive summary tables
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+\code{es_table_tex()} has been superseded in favour of \code{\link[=create_tex_from_csv]{create_tex_from_csv()}}.
 }
 \examples{
 \dontrun{

@@ -1,5 +1,9 @@
 #' Create tex file from executive summary tables
 #'
+#' @description
+#' `r lifecycle::badge("superseded")`
+#' `es_table_tex()` has been superseded in favour of [create_tex_from_csv()].
+#'
 #' @param dir The directory to look for the csv file that has a list of all csv
 #'   files to create tex files for. The csv file format should match the
 #'   table_labels.csv created by [r4ss::SSexecutivesummary()]. The columns
@@ -42,6 +46,11 @@ es_table_tex <- function(dir,
                          table_folder = NULL,
                          save_loc = NULL,
                          csv_name = "table_labels.csv") {
+  lifecycle::deprecate_warn(
+    when = "24.0",
+    what = "es_table_tex()",
+    with = "create_tex_from_csv()"
+  )
   # Function to round data-frame with characters and numeric values
   round_df <- function(df, digits) {
     nums <- vapply(X = df, FUN = is.numeric, FUN.VALUE = logical(1))
@@ -98,7 +107,7 @@ es_table_tex <- function(dir,
         caption = df$caption[i],
         label = df$label[i],
         digits = c(0, rep(2, n)),
-        longtable = TRUE,
+        longtable = FALSE,
         col_names = col_names,
         align = c("r", rep("c", n))
       )
@@ -107,7 +116,7 @@ es_table_tex <- function(dir,
         x = round_df(df = data.frame(tab), digits = 2),
         caption = df$caption[i],
         label = df$label[i],
-        longtable = TRUE,
+        longtable = FALSE,
         col_names = col_names,
         align = c("r", rep("c", n))
       )
