@@ -1,10 +1,12 @@
-% \DeclareDocumentMetadata {lang=en-US}
-
-% xmp metadata for pdf
-% Originally used \usepackage[a-2a]{pdfx}
-% \usepackage{hyperxmp} replaced it
-% \RequirePackage{pdfmanagement-testphase} replaced it
-% \PassOptionsToPackage{enable-debug,check-declarations}{expl3} broke with version 0.9 of tagpdf
-% \ExplSyntaxOn no need for these 3 lines because metadata can handle it
-% \pdfmanagement_add:nnn{Catalog}{Lang}{(enUS)} enUS is wrong, should be en-US
+% \DocumentMetadata{%
+%   uncompress, %only for debugging!!
+%   pdfversion=2.0,
+%   testphase={phase-II, tabular, graphic}%
+%   % testphase={phase-II,math, tabular, graphic}% TOC Does not work
+%   % testphase={phase-III,math}% TOC works
+% }
+% \tagpdfsetup{activate, tabsorder=structure}
+% Use the following to fix bug in November 2023 download of LaTeX
+% \ExplSyntaxOn
+% \cs_generate_variant:Nn\__tag_prop_gput:Nnn{cnx}
 % \ExplSyntaxOff

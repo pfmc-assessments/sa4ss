@@ -1,6 +1,9 @@
 #' Read, render, and use a figure from a specific directory
 #'
-#' This function is an easy way to add a figure to your document if the figure is already available in a png file. [cat()] is used to print the information to the screen; so, when your .Rmd file is rendered, the resulting LaTeX file will include all the information that was printed to the screen.
+#' This function is an easy way to add a figure to your document if the figure
+#' is already available in a png file. [cat()] is used to print the information
+#' to the screen; so, when your .Rmd file is rendered, the resulting LaTeX file
+#' will include all the information that was printed to the screen.
 #'
 #' @details
 #' Translation of code from markdown to tex is developing for figures as more
@@ -29,7 +32,9 @@
 #'   added below the figure in the document. A default text string is provided
 #'   but it is not informative and should be changed. Consider being more
 #'   verbose here than typical and remember that captions should be able to 
-#'   stand on their own to ensure their portability between media.
+#'   stand on their own to ensure their portability between media. Commas are
+#'   not allowed in the alternative text and all LaTeX should be double escaped
+#'   (e.g., `"\\%`, `"\\$R\\_0\\$"`).
 #' @param alt_caption A character string providing alternative text for the
 #'   figure. The default is `""`, which will force the alternative text to be
 #'   blank. Using `NULL` will force the alternative text to also be blank;
@@ -37,30 +42,29 @@
 #'   leads to the screen reader reading the same text twice. Note, that the
 #'   default is not ideal. Instead, alternative text that describes the
 #'   take-home message or information that is not available in the caption
-#'   should be included.
+#'   should be included. Commas are not allowed in the alternative text and all
+#'   LaTeX should be double escaped (e.g., `"\\%`, `"\\$R\\_0\\$"`).
 #' @param label A character string that will be used as the figure reference for
 #'   citation of figure in the document. There is no default value for this
 #'   argument because each figure needs to have a unique label that is known by
 #'   the user, and thus, the user needs to specify it.
 #' @param width,height A numeric value between 0 and 100 that dictates the
-#'   figure width or height in terms of a percentage of its size. The default
-#'   is 100. `height`` does not work in html mode; instead, use `width` to
+#'   figure width or height in terms of a percentage of the \textwidth or
+#'   \textheight in the document. The default is 100. `height`` does not work in
+#'   html mode because there is no concept of page size; instead, use `width` to
 #'   scale the figure up or down.
 #'
 #' @author Chantel R. Wetzel
-#' @seealso
-#' * 
 #' @export
 #' @return
 #' A string is returned with the label of the figure. You can use this label to
 #' reference the figure elsewhere in the document.
-#' 
-#' [cat()] is used to print output to the
-#' screen if you run this function on its own or to a resulting rendered file if
-#' called within an .Rmd file, where the latter is more likely. Results are
-#' specific to the document being rendered, i.e., where
-#' [knitr::is_html_output()] is used to determine if your result is html or
-#' latex.
+#'
+#' [cat()] is used to print output to the screen if you run this function on its
+#' own or to a resulting rendered file if called within an .Rmd file, where the
+#' latter is more likely. Results are specific to the document being rendered,
+#' i.e., where [knitr::is_html_output()] is used to determine if your result is
+#' html or latex.
 #'
 #' @examples
 #' \dontrun{
@@ -70,12 +74,13 @@
 #' # ```{r, results = 'asis'}
 #' # add_figure(
 #' #   filein = file.path(
-#' #     "My figure directory",
+#' #     "<My figure directory>",
 #' #     "plots",
 #' #     "ts7_Spawning_output.png"
 #' #   ),
 #' #   caption = "Spawning output time series.",
-#' #   alt_caption = NULL,
+#' #   alt_caption =
+#'       "See the time-series table for the numerical values for this figure.",
 #' #   label = "ssb",
 #' #   width = 100,
 #' #   height = 100
@@ -84,15 +89,24 @@
 #' }
 #'
 add_figure <- function(filein,
-  caption = "Add figure caption",
-  alt_caption = "",
-  label,
-  width = 100,
-  height = 100) {
+                       caption = "Add figure caption",
+                       alt_caption = "",
+                       label,
+                       width = 100,
+                       height = 100) {
 
   # check for full stop
   caption <- add_fullstop(caption)
   alt_caption <- add_fullstop(alt_caption)
+  # check for commas
+  if (grepl(",", alt_caption)) {
+    stop(cli::format_error(c(
+      "\n",
+      x = "{.var alt_caption} cannot contain ','.",
+      i = "Please remove the comma from the following text:",
+      "{alt_caption}"
+    )))
+  }
 
   if (is.null(alt_caption)) {
     alt_caption <- ""
@@ -113,20 +127,16 @@ add_figure <- function(filein,
     )
   } else {
     cat(
-      '\n![',
-      caption,
-      '\\label{fig:',
-      label,
-      '}](',
-      filein,
-      '){width=',
-      width,
-      '% height=',
-      height,
-      '% alt="',
-      alt_caption,
-      '"}\n',
-      sep = ''
+      glue::glue("
+        \n
+        \\begin{{figure}}
+        {{\\centering
+        \\includegraphics[alt={alt_caption},width={width/100}\\textwidth,height={height/100}\\textheight]{{{filein}}}
+        }}
+        \\caption{{{caption}\\label{{fig:{label}}}}}
+        \\end{{figure}}\n
+        "
+      )
     )
   }
   return(invisible(paste("fig", label, sep = ":")))
