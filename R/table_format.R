@@ -66,9 +66,23 @@ table_format <- function(x,
 		message("Need to define label to reference table.")
 	}
 
-	if (is.null(format.args)) {
-		format.args <- format(x)
-	}
+	# Deal with year column
+	input_column_names <- colnames(x)
+	colnames(x) <- paste0("test", seq_along(input_column_names))
+	x <- x |>
+    dplyr::mutate(
+      dplyr::across(
+        where(is.double),
+        \(xx) format(
+          xx,
+          big.mark = ",",
+					scientific = FALSE,
+          digits = max(determine_digits(xx)),
+          nsmall = max(determine_digits(xx))
+        )
+      )
+    )
+	colnames(x) <- input_column_names
 
 	# Use user specified col names
 	if (!is.null(col_names)) {
@@ -86,6 +100,7 @@ table_format <- function(x,
 			add = TRUE
 		)
 		knitr::opts_knit$set(bookdown.internal.label = FALSE)
+
 		k <- kableExtra::kbl(
 			x = x,
 			format = format,
@@ -98,7 +113,6 @@ table_format <- function(x,
 			longtable = longtable,
 			col.names = col_names,
 			escape = escape,
-			format.args = format.args,
 			...
 		)
 
@@ -123,7 +137,6 @@ table_format <- function(x,
 			linesep = linesep,
 			longtable = longtable,
 			escape = escape,
-			format.args = format.args,
 			...
 		)
 		suppressWarnings(
@@ -148,7 +161,7 @@ table_format <- function(x,
 	} else {
 		# Create some logic of how to dynamically determine width
 		if (ncol(x) >= 5) {
-			adj_wid <- paste0(round(ifelse(landscape, 11, 8) / ncol(x), 2), "cm")
+			adj_wid <- paste0(round(ifelse(landscape, 23, 12) / ncol(x), 2), "cm")
 		} else {
 			adj_wid <- "2cm"
 		}
@@ -183,6 +196,7 @@ table_format <- function(x,
 	if (hold_position) {
 		suppressWarnings(k <- kableExtra::kable_styling(k, latex_options = "HOLD_position"))
 	}
+	suppressWarnings(k <- kableExtra::row_spec(k, 0, align = "l"))
 
 	k
 } # End function
