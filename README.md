@@ -38,8 +38,8 @@ page](https://github.com/pfmc-assessments/sa4ss/issues) and any questions
 regarding how to use the package to the [GitHub discussion
 board](https://github.com/pfmc-assessments/sa4ss/discussions). Tags are
 available to mark your issue with an appropriate category. These categories are
-instrumental for providing guidance to the package maintainers regarding how to
-respond your issue and to other users that follow this repository. Before you
+instrumental in providing guidance to the package maintainers regarding how to
+respond to your issue and to other users who follow this repository. Before you
 create an issue, please
 1. try the [example](#example) to determine if the package works for you in
    general;
@@ -61,7 +61,7 @@ can build a document it is wise to work through the following steps:
     :smile:. If you do not already have tinytex on your computer, run the
     following in an R session.
   * Software support is only provided for TeXLive, if you are using MikTex the
-    package will not work. Thanksfully {tinytex} is based on TeXLive.
+    package will not work. Thankfully {tinytex} is based on TeXLive.
   * `pak::pkg_install("rstudio/tinytex")`
   * `tinytex::install_tinytex(bundle = "TinyTeX-2")`
   * If you experience issues with the previous code it is more than likely due
@@ -70,20 +70,20 @@ can build a document it is wise to work through the following steps:
     website][tinytex]. I tried downloading the [exe file][tinytex_zip] myself
     and found that an anti-virus application was stopping my computer from
     accessing the file. Automated prompts helped me change the settings on my
-    computer that allows [tinytex][tinytex] access to the website. After
+    computer that allow [tinytex][tinytex] access to the website. After
     making the necessary changes to my settings and restarting R, I was able
-    use the code above to install the tinytex software.
+    to use the code above to install the tinytex software.
   * If you already have tinytex, you can use `packageVersion("tinytex")` to
     determine which version you have and `packageDate("tinytex")` to determine when
     it was compiled. Use your best judgment to determine if you should update it or
-    not. I error on the side of updating too often.
+    not. I err on the side of updating too often.
   * `tinytex::reinstall_tinytex(bundle = "TinyTeX-2")`
   * Personally, I like to have the full distribution of TeXLive on my machine
     rather than the version distributed by tinytex when using the default call
     to `bundle` of `"TinyTeX-1"` because then I know that I have all the
     packages that I need. This is especially true for compiling documents that
     are accessible to those with disabilities as the LaTeX 3 kernel is changing
-    on a daily basis. `"TinyTeX-2"` will install all packages much like the
+    daily. `"TinyTeX-2"` will install all packages much like the
     full distribution of TeXLive.
 2. Pandoc
   * If you do not already have Pandoc on your computer, then you will need to
@@ -117,7 +117,7 @@ can build a document it is wise to work through the following steps:
   * Install sa4ss
     * :stop_sign:, do you have a GitHub personal access token (PAT)? GitHub PATs will stop
       you from running into issues surrounding rate limits for GitHub. If you do not
-      have a PAT, please see navigate to the instructions for [creating a personal
+      have a PAT, please navigate to the instructions for [creating a personal
       access token](
       https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
       Also, before downloading and installing sa4ss, ensure that you do not already
@@ -130,14 +130,14 @@ can build a document it is wise to work through the following steps:
     that sa4ss works on your machine.
   * Next, you can try building your own pdf. The following code will set up your
     machine with default files. You only have to run `draft()` once, but the call
-    to `bookdown` will be your go-to function cor compiling the document after you
+    to `bookdown` will be your go-to function for compiling the document after you
     update any of the files.
     The resulting pdf (i.e., `_main.pdf`) will be located within the directory doc
     because I have set `create_dir` to be `TRUE`. If you set it to be `FALSE` then
     it will save the files to your current working directory.
-  * See the GitHub acction results from the ['bookdown'
+  * See the GitHub action results from the ['bookdown'
       workflow](https://github.com/pfmc-assessments/sa4ss/actions/workflows/bookdown.yaml)
-      for an example pdf;
+      for example pdf;
     * find the most recent job that was run (i.e., top of the list) and click
       on the name, which will be the name of the most recent commit;
     * scroll to the bottom of the page under the Artifacts label, where you can
@@ -188,9 +188,9 @@ Back to [top](#sa4ss)
 ### Adding a figure to your title page
 
 You can add a figure to your title page by including `figure_title.png` in the
-directory that stores all of your .Rmd files, which is typically called
+directory that stores all of your .Rmd files, which are typically called
 `doc(s)`. This figure will be centered, placed below your title, and will be
-four inches wide. For those that do not want a figure on your title page, just
+four inches wide. For those who do not want a figure on your title page, just
 do nothing. The use of an if statement only includes the figure if it is
 present and a default figure is not included in the package. Thanks to
 [stack exchange](
@@ -213,10 +213,10 @@ the National Oceanic and Atmospheric Administration, or the United States
 Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’
 basis and the user assumes responsibility for its use. Any claims against the
 Department of Commerce or Department of Commerce bureaus stemming from the use
-of this GitHub project will be governed by all applicable Federal law. Any
+of this GitHub project will be governed by all applicable Federal laws. Any
 reference to specific commercial products, processes, or services by service
 mark, trademark, manufacturer, or otherwise, does not constitute or imply their
-endorsement, recommendation or favoring by the Department of Commerce. The
+endorsement, recommendation, or favoring by the Department of Commerce. The
 Department of Commerce seal and logo, or the seal and logo of a DOC bureau,
 shall not be used in any manner to imply endorsement of any commercial product
 or activity by DOC or the United States Government.
