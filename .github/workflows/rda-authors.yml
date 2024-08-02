@@ -14,7 +14,7 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'pfmc-assessments/sa4ss'
       - name: Setup R
